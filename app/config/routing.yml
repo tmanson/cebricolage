@@ -1,0 +1,4 @@
+ce_core:
+    resource: "@CECoreBundle/Resources/config/routing.yml"
+    prefix:   /
+

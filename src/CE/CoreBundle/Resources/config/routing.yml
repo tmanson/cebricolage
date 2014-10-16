@@ -1,0 +1,3 @@
+ce_core_homepage:
+    path:     /
+    defaults: { _controller: CECoreBundle:Default:index }
