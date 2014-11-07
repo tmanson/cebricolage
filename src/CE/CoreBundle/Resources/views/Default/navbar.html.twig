@@ -1,0 +1,50 @@
+<script>
+    $(function () { $('.popover-toggle-login').popover('hide');});
+</script>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">CE Bricolage</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="{% block Emprunt %}{% endblock %}"><a href="#">Emprunt</a></li>
+                    <li class="{% block Materiel %}{% endblock %}"><a href="#">Gestion Matériel</a></li>
+                    <li class="{% block Salarie %}{% endblock %}"><a href="#">Gestion Salarié</a></li>
+                    <li class="{% block Achat %}{% endblock %}"><a href="#">Achat</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ app.user.username }} |
+                        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-xs btn-info">
+                           se déconnecter
+                        </a>
+                    {% else %}
+                        <div style="padding-top: 13px" >
+                            <div class="dropdown">
+                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-xs btn-info">
+                                    Login
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    {% include "FOSUserBundle:Security:login.html.twig" %}
+
+                                    <a href={{ path("fos_user_registration_register") }} class="btn btn-xs btn-info"> S'enregistrer </a>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    {% block javascripttop %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/popover.js') }}"></script>
+    {% endblock javascripttop %}
+</head>
+<body>
+
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+        <div class="flash-{{ type }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<div class="container">
+
+    {%  include 'CECoreBundle:Default:navbar.html.twig' %}
+
+    {% block body %}
+
+    {% endblock body %}
+</div>
+</body>
+</html>

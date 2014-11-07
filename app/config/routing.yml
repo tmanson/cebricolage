@@ -1,4 +1,10 @@
-ce_core:
-    resource: "@CECoreBundle/Resources/config/routing.yml"
+ce_user:
+    resource: "@CEUserBundle/Resources/config/routing.yml"
     prefix:   /
 
+ce_core:
+    resource: "@CECoreBundle/Resources/config/routing.yml"
+    prefix:   /core
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

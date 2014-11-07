@@ -1,6 +1,6 @@
 <?php
 
-namespace CE\CoreBundle\Controller;
+namespace CE\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,7 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-
-        return $this->render('CECoreBundle:Default:index.html.twig');
+        return $this->render('CEUserBundle:Default:index.html.twig', array('error' => null));
     }
 }
