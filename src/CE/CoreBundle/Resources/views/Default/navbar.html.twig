@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li class="{% block Emprunt %}{% endblock %}"><a href="#">Emprunt</a></li>
-                    <li class="{% block Materiel %}{% endblock %}"><a href="#">Gestion Matériel</a></li>
+                    <li class="{% block Materiel %}{% endblock %}"><a href="{{ path("device_management") }}">Gestion Matériel</a></li>
                     <li class="{% block Salarie %}{% endblock %}"><a href="#">Gestion Salarié</a></li>
                     <li class="{% block Achat %}{% endblock %}"><a href="#">Achat</a></li>
                 {% endif %}

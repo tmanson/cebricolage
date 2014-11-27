@@ -1,0 +1,7 @@
+device_management:
+    path:     /device_management
+    defaults: { _controller: CEDeviceBundle:Default:index }
+
+device_create:
+    path:     /device_create
+    defaults: { _controller: CEDeviceBundle:Default:create }

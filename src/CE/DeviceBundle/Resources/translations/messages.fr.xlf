@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Label</source>
+                <target>Désignation</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Brand</source>
+                <target>Marque</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Model</source>
+                <target>Modèle</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Status</source>
+                <target>Etat</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Date of purchase</source>
+                <target>Date d'achat</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Comment</source>
+                <target>Commentaire</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
