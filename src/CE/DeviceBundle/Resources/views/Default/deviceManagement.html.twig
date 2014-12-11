@@ -13,21 +13,19 @@
             <th class="col-xs-4 col-md-2">Commentaire</th>
             <th class="col-xs-2 col-md-1">Date d'achat</th>
             <th class="col-xs-2 col-md-1">
-                <button type="button" class="btn btn-default" aria-label="Left Align">
-                    <a href="{{ path('device_create') }}">+ Ajouter</a>
-                </button>
+                    <a class="btn btn-success" href="{{ path('device_create') }}">+ Ajouter</a>
             </th>
             </thead>
             <tbody>
             {% for device in devices %}
-                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''" ondblclick="alert('Edition du materiel')" onmousedown="return false;">
+                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
                     <td>{{ device.libelle }}</td>
                     <td>{{ device.marque }}</td>
                     <td>{{ device.modele }}</td>
                     <td>{{ device.etat }}</td>
                     <td>{{ device.commentaire }}</td>
-                    <td>{{ device.dateAchat | date()}}</td>
-                    <td><button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
+                    <td>{{ device.dateAchat | date('d M Y')}}</td>
+                    <td><a class="btn btn-default" href="{{ path('device_edit', {"id":device.id}) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 </tr>
             {% endfor %}
             </tbody>

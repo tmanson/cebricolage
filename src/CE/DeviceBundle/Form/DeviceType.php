@@ -20,8 +20,18 @@ class DeviceType extends AbstractType
                                                 }))
             ->add('modele')
             ->add('commentaire')
-            ->add('dateAchat')
-            ->add('save', 'submit')
+            ->add('dateAchat', 'date', array(
+                'widget' => 'single_text',
+                'pattern'=>'d M Y'
+            ))
+            ->add('etat', 'entity', array(
+                                    'required' => true,
+                                    'class' => 'CEDeviceBundle:Status',
+                                    'query_builder' => function(EntityRepository $e) {
+                                            return $e->createQueryBuilder('c')
+                                                ->orderBy('c.libelle', 'ASC');
+                                        }))
+            ->add('Enregistrer', 'submit', array('attr'=> array('class' => 'btn btn-success')))
         ;
     }
 

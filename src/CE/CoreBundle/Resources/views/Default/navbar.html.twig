@@ -17,10 +17,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li class="{% block Emprunt %}{% endblock %}"><a href="#">Emprunt</a></li>
+                    <li class="{% block Emprunt %}{% endblock %}"><a href="{{ path('reservation') }}">Emprunt</a></li>
                     <li class="{% block Materiel %}{% endblock %}"><a href="{{ path("device_management") }}">Gestion Matériel</a></li>
-                    <li class="{% block Salarie %}{% endblock %}"><a href="#">Gestion Salarié</a></li>
-                    <li class="{% block Achat %}{% endblock %}"><a href="#">Achat</a></li>
+                    <li class="{% block Salarie %}{% endblock %}"><a href="{{ path('employee') }}">Gestion Salarié</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">

@@ -5,3 +5,9 @@ device_management:
 device_create:
     path:     /device_create
     defaults: { _controller: CEDeviceBundle:Default:create }
+
+device_edit:
+    path:     /device_edit/{id}
+    defaults: { _controller: CEDeviceBundle:Default:edit }
+    requirements:
+        id: \d+

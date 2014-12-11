@@ -35,4 +35,22 @@ class DefaultController extends Controller
 
         return $this->render('CEDeviceBundle:Default:create.html.twig', array('form' => $form->createView()));
     }
+
+    public function editAction($id, Request $request)
+    {
+        $device = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findOneById($id);
+        $form = $this->createForm(new DeviceType(), $device);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $devices = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findAll();
+            return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
+        }
+
+        return $this->render('CEDeviceBundle:Default:create.html.twig', array('form' => $form->createView()));
+    }
 }

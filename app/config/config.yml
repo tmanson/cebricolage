@@ -78,3 +78,4 @@ fos_user:
     registration:
         form:
             type: ce_user_registration
+

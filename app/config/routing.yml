@@ -1,3 +1,11 @@
+ce_reservation:
+    resource: "@CEReservationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ce_employee:
+    resource: "@CEEmployeeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ce_device:
     resource: "@CEDeviceBundle/Resources/config/routing.yml"
     prefix:   /

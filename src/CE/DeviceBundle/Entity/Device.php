@@ -209,4 +209,9 @@ class Device
     {
         return $this->dateAchat;
     }
+
+    public function __toString()
+    {
+        return ucfirst($this->libelle);
+    }
 }

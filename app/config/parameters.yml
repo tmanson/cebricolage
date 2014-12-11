@@ -10,7 +10,7 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    locale: en
+    locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
     debug_toolbar: true
     debug_redirects: false
