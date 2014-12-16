@@ -1,0 +1,42 @@
+reservation:
+    path:     /
+    defaults: { _controller: "CEReservationBundle:Reservation:index" }
+
+reservation_show:
+    path:     /{id}/show
+    defaults: { _controller: "CEReservationBundle:Reservation:show" }
+
+reservation_new:
+    path:     /new
+    defaults: { _controller: "CEReservationBundle:Reservation:new" }
+
+reservation_create:
+    path:     /create
+    defaults: { _controller: "CEReservationBundle:Reservation:create" }
+    requirements: { _method: post }
+
+reservation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CEReservationBundle:Reservation:edit" }
+
+reservation_update:
+    path:     /{id}/update
+    defaults: { _controller: "CEReservationBundle:Reservation:update" }
+    requirements: { _method: post|put }
+
+reservation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CEReservationBundle:Reservation:delete" }
+    requirements: { _method: post|delete }
+
+reservation_emprunt:
+    path:     /emprunt
+    defaults: { _controller: "CEReservationBundle:Reservation:emprunt" }
+    requirements:
+        _method: POST
+
+reservation_restitue:
+    path:     /emprunt
+    defaults: { _controller: "CEReservationBundle:Reservation:restitue" }
+    requirements:
+        _method: POST

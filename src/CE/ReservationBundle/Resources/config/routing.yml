@@ -1,0 +1,3 @@
+ce_reservation_reservation:
+    resource: "@CEReservationBundle/Resources/config/routing/reservation.yml"
+    prefix:   /reservation

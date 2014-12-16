@@ -1,0 +1,44 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body -%}
+    <h1>Reservation</h1>
+
+
+<div class="table-responsive panel panel-default">
+    <div class="panel-heading">Liste du matériel</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Device</th>
+                <td>{{ entity.device }}</td>
+            </tr>
+            <tr>
+                <th>Device</th>
+                <td>{{ entity.employee }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{{ entity.startDate|date() }}</td>
+            </tr>
+            <tr>
+                <th>Enddate</th>
+                <td>{{ entity.endDate|date() }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('reservation') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('reservation_edit', { 'id': entity.id }) }}">
+                    Edit
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+{% endblock %}

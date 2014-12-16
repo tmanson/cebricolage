@@ -1,0 +1,30 @@
+employee:
+    path:     /
+    defaults: { _controller: "CEEmployeeBundle:Employee:index" }
+
+employee_show:
+    path:     /{id}/show
+    defaults: { _controller: "CEEmployeeBundle:Employee:show" }
+
+employee_new:
+    path:     /new
+    defaults: { _controller: "CEEmployeeBundle:Employee:new" }
+
+employee_create:
+    path:     /create
+    defaults: { _controller: "CEEmployeeBundle:Employee:create" }
+    requirements: { _method: post }
+
+employee_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CEEmployeeBundle:Employee:edit" }
+
+employee_update:
+    path:     /{id}/update
+    defaults: { _controller: "CEEmployeeBundle:Employee:update" }
+    requirements: { _method: post|put }
+
+employee_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CEEmployeeBundle:Employee:delete" }
+    requirements: { _method: post|delete }

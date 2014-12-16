@@ -1,0 +1,18 @@
+form {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+form label{
+    width: 10%;
+    text-align: left;
+}
+
+form select{
+    width: 20%;
+}
+
+form input{
+    width: 20%;
+}
