@@ -36,7 +36,25 @@ reservation_emprunt:
         _method: POST
 
 reservation_restitue:
-    path:     /emprunt
+    path:     /restitue
     defaults: { _controller: "CEReservationBundle:Reservation:restitue" }
     requirements:
         _method: POST
+
+reservation_get_emprunt:
+    path:     /get_emprunt
+    defaults: { _controller: "CEReservationBundle:Reservation:getEmprunt" }
+    requirements:
+            _method: GET
+
+reservation_get_reservation:
+    path:     /get_reservation
+    defaults: { _controller: "CEReservationBundle:Reservation:getReservation" }
+    requirements:
+            _method: GET
+
+reservation_get_devices:
+    path:     /get_devices
+    defaults: { _controller: "CEReservationBundle:Reservation:getDevices" }
+    requirements:
+            _method: GET

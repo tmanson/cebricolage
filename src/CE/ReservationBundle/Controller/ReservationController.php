@@ -2,12 +2,16 @@
 
 namespace CE\ReservationBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CE\ReservationBundle\Entity\Reservation;
 use CE\ReservationBundle\Form\ReservationType;
 use CE\ReservationBundle\Entity\ReservationStatus;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Reservation controller.
@@ -235,10 +239,7 @@ class ReservationController extends Controller
      */
     public function empruntAction()
     {
-        $this->changeReservationStatus(2);
-
-        // TODO renvoyer la reservation
-        return $this->listReservation();
+        return $this->changeReservationStatus(2);
     }
 
     /**
@@ -247,10 +248,7 @@ class ReservationController extends Controller
      */
     public function restitueAction()
     {
-        $this->changeReservationStatus(3);
-
-        // TODO renvoyer la reservation
-        return $this->listReservation();
+        return $this->changeReservationStatus(3);
     }
 
     /**
@@ -267,7 +265,7 @@ class ReservationController extends Controller
 
             $id = $request->get('id');
             if(!isset($id)) {
-                throw $this->createNotFoundException('UId not given.');
+                throw $this->createNotFoundException('Id not given.');
             }
 
             $entity = $em->getRepository('CEReservationBundle:Reservation')->find($id);
@@ -279,7 +277,83 @@ class ReservationController extends Controller
             $status = $em->getRepository('CEReservationBundle:ReservationStatus')->findOneById($statusId);
             $entity->setStatus($status);
             $em->flush();
+
+            $response = new JsonResponse();
+            $response->setData(array('id' => $entity->getId()));
+            return $response;
         }
+        return null;
     }
 
+
+    /**
+     * Liste les emprunts.
+     *
+     */
+    public function getEmpruntAction()
+    {
+        return $this->getList(2,'Liste du matériel emprunté','Restitué','restitue');
+    }
+
+    /**
+     * Liste les reservations.
+     *
+     */
+    public function getReservationAction()
+    {
+        return $this->getList(1,'Liste du matériel réservé','Emprunté','emprunt');
+    }
+
+    /**
+     * @param $statusId le status id des reservation à récupérer
+     * @param $titre le titre de la liste
+     * @param $actionLib le libellé de l'action sur les reservation
+     * @param $listId l'identifiant de la liste
+     * @param $jsActionFunction le nom de la fonction JS qui effectue l'action
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    private function getList($statusId, $titre, $actionLib, $jsActionFunction){
+        $em = $this->getDoctrine()->getManager();
+        $reservations = $em->getRepository('CEReservationBundle:Reservation')->findByReservationStatus($statusId);
+        return $this->render('CEReservationBundle:Reservation:list.html.twig', array(
+            'entities' => $reservations,
+            'titre' => $titre,
+            'action' => $actionLib,
+            'jsActionFunction'=> $jsActionFunction
+        ));
+    }
+
+    /**
+     * Liste les devices.
+     *
+     */
+    public function getDevicesAction()
+    {
+        $request = $this->container->get('request');
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $startDate = $request->get('startDate');
+            $endDate = $request->get('endDate');
+
+            $reservationsSurLaPeriode = $em->getRepository('CEReservationBundle:Reservation')->findByDate($startDate, $endDate);
+            $devices = $em->getRepository('CEReservationBundle:Devices')->findAll();
+            //Recup all device
+
+            // on supprime les devices reservés
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Reservation entity.');
+            }
+
+            $status = $em->getRepository('CEReservationBundle:ReservationStatus')->findOneById($statusId);
+            $entity->setStatus($status);
+            $em->flush();
+
+            $response = new JsonResponse();
+            $response->setData(array('id' => $entity->getId()));
+            return $response;
+        }
+        return null;
+    }
 }

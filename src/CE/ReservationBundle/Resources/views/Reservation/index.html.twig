@@ -1,77 +1,16 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
 {% block body %}
-    <div class="table-responsive panel panel-default col-xs-3 col-md-6">
-        <div class="panel-heading">Liste du matériel réservé</div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="col-xs-4 col-md-2">Device</th>
-                <th class="col-xs-4 col-md-2">Employee</th>
-                <th class="col-xs-4 col-md-2">Startdate</th>
-                <th class="col-xs-4 col-md-2">Enddate</th>
-                <th class="col-xs-4 col-md-2">
-                    <a class="btn btn-success" href="{{ path('reservation_new') }}">+ Ajouter</a>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for entity in entities %}
-                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
-                    <td>{% if entity.device %}{{ entity.device }}{% endif %}</td>
-                    <td>{% if entity.employee %}{{ entity.employee }}{% endif %}</td>
-                    <td>{% if entity.startDate %}{{ entity.startDate|date() }}{% endif %}</td>
-                    <td>{% if entity.endDate %}{{ entity.endDate|date() }}{% endif %}</td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a class="btn btn-info" href="{{ path('reservation_edit', { 'id': entity.id }) }}">Modifier</a>
-                                <a onclick="emprunt({{ entity.id }});" class="btn btn-success" href="#">Emprunté</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+
+    <div id="reservationList">
+    {{ include('CEReservationBundle:Reservation:list.html.twig',
+        {'titre': 'Liste du matériel réservé','action':'Emprunté','entities':entities, 'jsActionFunction': 'emprunt'}) }}
     </div>
 
-
-    <div class="table-responsive panel panel-default  col-xs-3 col-md-6">
-        <div class="panel-heading">Liste du matériel emprunté</div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="col-xs-4 col-md-2">Device</th>
-                <th class="col-xs-4 col-md-2">Employee</th>
-                <th class="col-xs-4 col-md-2">Startdate</th>
-                <th class="col-xs-4 col-md-2">Enddate</th>
-                <th class="col-xs-4 col-md-2">
-                    <a class="btn btn-success" href="{{ path('reservation_new') }}">+ Ajouter</a>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for entity in emprunts %}
-                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
-                    <td>{% if entity.device %}{{ entity.device }}{% endif %}</td>
-                    <td>{% if entity.employee %}{{ entity.employee }}{% endif %}</td>
-                    <td>{% if entity.startDate %}{{ entity.startDate|date() }}{% endif %}</td>
-                    <td>{% if entity.endDate %}{{ entity.endDate|date() }}{% endif %}</td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a class="btn btn-info" href="{{ path('reservation_edit', { 'id': entity.id }) }}">Modifier</a>
-                                <a onclick="restitue({{ entity.id }});" class="btn btn-success" href="#">Restitué</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <div id="empruntList">
+    {{ include('CEReservationBundle:Reservation:list.html.twig',
+        {'titre': 'Liste du matériel emprunté','action':'Restitué','entities':emprunts, 'jsActionFunction': 'restitue'}) }}
     </div>
-
     <script>
         function emprunt(id) {
             $.ajax({
@@ -80,7 +19,8 @@
                 data: {id: id},
                 cache: false,
                 success: function (data) {
-                    $('#resultats_recherche').html(data);
+                    emprunt_reload();
+                    restitue_reload();
                 }
             });
         }
@@ -91,7 +31,29 @@
                 data: {id: id},
                 cache: false,
                 success: function (data) {
-                    $('#resultats_recherche').html(data);
+                    emprunt_reload();
+                }
+            });
+        }
+        function emprunt_reload() {
+            $.ajax({
+                type: "GET",
+                url: '{{ path('reservation_get_emprunt')}}',
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                    $('#empruntList').html(data);
+                }
+            });
+        }
+        function restitue_reload() {
+            $.ajax({
+                type: "GET",
+                url: '{{ path('reservation_get_reservation')}}',
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                    $('#reservationList').html(data);
                 }
             });
         }

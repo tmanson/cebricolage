@@ -1,0 +1,30 @@
+<div class="table-responsive panel panel-default  col-xs-3 col-md-6"">
+    <div class="panel-heading">{{ titre }}</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="col-xs-4 col-md-2">Device</th>
+            <th class="col-xs-4 col-md-2">Employee</th>
+            <th class="col-xs-4 col-md-2">Startdate</th>
+            <th class="col-xs-4 col-md-2">Enddate</th>
+            <th class="col-xs-4 col-md-2">
+                <a class="btn btn-success" href="{{ path('reservation_new') }}">+ Ajouter</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody id="list_emprunt">
+        {% for entity in entities %}
+            <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''" id="{% if entity.id %}restitue_{{ entity.id }}{% endif %}">
+                <td>{% if entity.device %}{{ entity.device }}{% endif %}</td>
+                <td>{% if entity.employee %}{{ entity.employee }}{% endif %}</td>
+                <td>{% if entity.startDate %}{{ entity.startDate|date() }}{% endif %}</td>
+                <td>{% if entity.endDate %}{{ entity.endDate|date() }}{% endif %}</td>
+                <td>
+                            <a class="btn btn-info" href="{{ path('reservation_edit', { 'id': entity.id }) }}">Modifier</a>
+                            <a onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#">{{ action }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -6,10 +6,43 @@
     {{ form(form) }}
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('reservation') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+            <li>
+                <a href="{{ path('reservation') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+
+<script>
+    function reloadDevice()
+    {
+        //delay(function()
+        //{
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('reservation_get_devices') }}',
+                data: {
+                    startDate: $('#startDate').val(),
+                    endDate: $('#endDate').val()
+                },
+                success: function(html) {
+                    $("#search_result").html(html);
+                },
+                error: function() {
+                    console.log('erreur');
+                }
+            });
+        //}, 250 );
+    }
+
+    /*var delay = (function(){
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();*/
+
+</script>
+
 {% endblock %}
