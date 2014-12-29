@@ -3,21 +3,23 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
+    {% if error is defined and error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <form action="{{ path("fos_user_security_check") }}" method="post" id="login_form">
 
-    {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <label for="username">Identifiant</label>
+        <input type="text" id="username" name="_username" required="required" size="100" />
 
-        <label for="username">username</label>
-        <input type="text" id="username" name="_username" required="required" />
-
-        <label for="password">password</label>
+        <label for="password">Mot de passe</label>
         <input type="password" id="password" name="_password" required="required" />
 
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-        <label for="remember_me">se souvenir</label>
+        <span>
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">Se souvenir</label>
+        </span>
 
-        <input type="submit" id="_submit" name="_submit" class="btn btn-xs btn-info" value="Login" />
+        <input type="submit" id="_submit" name="_submit" class="btn btn-xs btn-info" value="Se connecter" />
+        <a href={{ path("fos_user_registration_register") }}> S'enregistrer </a>
     </form>
 {% endblock fos_user_content %}

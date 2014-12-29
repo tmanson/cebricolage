@@ -1,7 +1,11 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
     <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
 {% endblock fos_user_content %}
+
+{% endblock body %}

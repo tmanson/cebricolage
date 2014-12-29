@@ -1,5 +1,5 @@
 employee:
-    path:     /
+    path:     /list
     defaults: { _controller: "CEEmployeeBundle:Employee:index" }
 
 employee_show:
