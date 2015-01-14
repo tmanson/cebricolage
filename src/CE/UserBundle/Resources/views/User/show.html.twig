@@ -1,0 +1,39 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="table-responsive panel panel-default">
+    <div class="container-fluid panel-heading">
+        <div class="pull-left "><h4>{{ entity.firstname }} {{ entity.username }}</h4></div>
+        <div class="btn-group pull-right">
+            <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
+            <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-success">Modifier</a>
+            <a href="{{ path('user_delete', { 'id': entity.id }) }}" class="btn btn-warning">Supprimer</a>
+        </div>
+    </div>
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th class="col-xs-2 col-md-1">Identifiant</th>
+                <td>{{ entity.identifiant }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Nom</th>
+                <td>{{ entity.username }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Prénom</th>
+                <td>{{ entity.firstname }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Téléphone</th>
+                <td>{{ entity.phoneNumber }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

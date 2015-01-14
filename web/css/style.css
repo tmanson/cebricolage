@@ -1,6 +1,9 @@
-
+.container-full {
+    margin: 0 auto;
+    width: 100%;
+}
 /* Mise en forme des formulaires */
-form {
+/*form {
     width: 70%;
     left:0;
     right:0;
@@ -32,8 +35,8 @@ legend {
     float: left;
     padding-right: 10px;
 }
-form  div div,
-form  div fieldset div {
+form div div,
+form div fieldset div {
     width: 75%;
     float: right;
 }
@@ -104,7 +107,7 @@ input[type=submit]{
     }
 }
 
-
+*/
 /* Mise en forme du formulaire de login */
 #login_form{
     padding: 15px;

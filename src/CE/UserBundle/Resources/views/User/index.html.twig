@@ -1,0 +1,38 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="table-responsive panel panel-default">
+    <div class="panel-heading">Liste des utilisateurs</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="col-xs-2 col-md-1">Id</th>
+            <th class="col-xs-2 col-md-1">Name</th>
+            <th class="col-xs-2 col-md-1">Firstname</th>
+            <th class="col-xs-2 col-md-1">Email</th>
+            <th class="col-xs-2 col-md-1">Phonenumber</th>
+            <th class="col-xs-2 col-md-1">
+                <a class="btn btn-success" href="{{ path('user_new') }}">+ Ajouter</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for entity in entities %}
+            <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
+                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.username }}</td>
+                <td>{{ entity.firstname }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.phoneNumber }}</td>
+                <td>
+                        <a href="{{ path('user_show', { 'id': entity.id }) }}" class="glyphicon glyphicon-user"></a>
+                        <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="glyphicon glyphicon-edit"></a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

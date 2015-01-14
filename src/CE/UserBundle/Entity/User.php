@@ -24,9 +24,9 @@ class User extends \FOS\UserBundle\Model\User
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="identifiant", type="string", length=255)
      */
-    private $name;
+    private $identifiant;
 
     /**
      * @var string
@@ -54,26 +54,26 @@ class User extends \FOS\UserBundle\Model\User
     }
 
     /**
-     * Set name
+     * Set identifiant
      *
-     * @param string $name
+     * @param string $identifiant
      * @return User
      */
-    public function setName($name)
+    public function setIdentifiant($identifiant)
     {
-        $this->name = $name;
+        $this->identifiant = $identifiant;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get identifiant
      *
      * @return string 
      */
-    public function getName()
+    public function getIdentifiant()
     {
-        return $this->name;
+        return $this->identifiant;
     }
 
     /**

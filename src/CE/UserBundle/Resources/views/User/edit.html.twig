@@ -1,0 +1,52 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+    {{ form_start(edit_form)}}
+    <div class="table-responsive panel panel-default">
+
+        <div class="container-fluid panel-heading">
+            <div class="pull-left "><h4>Edition de l'utilisateur {{ entity.firstname }} {{ entity.username }}</h4></div>
+            <div class="btn-group pull-right">
+                <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
+                <a href="{{ path('user_delete', { 'id': entity.id }) }}" class="btn btn-warning">Supprimer</a>
+                {{ form_widget(edit_form.submit) }}
+            </div>
+        </div>
+        <div>
+            {{ form_errors(edit_form) }}
+            {{ form_errors(delete_form) }}
+            <table class="record_properties">
+                <tbody>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Identifiant</th>
+                    <td>{{ form_errors(edit_form.identifiant) }}
+                        {{ form_widget(edit_form.identifiant) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Nom</th>
+                    <td>{{ form_errors(edit_form.username) }}
+                        {{ form_widget(edit_form.username) }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Prénom</th>
+                    <td>{{ form_errors(edit_form.firstname) }}
+                        {{ form_widget(edit_form.firstname) }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Email</th>
+                    <td>{{ form_errors(edit_form.email) }}
+                        {{ form_widget(edit_form.email) }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Téléphone</th>
+                    <td>{{ form_errors(edit_form.phoneNumber) }}
+                        {{ form_widget(edit_form.phoneNumber) }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {{ form_end(edit_form) }}
+
+{% endblock %}

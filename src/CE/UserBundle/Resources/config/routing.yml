@@ -1,3 +1,7 @@
+ce_user_user:
+    resource: "@CEUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
 ce_user_homepage:
     path:     /
     defaults: { _controller: CEUserBundle:Default:index }

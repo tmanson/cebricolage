@@ -1,3 +1,6 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
 {% trans_default_domain 'FOSUserBundle' %}
 {% block subject %}
 {% autoescape false %}
@@ -10,3 +13,4 @@
 {% endautoescape %}
 {% endblock %}
 {% block body_html %}{% endblock %}
+{% endblock body %}

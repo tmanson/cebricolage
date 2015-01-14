@@ -1,0 +1,33 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Création d'un utilisateur</h1>
+
+
+    <div class="well">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_row(form.identifiant) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.phoneNumber) }}
+            {# Bouton d'action. #}
+            <div class="btn-group btn-group-sm">
+                <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
+                {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-success'}}) }}
+            </div>
+        </div>
+
+
+        {# Fermeture de la balise <form> du formulaire HTML #}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
