@@ -1,0 +1,48 @@
+{{ form_start(form)}}
+<div class="table-responsive panel panel-default">
+
+    <div class="container-fluid panel-heading">
+        <div class="pull-left "><h4>{{ titre }}</h4></div>
+        <div class="btn-group pull-right">
+            <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
+            {% if showDeleteButton %}
+                <a href="{{ path('user_delete', { 'id': entity.id }) }}" class="btn btn-warning">Supprimer</a>
+            {% endif %}
+            {{ form_widget(form.submit) }}
+        </div>
+    </div>
+    <div>
+        {{ form_errors(form) }}
+        <table class="record_properties">
+            <tbody>
+            <tr>
+                <th class="col-xs-2 col-md-1">Identifiant</th>
+                <td>{{ form_errors(form.identifiant) }}
+                    {{ form_widget(form.identifiant) }}
+                </td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Nom</th>
+                <td>{{ form_errors(form.username) }}
+                    {{ form_widget(form.username) }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Prénom</th>
+                <td>{{ form_errors(form.firstname) }}
+                    {{ form_widget(form.firstname) }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Email</th>
+                <td>{{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Téléphone</th>
+                <td>{{ form_errors(form.phoneNumber) }}
+                    {{ form_widget(form.phoneNumber) }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ form_end(form) }}

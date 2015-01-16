@@ -5,6 +5,8 @@
 {% block fos_user_content %}
     {% if error is defined and error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <!-- On ouvre la popup -->
+        <script language="JavaScript">$(".dropdown").addClass('open');</script>
     {% endif %}
     <form action="{{ path("fos_user_security_check") }}" method="post" id="login_form">
 

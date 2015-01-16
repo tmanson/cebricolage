@@ -1,13 +1,20 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
 {% block body %}
+<form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post" id="delete_form">
+    <input type="hidden" name="_method" value="DELETE" />
+    <button type="submit" id="form_submit" name="form[submit]" class="btn btn-warning">Supprimer</button>
+</form>
+<!--<div class="hidden">
+    {{ form(delete_form) }}
+</div>-->
 <div class="table-responsive panel panel-default">
     <div class="container-fluid panel-heading">
-        <div class="pull-left "><h4>{{ entity.firstname }} {{ entity.username }}</h4></div>
+        <div class="pull-left "><h4>{{ entity.firstname | capitalize }} {{ entity.username | upper}}</h4></div>
         <div class="btn-group pull-right">
             <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
             <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-success">Modifier</a>
-            <a href="{{ path('user_delete', { 'id': entity.id }) }}" class="btn btn-warning">Supprimer</a>
+            <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
         </div>
     </div>
     <table class="record_properties">

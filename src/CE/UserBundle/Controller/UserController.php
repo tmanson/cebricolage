@@ -35,21 +35,30 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new User();
-        $form = $this->createCreateForm($entity);
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->createUser();
+        $form = $this->createCreateForm($user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $entity->setPassword(UserController::generatePassword());
+            // Génération d'un mot de passe
+            $password = UserController::generatePassword();
+            $user->setPlainPassword($password);
+            // On persiste le mot de passe encodé
+            $userManager->updatePassword($user);
+            $user->setEnabled(true);
+            $userManager->updateUser($user);
+            // Il faut envoyer un mail à l'utilisateur avec son mot de passe
+            // Il faut gerer les groupes (Section bricolage, employée au minium)
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+            $em->persist($user);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('user_show', array('id' => $user->getId())));
         }
 
         return $this->render('CEUserBundle:User:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $user,
             'form'   => $form->createView(),
         ));
     }
