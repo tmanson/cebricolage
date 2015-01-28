@@ -1,3 +1,9 @@
+{% if showDeleteButton %}
+<div class="hidden">
+    {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
+</div>
+{% endif %}
+
 {{ form_start(form)}}
 <div class="table-responsive panel panel-default">
 
@@ -6,7 +12,7 @@
         <div class="btn-group pull-right">
             <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
             {% if showDeleteButton %}
-                <a href="{{ path('user_delete', { 'id': entity.id }) }}" class="btn btn-warning">Supprimer</a>
+                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
             {% endif %}
             {{ form_widget(form.submit) }}
         </div>

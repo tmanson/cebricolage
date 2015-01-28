@@ -10,3 +10,8 @@ services:
        arguments: ["@fos_user.registration.form", "@request", "@fos_user.user_manager", "@fos_user.mailer"]
        scope: request
        public: false
+
+    ce_user.group.form.type:
+        class: CE\UserBundle\Form\Type\GroupFormType
+        tags:
+            - { name: form.type, alias: ce_user_group }

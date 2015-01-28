@@ -21,6 +21,7 @@
                     <li class="{% block Materiel %}{% endblock %}"><a href="{{ path("device_management") }}">Gestion Matériel</a></li>
                     <li class="{% block Salarie %}{% endblock %}"><a href="{{ path('employee') }}">Gestion Salarié</a></li>
                     <li class="{% block Utilisateur %}{% endblock %}"><a href="{{ path('user') }}">Utilisateurs</a></li>
+                    <li class="{% block Groupes %}{% endblock %}"><a href="{{ path('fos_user_group_list') }}">Groupes</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">

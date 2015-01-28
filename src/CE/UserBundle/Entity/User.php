@@ -42,6 +42,14 @@ class User extends \FOS\UserBundle\Model\User
      */
     private $phoneNumber;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="CE\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="user_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
 
     /**
      * Get id
@@ -120,5 +128,21 @@ class User extends \FOS\UserBundle\Model\User
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param mixed $groups
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
     }
 }

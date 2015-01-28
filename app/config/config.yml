@@ -78,4 +78,8 @@ fos_user:
     registration:
         form:
             type: ce_user_registration
+    group:
+        group_class: CE\UserBundle\Entity\Group
+        form:
+            type: ce_user_group
 

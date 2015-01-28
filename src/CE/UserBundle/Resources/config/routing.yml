@@ -2,6 +2,11 @@ ce_user_user:
     resource: "@CEUserBundle/Resources/config/routing/user.yml"
     prefix:   /user
 
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+
 ce_user_homepage:
     path:     /
     defaults: { _controller: CEUserBundle:Default:index }
+

@@ -7,9 +7,11 @@
             <th class="col-xs-4 col-md-2">Employee</th>
             <th class="col-xs-4 col-md-2">Startdate</th>
             <th class="col-xs-4 col-md-2">Enddate</th>
+            {%  if is_granted('ROLE_CRUD_RESERVATION') %}
             <th class="col-xs-4 col-md-2">
                 <a class="btn btn-success" href="{{ path('reservation_new') }}">+ Ajouter</a>
             </th>
+            {% endif %}
         </tr>
         </thead>
         <tbody id="list_emprunt">
@@ -19,10 +21,12 @@
                 <td>{% if entity.employee %}{{ entity.employee }}{% endif %}</td>
                 <td>{% if entity.startDate %}{{ entity.startDate|date() }}{% endif %}</td>
                 <td>{% if entity.endDate %}{{ entity.endDate|date() }}{% endif %}</td>
+                {%  if is_granted('ROLE_CRUD_RESERVATION') %}
                 <td>
                             <a class="btn btn-info" href="{{ path('reservation_edit', { 'id': entity.id }) }}">Modifier</a>
                             <a onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#">{{ action }}</a>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

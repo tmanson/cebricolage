@@ -28,3 +28,4 @@ user_delete:
     path:     /{id}/delete
     defaults: { _controller: "CEUserBundle:User:delete" }
     requirements: { _method: post|delete }
+

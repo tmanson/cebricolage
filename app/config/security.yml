@@ -7,8 +7,16 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_READ_USER:   [ROLE_USER, IS_AUTHENTICATED_REMEMBERED]
+        ROLE_CRUD_USER:   [ROLE_READ_USER]
+        ROLE_READ_GROUP:   [ROLE_USER, IS_AUTHENTICATED_REMEMBERED]
+        ROLE_CRUD_GROUP:   [ROLE_READ_GROUP]
+        ROLE_READ_RESERVATION:   [ROLE_USER,IS_AUTHENTICATED_REMEMBERED]
+        ROLE_CRUD_RESERVATION:   [ROLE_READ_RESERVATION]
+        ROLE_READ_DEVICE:   [ROLE_USER, IS_AUTHENTICATED_REMEMBERED]
+        ROLE_CRUD_DEVICE:   [ROLE_READ_DEVICE]
+        ROLE_ADMIN:       [ROLE_CRUD_USER, ROLE_CRUD_RESERVATION, ROLE_READ_GROUP, ROLE_CRUD_DEVICE]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -25,13 +33,26 @@ security:
                 check_path: fos_user_security_check
                 provider: fos_userbundle
             logout:       true
-            anonymous:    true
+            anonymous:    ~
 
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/book/security.html#security-book-access-control-matching-options
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/user$, roles: ROLE_READ_USER }
+        - { path: ^/user/[0-9]+/show, roles: ROLE_READ_USER }
+        - { path: ^/user/[0-9]+/.+, roles: ROLE_CRUD_USER }
+        - { path: ^/user/.+, roles: ROLE_CRUD_USER }
+        - { path: ^/group/new$, roles: ROLE_CRUD_GROUP }
+        - { path: ^/group/.*$, roles: ROLE_READ_GROUP }
+        - { path: ^/group/.+/.*, roles: ROLE_CRUD_GROUP }
+        - { path: ^/reservation/$, roles: ROLE_READ_RESERVATION }
+        - { path: ^/reservation/[0-9]+/show, roles: ROLE_READ_RESERVATION }
+        - { path: ^/reservation/.+, roles: ROLE_CRUD_RESERVATION }
+        - { path: ^/get_emprunt, roles: ROLE_READ_RESERVATION }
+        - { path: ^/get_reservation, roles: ROLE_READ_RESERVATION }
+        - { path: ^/device_create, roles: ROLE_CRUD_DEVICE }
+        - { path: ^/device_edit/[0-9]+, roles: ROLE_CRUD_DEVICE }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }

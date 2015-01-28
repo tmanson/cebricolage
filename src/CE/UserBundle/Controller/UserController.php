@@ -96,7 +96,7 @@ class UserController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array( 'class' => 'btn btn-success')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array( 'class' => 'btn btn-success')));
         return $form;
     }
 
@@ -222,7 +222,6 @@ class UserController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('CEUserBundle:User')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
@@ -230,7 +229,6 @@ class UserController extends Controller
             $em->remove($entity);
             $em->flush();
         }
-
         return $this->redirect($this->generateUrl('user'));
     }
 
