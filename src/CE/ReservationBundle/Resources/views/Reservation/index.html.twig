@@ -1,15 +1,15 @@
 {% extends "CECoreBundle::layout.html.twig" %}
-
 {% block body %}
 
-    <div id="reservationList">
+
+    <div id="reservationList" class="resList">
     {{ include('CEReservationBundle:Reservation:list.html.twig',
-        {'titre': 'Liste du matériel réservé','action':'Emprunté','entities':entities, 'jsActionFunction': 'emprunt'}) }}
+        {'titre': 'Liste du matériel réservé','action':'Emprunté','entities':entities, 'jsActionFunction': 'emprunt', 'jsReloadAction': 'restitue_reload', 'statusCode': 'RESERVATION'}) }}
     </div>
 
-    <div id="empruntList">
+    <div id="empruntList" class="resList">
     {{ include('CEReservationBundle:Reservation:list.html.twig',
-        {'titre': 'Liste du matériel emprunté','action':'Restitué','entities':emprunts, 'jsActionFunction': 'restitue'}) }}
+        {'titre': 'Liste du matériel emprunté','action':'Restitué','entities':emprunts, 'jsActionFunction': 'restitue', 'jsReloadAction': 'emprunt_reload', 'statusCode': 'EMPRUNT'}) }}
     </div>
     <script>
         function emprunt(id) {
@@ -41,7 +41,6 @@
                 url: '{{ path('reservation_get_emprunt')}}',
                 cache: false,
                 success: function (data) {
-                    console.log(data);
                     $('#empruntList').html(data);
                 }
             });
@@ -52,10 +51,14 @@
                 url: '{{ path('reservation_get_reservation')}}',
                 cache: false,
                 success: function (data) {
-                    console.log(data);
                     $('#reservationList').html(data);
                 }
             });
+        }
+        // Fonction apelée après la suppression d'un element
+        function delete_callback(){
+            emprunt_reload();
+            restitue_reload();
         }
     </script>
 {% endblock %}

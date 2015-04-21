@@ -1,3 +1,7 @@
+ce_device_brand:
+    resource: "@CEDeviceBundle/Resources/config/routing/marque.yml"
+    prefix:   /brand
+
 device_management:
     path:     /device_management
     defaults: { _controller: CEDeviceBundle:Default:index }

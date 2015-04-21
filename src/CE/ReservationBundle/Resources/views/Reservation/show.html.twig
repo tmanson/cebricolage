@@ -9,19 +9,19 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Device</th>
+                <th>Matériel</th>
                 <td>{{ entity.device }}</td>
             </tr>
             <tr>
-                <th>Device</th>
-                <td>{{ entity.employee }}</td>
+                <th>Utilisateur</th>
+                <td>{{ entity.user }}</td>
             </tr>
             <tr>
-                <th>Startdate</th>
+                <th>Date de début</th>
                 <td>{{ entity.startDate|date() }}</td>
             </tr>
             <tr>
-                <th>Enddate</th>
+                <th>Date de fib</th>
                 <td>{{ entity.endDate|date() }}</td>
             </tr>
         </tbody>
@@ -41,4 +41,5 @@
             </li>
             <li>{{ form(delete_form) }}</li>
         </ul>
+
 {% endblock %}

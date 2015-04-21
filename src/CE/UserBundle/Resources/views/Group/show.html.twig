@@ -1,5 +1,37 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
 {% block body %}
-{% include "CEUserBundle:Group:show_content.html.twig" %}
+    <div class="table-responsive panel panel-default">
+        <div class="container-fluid panel-heading">
+            <div class="pull-left "><h4>{{ group.name | capitalize }}</h4></div>
+            <div class="btn-group pull-right">
+                <a href="{{ path('fos_user_group_list') }}" class="btn btn-primary">Retour</a>
+                {%  if is_granted('ROLE_CRUD_GROUP') %}
+                    <a href="{{ path('fos_user_group_edit', { 'groupName': group.name }) }}" class="btn btn-success">Modifier</a>
+                    <a href='{{ path('fos_user_group_delete', { 'groupName': group.name }) }}' class="btn btn-warning">Supprimer</a>
+                {%  endif %}
+            </div>
+        </div>
+        <table class="record_properties">
+            <tbody>
+            <tr>
+                <th class="col-xs-2 col-md-1">Nom</th>
+                <td>{{ group.name }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Roles</th>
+                <td>
+                    {% for role in group.roles|sort %}
+                        <ul class="list-unstyled">
+                            <li>
+                                {{ role }}
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
 {% endblock body %}

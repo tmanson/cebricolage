@@ -1,0 +1,34 @@
+{% if showDeleteButton %}
+    <div class="hidden">
+        {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
+    </div>
+{% endif %}
+
+{{ form_start(form)}}
+<div class="table-responsive panel panel-default">
+
+    <div class="container-fluid panel-heading">
+        <div class="pull-left "><h4>{{ titre }}</h4></div>
+        <div class="btn-group pull-right">
+            <a href="{{ path('brand') }}" class="btn btn-primary">Retour</a>
+            {% if showDeleteButton %}
+                <a href='{{ path('brand_delete', { 'id': entity.id }) }}' class="btn btn-warning">Supprimer</a>
+            {% endif %}
+            {{ form_widget(form.submit) }}
+        </div>
+    </div>
+    <div>
+        {{ form_errors(form) }}
+        <table class="record_properties">
+            <tbody>
+            <tr>
+                <th class="col-xs-2 col-md-1">Libellé</th>
+                <td>{{ form_errors(form.libelle) }}
+                    {{ form_widget(form.libelle) }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ form_end(form) }}

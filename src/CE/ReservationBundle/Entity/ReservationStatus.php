@@ -63,4 +63,5 @@ class ReservationStatus
     {
         return $this->libelle;
     }
+
 }

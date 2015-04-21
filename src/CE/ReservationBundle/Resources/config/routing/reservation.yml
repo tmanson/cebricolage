@@ -7,7 +7,7 @@ reservation_show:
     defaults: { _controller: "CEReservationBundle:Reservation:show" }
 
 reservation_new:
-    path:     /new
+    path:     /{statusCode}/new
     defaults: { _controller: "CEReservationBundle:Reservation:new" }
 
 reservation_create:
@@ -22,7 +22,7 @@ reservation_edit:
 reservation_update:
     path:     /{id}/update
     defaults: { _controller: "CEReservationBundle:Reservation:update" }
-    requirements: { _method: post|put }
+    requirements: { _method: post }
 
 reservation_delete:
     path:     /{id}/delete
@@ -56,5 +56,11 @@ reservation_get_reservation:
 reservation_get_devices:
     path:     /get_devices
     defaults: { _controller: "CEReservationBundle:Reservation:getDevices" }
+    requirements:
+            _method: GET
+
+reservation_get_reserved_period:
+    path:      /{deviceId}/get_reserved_period
+    defaults: { _controller: "CEReservationBundle:Reservation:getReservedPeriodFor" }
     requirements:
             _method: GET

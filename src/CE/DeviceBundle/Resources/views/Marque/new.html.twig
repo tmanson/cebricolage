@@ -1,0 +1,7 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+    {{ include('CEDeviceBundle:Marque:marqueForm.html.twig',
+    {'titre': 'Enregistrer une marque ', 'form': form, 'showDeleteButton': false}) }}
+{% endblock %}
+

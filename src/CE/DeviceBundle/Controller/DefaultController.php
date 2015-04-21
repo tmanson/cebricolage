@@ -32,7 +32,7 @@ class DefaultController extends Controller
             $devices = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findAll();
             return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
         }
-
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array( 'class' => 'btn btn-success')));
         return $this->render('CEDeviceBundle:Default:create.html.twig', array('form' => $form->createView()));
     }
 
@@ -50,7 +50,7 @@ class DefaultController extends Controller
             $devices = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findAll();
             return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
         }
-
-        return $this->render('CEDeviceBundle:Default:create.html.twig', array('form' => $form->createView()));
+        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-success')));
+        return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView()));
     }
 }

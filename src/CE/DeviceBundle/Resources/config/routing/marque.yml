@@ -1,0 +1,30 @@
+brand:
+    path:     /
+    defaults: { _controller: "CEDeviceBundle:Marque:index" }
+
+brand_show:
+    path:     /{id}/show
+    defaults: { _controller: "CEDeviceBundle:Marque:show" }
+
+brand_new:
+    path:     /new
+    defaults: { _controller: "CEDeviceBundle:Marque:new" }
+
+brand_create:
+    path:     /create
+    defaults: { _controller: "CEDeviceBundle:Marque:create" }
+    requirements: { _method: post }
+
+brand_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CEDeviceBundle:Marque:edit" }
+
+brand_update:
+    path:     /{id}/update
+    defaults: { _controller: "CEDeviceBundle:Marque:update" }
+    requirements: { _method: post|put }
+
+brand_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CEDeviceBundle:Marque:delete" }
+    requirements: { _method: post|delete }

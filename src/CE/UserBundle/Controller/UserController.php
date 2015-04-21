@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CE\UserBundle\Entity\User;
 use CE\UserBundle\Form\UserType;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * User controller.
@@ -197,10 +198,18 @@ class UserController extends Controller
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
         if ($editForm->isValid()) {
             $em->flush();
+            // On met à jour les roles de l'utilisateur connecté
+            $loggedInUser = $this->get('security.context')->getToken()->getUser();
+            $token = new UsernamePasswordToken(
+                $loggedInUser,
+                null,
+                'main',
+                $loggedInUser->getRoles()
+            );
 
+            $this->container->get('security.context')->setToken($token);
             return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 

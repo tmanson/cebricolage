@@ -31,7 +31,6 @@ class DeviceType extends AbstractType
                                             return $e->createQueryBuilder('c')
                                                 ->orderBy('c.libelle', 'ASC');
                                         }))
-            ->add('Enregistrer', 'submit', array('attr'=> array('class' => 'btn btn-success')))
         ;
     }
 

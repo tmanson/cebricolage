@@ -1,0 +1,236 @@
+{% if showDeleteButton %}
+    <div class="hidden">
+        {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
+    </div>
+{% endif %}
+{{ form_start(form)}}
+<div class="table-responsive panel panel-default">
+
+    <div class="container-fluid panel-heading">
+        <div class="pull-left "><h4>{{ titre }}</h4></div>
+        <div class="btn-group pull-right">
+            <a href="{{ path('reservation') }}" class="btn btn-primary">Retour</a>
+            {% if showDeleteButton %}
+                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
+            {% endif %}
+            <input type="submit" value="Enregistrer"  class="btn btn-success"/>
+        </div>
+    </div>
+    <div>
+        <input hidden="hidden" value="{{ status }}" id="status" name="status">
+        {{ form_errors(form) }}
+        {% if editionMode %}
+            <table class="record_properties">
+                <tbody>
+                <tr>
+                {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form }) }}
+                </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <table class="record_properties">
+                <tbody class="resevations" data-prototype="{% filter escape %}{{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form.reservations.vars.prototype }) }}{% endfilter %}">
+                <tr>
+                    {% for item in form.reservations %}
+                        {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': item }) }}
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+   {% if not editionMode %}
+        <div class="container-fluid panel-footer">
+            <a href="#" class="add_resa_link btn btn-success pull-left">+ Ajouter</a>
+        </div>
+   {% endif %}
+</div>
+{{ form_rest(form) }}
+{{ form_end(form) }}
+
+<script>
+
+    $('.loading').hide();
+
+    $(function() {
+
+        $('.startDate').datepicker('disable');
+        $('.endDate').datepicker('disable');
+        var periodArray = [];
+        function getDeviceReservedPeriod() {
+            doGetDeviceReservedPeriod(this.value);
+        }
+        function doGetDeviceReservedPeriod(deviceId) {
+            $('.loading').show();
+            {% if not editionMode %}
+                $(".startDate")[0].value = null;
+                $(".endDate")[0].value = null;
+            {% endif %}
+            $('.startDate').datepicker('disable');
+            $('.endDate').datepicker('disable');
+            var route = "{{ path('reservation_get_reserved_period', { 'deviceId': "DEVICE_ID" }) }}";
+            route = route.replace("DEVICE_ID", deviceId);
+            $.ajax({
+                type: 'GET',
+                url: route,
+                success: function (json) {
+                    periodArray = json;
+                    $('.loading').hide();
+                    $('.startDate').datepicker('enable');
+                    $('.endDate').datepicker('enable');
+                    {% if editionMode %}
+                    // On supprime la periode actuelle
+                    var endDateVal = $(".endDate").value;
+                    if (endDateVal === undefined) {
+                        endDateVal = $(".endDate")[0].value;
+                    }
+                    endDateVal=endDateVal.split("-");
+                    var endDate = new Date(endDateVal[0]+"/"+endDateVal[1]+"/"+endDateVal[2]).getTime();
+                    var startDateVal = $(".startDate").value;
+                    if (startDateVal === undefined) {
+                        startDateVal = $(".startDate")[0].value;
+                    }
+                    startDateVal=startDateVal.split("-");
+                    var startDate = new Date(startDateVal[0]+"/"+startDateVal[1]+"/"+startDateVal[2]).getTime();
+                    for (period in periodArray) {
+                        d1 = periodArray[period][0] * 1000;
+                        d2 = periodArray[period][1] * 1000;
+                        if ((d1 == startDate && d2 == endDate)) {
+                            periodArray.splice(period, 1)
+                            console.log(period);
+                            break;
+                        }
+                    }
+                    {% endif %}
+                },
+                error: function () {
+                    console.log('erreur');
+                    $('.loading').hide();
+                }
+            });
+            return false;
+        }
+
+        {% if editionMode %}
+        doGetDeviceReservedPeriod($('#ce_reservationbundle_reservation_device')[0].value);
+
+        {% endif %}
+        //var periodArray = [["1429912800", "1430085600"]];
+        // les datepicker sur les nouvelles lignes ne fonctionnent pas
+        // sur changement de device on doit mettre a jour les dates grisée
+        // ON doit également remetre à zero la sélection de date
+        // Lors de l'édition cette appel ajax doit etre fait
+        $('.onChangeDevice').on('change', getDeviceReservedPeriod);
+
+        //var array = [["2015-03-20","2015-03-27"],["2015-04-25","2015-04-27"]];
+
+        $(".startDate").datepicker({
+            dateFormat: "yy-mm-dd",
+            firstDay: 1,
+            minDate: new Date(),
+            beforeShowDay: function (date) {
+
+                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                var enable = true;
+                var endDateVal=$(".endDate").value;
+                if(endDateVal === undefined) {
+                    endDateVal=$(".endDate")[0].value;
+                }
+                endDateVal=endDateVal.split("-");
+                var endDate = new Date(endDateVal[0]+"/"+endDateVal[1]+"/"+endDateVal[2]).getTime();
+                {% if not editionMode %}
+                if(date >= endDate)// La date de début ne doit pas être supérieur à la date de fin
+                {
+                    return [false];
+                }
+                {% endif %}
+                for (period in periodArray) {
+                    d1 = new Date(periodArray[period][0] * 1000);
+                    d2 = new Date(periodArray[period][1] * 1000);
+
+                    if (d1 <= date && date <= d2) // Pas de date de début dans une période réservée
+                    {
+                        enable = false;
+                        break;
+                    }
+                }
+                return [enable];
+            }
+        });
+        {% if editionMode %}
+        $(".startDate").on('change', function(){
+            $(".endDate")[0].value = null;
+        });
+        {%  endif %}
+        // Il faut ajouter un control pour les reservations à cheval sur d'autres
+        $(".endDate").datepicker({
+            dateFormat: "yy-mm-dd",
+            firstDay: 1,
+            minDate: new Date(),
+            beforeShowDay: function (date) {
+                var enable = true;
+
+                var startDate = new Date($(".startDate")[0].value);
+                if(date <= startDate)// La date de fin ne doit pas être inférieur à la date de début
+                {
+                    return [false];
+                }
+                for (period in periodArray) {
+                    var d1 = new Date(periodArray[period][0] * 1000);
+                    var d2 = new Date(periodArray[period][1] * 1000);
+                    if ((d1 <= date && date <= d2) // Pas de date de fin dans une période réservée
+                        || (startDate <= d1 && d2 <= date)
+                    ) {
+                        enable = false;
+                        break;
+                    }
+                }
+                return [enable];
+            }
+        });
+        $(".datepicker").on('change', function () {
+            // Il ne doit pas y avoir de periode reservée dans la période choisie
+            // Si c'est le cas on averti que cette période n'est pas possible
+            // et on met la date de fin à null
+            var startDate = new Date($(".startDate")[0].value);
+            var endDate = new Date($(".endDate")[0].value);
+            for (period in periodArray) {
+                var d1 = new Date(periodArray[period][0] * 1000);
+                var d2 = new Date(periodArray[period][1] * 1000);
+                if (startDate <= d1 && d2 <= endDate) {
+                    alert('La période choisie couvre une période sur laquelle le matériel est déjà réservé.\nVeuillez corriger la période choisie.');
+                    $(".endDate")[0].value = null;
+                }
+            }
+        });
+    });
+    // Récupère le div qui contient la collection de tags
+    var collectionHolder = $('tbody.resevations');
+    var $newResaLine = $('.resevations');
+    jQuery(document).ready(function() {
+        // ajoute l'ancre « ajouter un tag » et li à la balise ul
+        collectionHolder.append($newResaLine);
+
+        $('.add_resa_link').on('click', function(e) {
+            // empêche le lien de créer un « # » dans l'URL
+            e.preventDefault();
+            // ajoute un nouveau formulaire tag (voir le prochain bloc de code)
+            addResaForm(collectionHolder, $newResaLine);
+        });
+    });
+
+    function addResaForm(collectionHolder, $newLinkLi) {
+        // Récupère l'élément ayant l'attribut data-prototype comme expliqué plus tôt
+        var prototype = collectionHolder.attr('data-prototype');
+
+        // Remplace '__name__' dans le HTML du prototype par un nombre basé sur
+        // la longueur de la collection courante
+        var newForm = prototype.replace(/__name__/g, collectionHolder.children().length);
+
+        // Affiche le formulaire dans la page dans un li, avant le lien "ajouter un tag"
+        var $newFormLi = $('<tr></tr>').append(newForm);
+        $newLinkLi.append($newFormLi);
+
+        $('.loading').hide();
+    }
+</script>

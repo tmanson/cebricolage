@@ -17,11 +17,24 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li class="{% block Emprunt %}{% endblock %}"><a href="{{ path('reservation') }}">Emprunt</a></li>
-                    <li class="{% block Materiel %}{% endblock %}"><a href="{{ path("device_management") }}">Gestion Matériel</a></li>
-                    <li class="{% block Salarie %}{% endblock %}"><a href="{{ path('employee') }}">Gestion Salarié</a></li>
+                    {% if is_granted("ROLE_READ_RESERVATION") %}
+                        <li class="{% block Emprunt %}{% endblock %}"><a href="{{ path('reservation') }}">Emprunt</a></li>
+                    {% endif %}
+                {% if is_granted("ROLE_READ_DEVICE") %}
+                    <li class="{% block Materiel %}{% endblock %} dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Matériel <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path("device_management") }}">Gestion Matériel</a></li>
+                            <li><a href="{{ path("brand") }}">Gestion Marques</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+                {% if is_granted("ROLE_READ_USER") %}
                     <li class="{% block Utilisateur %}{% endblock %}"><a href="{{ path('user') }}">Utilisateurs</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_READ_GROUP") %}
                     <li class="{% block Groupes %}{% endblock %}"><a href="{{ path('fos_user_group_list') }}">Groupes</a></li>
+                {% endif %}
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">

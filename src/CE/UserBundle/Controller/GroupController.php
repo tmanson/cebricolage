@@ -9,10 +9,19 @@
 namespace CE\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\GroupController as BaseController;
+use FOS\UserBundle\Event\GetResponseGroupEvent;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Parser;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Event\FormEvent;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use FOS\UserBundle\Event\FilterGroupResponseEvent;
 
 class GroupController extends BaseController
 {
+    /**
+     * @return array la liste des nom des groupes définis dans le security.yml
+     */
     static function getRoleNames()
     {
         $pathToSecurity = __DIR__ . '/../../../..' . '/app/config/security.yml';
@@ -34,6 +43,11 @@ class GroupController extends BaseController
         return $arrayKeys;
     }
 
+    /**
+     * Converti un role en un label
+     * @param $role
+     * @return string le label correspondant au role
+     */
     static private function convertRoleToLabel($role)
     {
         $roleDisplay = str_replace('ROLE_', '', $role);

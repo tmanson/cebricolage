@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new CE\CoreBundle\CECoreBundle(),
             new CE\UserBundle\CEUserBundle(),
             new CE\DeviceBundle\CEDeviceBundle(),
-            new CE\EmployeeBundle\CEEmployeeBundle(),
             new CE\ReservationBundle\CEReservationBundle(),
         );
 

@@ -1,5 +1,6 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
 {% block body %}
-{% include "CEUserBundle:Group:edit_content.html.twig" %}
+    {{ include('CEUserBundle:Group:groupForm.html.twig',
+    {'titre': 'Modification d\'un groupe ', 'form': form, 'showDeleteButton': false}) }}
 {% endblock body %}

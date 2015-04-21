@@ -1,34 +1,37 @@
-<div class="table-responsive panel panel-default  col-xs-3 col-md-6"">
-    <div class="panel-heading">{{ titre }}</div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th class="col-xs-4 col-md-2">Device</th>
-            <th class="col-xs-4 col-md-2">Employee</th>
-            <th class="col-xs-4 col-md-2">Startdate</th>
-            <th class="col-xs-4 col-md-2">Enddate</th>
-            {%  if is_granted('ROLE_CRUD_RESERVATION') %}
-            <th class="col-xs-4 col-md-2">
-                <a class="btn btn-success" href="{{ path('reservation_new') }}">+ Ajouter</a>
-            </th>
-            {% endif %}
-        </tr>
-        </thead>
-        <tbody id="list_emprunt">
-        {% for entity in entities %}
-            <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''" id="{% if entity.id %}restitue_{{ entity.id }}{% endif %}">
-                <td>{% if entity.device %}{{ entity.device }}{% endif %}</td>
-                <td>{% if entity.employee %}{{ entity.employee }}{% endif %}</td>
-                <td>{% if entity.startDate %}{{ entity.startDate|date() }}{% endif %}</td>
-                <td>{% if entity.endDate %}{{ entity.endDate|date() }}{% endif %}</td>
+<div class="col-md-6">
+    <div class="table-responsive panel panel-default ">
+        <div class="panel-heading">{{ titre }}</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="col-md-1">Matériel</th>
+                <th class="col-md-2">Utilisateur</th>
+                <th class="col-md-1">Début</th>
+                <th class="col-md-1">Fin</th>
                 {%  if is_granted('ROLE_CRUD_RESERVATION') %}
-                <td>
-                            <a class="btn btn-info" href="{{ path('reservation_edit', { 'id': entity.id }) }}">Modifier</a>
-                            <a onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#">{{ action }}</a>
-                </td>
+                <th class="col-md-1">
+                    <a class="btn btn-success" href="{{ path('reservation_new', {'statusCode': statusCode})}}">+ Ajouter</a>
+                </th>
                 {% endif %}
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="list_emprunt">
+            {% for entity in entities %}
+                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''" id="{% if entity.id %}restitue_{{ entity.id }}{% endif %}">
+                    <td>{% if entity.device %}{{ entity.device }}{% endif %}</td>
+                    <td>{% if entity.user %}{{ entity.user }}{% endif %}</td>
+                    <td>{% if entity.startDate %}{{ entity.startDate|date('d/m/Y') }}{% endif %}</td>
+                    <td>{% if entity.endDate %}{{ entity.endDate|date('d/m/Y') }}{% endif %}</td>
+                    {%  if is_granted('ROLE_CRUD_RESERVATION') %}
+                    <td class="btn-group btn-group-xs" role="group">
+                            <a class="btn btn-primary glyphicon glyphicon-edit" href="{{ path('reservation_edit', { 'id': entity.id }) }}"></a>
+                            <a class="btn btn-danger glyphicon glyphicon-remove delete" data-on-click-href="{{ path('reservation_delete', { 'id': entity.id }) }}" data-on-success-action="{{ jsReloadAction }}" title="Supprimer"></a>
+                            <a class="btn btn-success glyphicon glyphicon-check" onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#" title="{{ action }}"></a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,0 +1,25 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="table-responsive panel panel-default">
+        <div class="container-fluid panel-heading">
+            <div class="pull-left "><h4>{{ entity.libelle | capitalize }}</h4></div>
+            <div class="btn-group pull-right">
+                <a href="{{ path('brand') }}" class="btn btn-primary">Retour</a>
+                {%  if is_granted('ROLE_CRUD_GROUP') %}
+                    <a href="{{ path('brand_edit', { 'id': entity.id }) }}" class="btn btn-success">Modifier</a>
+                    <a href='{{ path('brand_delete', { 'id': entity.id }) }}' class="btn btn-warning">Supprimer</a>
+                {%  endif %}
+            </div>
+        </div>
+        <table class="record_properties">
+            <tbody>
+            <tr>
+                <th class="col-xs-2 col-md-1">Nom</th>
+                <td>{{ entity.libelle }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+{% endblock body %}

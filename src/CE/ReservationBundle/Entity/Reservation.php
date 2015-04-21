@@ -27,17 +27,17 @@ class Reservation
     private $device;
 
     /**
-     *  @ORM\ManyToOne(targetEntity="CE\EmployeeBundle\Entity\Employee")
+     *  @ORM\ManyToOne(targetEntity="CE\UserBundle\Entity\User")
      */
-    private $employee;
+    private $user;
 
     /**
-     * @ORM\Column(name="startDate", type="date")
+     * @ORM\Column(name="startDate", type="datetime")
      */
     private $startDate;
 
     /**
-     * @ORM\Column(name="endDate", type="date")
+     * @ORM\Column(name="endDate", type="datetime")
      */
     private $endDate;
 
@@ -75,17 +75,17 @@ class Reservation
     /**
      * @return mixed
      */
-    public function getEmployee()
+    public function getUser()
     {
-        return $this->employee;
+        return $this->user;
     }
 
     /**
-     * @param mixed $employee
+     * @param mixed $user
      */
-    public function setEmployee($employee)
+    public function setUser($user)
     {
-        $this->employee = $employee;
+        $this->user = $user;
     }
 
     /**
@@ -135,5 +135,6 @@ class Reservation
     {
         $this->status = $status;
     }
+
 
 }

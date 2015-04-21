@@ -2,6 +2,9 @@
 
 namespace CE\ReservationBundle\Controller;
 
+use CE\ReservationBundle\Entity\ReservationList;
+use CE\ReservationBundle\Form\ListReservationType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,6 +22,11 @@ use Symfony\Component\Serializer\Serializer;
  */
 class ReservationController extends Controller
 {
+    const RESTITUE_STATUS = 3;
+    const EMPRUNT_STATUS = 2;
+    const RESERVATION_STATUS= 1;
+    const EMPRUNT_CODE = 'EMPRUNT';
+    const RESERVATION_CODE= 'RESERVATION';
 
     /**
      * Lists all Reservation entities.
@@ -28,8 +36,8 @@ class ReservationController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CEReservationBundle:Reservation')->findByReservationStatus(1);
-        $emprunts = $em->getRepository('CEReservationBundle:Reservation')->findByReservationStatus(2);
+        $entities = $em->getRepository('CEReservationBundle:Reservation')->findByReservationStatus(ReservationController::RESERVATION_STATUS);
+        $emprunts = $em->getRepository('CEReservationBundle:Reservation')->findByReservationStatus(ReservationController::EMPRUNT_STATUS);
 
         return $this->render('CEReservationBundle:Reservation:index.html.twig', array(
             'entities' => $entities,
@@ -42,24 +50,24 @@ class ReservationController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Reservation();
-        $form = $this->createCreateForm($entity);
+        $statusId = $request->get('status');
+        $reservations = new ReservationList();
+        $form = $this->createCreateForm($reservations);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $status = $this->getStatusRepository()->findOneById($statusId);
 
-            $statusReservation = $this->getDoctrine()->getRepository('CEReservationBundle:ReservationStatus')->findOneById(1);
-            $entity->setStatus($statusReservation);
-
-            $em->persist($entity);
+            foreach ($form->getData()['reservations'] as $reservation){
+                $reservation->setStatus($status);
+                $em->persist($reservation);
+            }
             $em->flush();
 
-            return $this->redirect($this->generateUrl('reservation_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('reservation'));
         }
 
         return $this->render('CEReservationBundle:Reservation:new.html.twig', array(
-            'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
@@ -71,14 +79,12 @@ class ReservationController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Reservation $entity)
+    private function createCreateForm($entities)
     {
-        $form = $this->createForm(new ReservationType(), $entity, array(
+        $form = $this->createForm(new ListReservationType(), array('reservations' => $entities->getReservations()), array(
             'action' => $this->generateUrl('reservation_create'),
             'method' => 'POST',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -87,14 +93,21 @@ class ReservationController extends Controller
      * Displays a form to create a new Reservation entity.
      *
      */
-    public function newAction()
+    public function newAction($statusCode)
     {
-        $entity = new Reservation();
-        $form   = $this->createCreateForm($entity);
+        $reservations = new ReservationList();
+        $reservations->addReservation(new Reservation());
+        if ((strcmp($statusCode, ReservationController::EMPRUNT_CODE) == 0)) {
+            $statusReservation = ReservationController::EMPRUNT_STATUS;
+        } else {
+            $statusReservation = ReservationController::RESERVATION_STATUS;
+        }
+
+        $form   = $this->createCreateForm($reservations);
 
         return $this->render('CEReservationBundle:Reservation:new.html.twig', array(
-            'entity' => $entity,
             'form'   => $form->createView(),
+            'status' => $statusReservation,
         ));
     }
 
@@ -127,39 +140,35 @@ class ReservationController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('CEReservationBundle:Reservation')->find($id);
+        $entity = $em->getRepository('CEReservationBundle:Reservation')->findOneById($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Reservation entity.');
         }
-
+        $statusReservation = $entity->getStatus()->getId();;
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CEReservationBundle:Reservation:edit.html.twig', array(
-            'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'status' => $statusReservation,
         ));
     }
 
     /**
     * Creates a form to edit a Reservation entity.
     *
-    * @param Reservation $entity The entity
+    * @param ReservationList $entities The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Reservation $entity)
+    private function createEditForm($entity)
     {
         $form = $this->createForm(new ReservationType(), $entity, array(
             'action' => $this->generateUrl('reservation_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
+            'method' => 'POST'
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
         return $form;
     }
     /**
@@ -168,51 +177,42 @@ class ReservationController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
+
         $em = $this->getDoctrine()->getManager();
+        $statusId = $request->get('status');
+        $entity = $em->getRepository('CEReservationBundle:Reservation')->findOneById($id);
+        $editForm = $this->createEditForm($entity);
 
-        $entity = $em->getRepository('CEReservationBundle:Reservation')->find($id);
+        $editForm->handleRequest($request);
+        if ($editForm->isValid()) {
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Reservation entity.');
+            $em->flush();
+            return $this->redirect($this->generateUrl('reservation'));
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('reservation_edit', array('id' => $id)));
-        }
-
         return $this->render('CEReservationBundle:Reservation:edit.html.twig', array(
-            'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
      * Deletes a Reservation entity.
+     * @param int $id identifiant technique de la reservation
+     * @return redirect to reservation main page
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CEReservationBundle:Reservation')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CEReservationBundle:Reservation')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Reservation entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Reservation entity.');
         }
 
+        $em->remove($entity);
+        $em->flush();
         return $this->redirect($this->generateUrl('reservation'));
     }
 
@@ -239,7 +239,7 @@ class ReservationController extends Controller
      */
     public function empruntAction()
     {
-        return $this->changeReservationStatus(2);
+        return $this->changeReservationStatus(ReservationController::EMPRUNT_STATUS);
     }
 
     /**
@@ -248,7 +248,7 @@ class ReservationController extends Controller
      */
     public function restitueAction()
     {
-        return $this->changeReservationStatus(3);
+        return $this->changeReservationStatus(ReservationController::RESTITUE_STATUS);
     }
 
     /**
@@ -292,7 +292,7 @@ class ReservationController extends Controller
      */
     public function getEmpruntAction()
     {
-        return $this->getList(2,'Liste du matériel emprunté','Restitué','restitue');
+        return $this->getList(ReservationController::EMPRUNT_STATUS,'Liste du matériel emprunté','Restitué','restitue','restitue_reload', 'EMPRUNT');
     }
 
     /**
@@ -301,59 +301,47 @@ class ReservationController extends Controller
      */
     public function getReservationAction()
     {
-        return $this->getList(1,'Liste du matériel réservé','Emprunté','emprunt');
+        return $this->getList(ReservationController::RESERVATION_STATUS,'Liste du matériel réservé','Emprunté','emprunt','emprunt_reload', 'RESERVATION');
     }
 
     /**
-     * @param $statusId le status id des reservation à récupérer
-     * @param $titre le titre de la liste
-     * @param $actionLib le libellé de l'action sur les reservation
-     * @param $listId l'identifiant de la liste
-     * @param $jsActionFunction le nom de la fonction JS qui effectue l'action
+     * @param $statusId int le status id des reservation à récupérer
+     * @param $titre string le titre de la liste
+     * @param $actionLib string le libellé de l'action sur les reservation
+     * @param $listId int l'identifiant de la liste
+     * @param $jsActionFunction string le nom de la fonction JS qui effectue l'action
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    private function getList($statusId, $titre, $actionLib, $jsActionFunction){
+    private function getList($statusId, $titre, $actionLib, $jsActionFunction, $jsReloadAction, $statusCode){
         $em = $this->getDoctrine()->getManager();
         $reservations = $em->getRepository('CEReservationBundle:Reservation')->findByReservationStatus($statusId);
         return $this->render('CEReservationBundle:Reservation:list.html.twig', array(
             'entities' => $reservations,
             'titre' => $titre,
             'action' => $actionLib,
-            'jsActionFunction'=> $jsActionFunction
+            'jsActionFunction'=> $jsActionFunction,
+            'jsReloadAction'=>$jsReloadAction,
+            'statusCode' => $statusCode
         ));
     }
 
-    /**
-     * Liste les devices.
-     *
-     */
-    public function getDevicesAction()
+    private function getStatusRepository()
     {
-        $request = $this->container->get('request');
-        if ($request->isXmlHttpRequest()) {
-            $em = $this->getDoctrine()->getManager();
+        return $this->getDoctrine()->getRepository('CEReservationBundle:ReservationStatus');
+    }
 
-            $startDate = $request->get('startDate');
-            $endDate = $request->get('endDate');
-
-            $reservationsSurLaPeriode = $em->getRepository('CEReservationBundle:Reservation')->findByDate($startDate, $endDate);
-            $devices = $em->getRepository('CEReservationBundle:Devices')->findAll();
-            //Recup all device
-
-            // on supprime les devices reservés
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Reservation entity.');
-            }
-
-            $status = $em->getRepository('CEReservationBundle:ReservationStatus')->findOneById($statusId);
-            $entity->setStatus($status);
-            $em->flush();
-
-            $response = new JsonResponse();
-            $response->setData(array('id' => $entity->getId()));
-            return $response;
+    public function getReservedPeriodForAction($deviceId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reservations = $em->getRepository('CEReservationBundle:Reservation')->findByDevice($deviceId);
+        $period = array();
+        foreach ($reservations as $resa)
+        {
+            $period[] = array($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp());
         }
-        return null;
+        $response = new JsonResponse();
+        $response->setData($period);
+        //[["2015-03-20","2015-03-27"],["2015-04-25","2015-04-27"]];
+        return $response;
     }
 }

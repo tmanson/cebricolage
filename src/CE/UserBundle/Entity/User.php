@@ -2,6 +2,7 @@
 
 namespace CE\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,11 +44,8 @@ class User extends \FOS\UserBundle\Model\User
     private $phoneNumber;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CE\UserBundle\Entity\Group")
-     * @ORM\JoinTable(name="user_user_group",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToOne(targetEntity="CE\UserBundle\Entity\Group")
+     * @ORM\JoinColumn(name="user_user_group", referencedColumnName="id")
      */
     protected $groups;
 
@@ -144,5 +142,22 @@ class User extends \FOS\UserBundle\Model\User
     public function setGroups($groups)
     {
         $this->groups = $groups;
+        // On persiste dans le bon champ le nom de roles liée
+        $this->roles = $groups->getRoles();
+    }
+
+    /**
+     * Returns the user roles
+     *
+     * @return array The roles
+     */
+    public function getRoles()
+    {
+        $roles = $this->groups->getRoles();
+
+        // we need to make sure to have at least one role
+        $roles[] = static::ROLE_DEFAULT;
+
+        return array_unique($roles);
     }
 }

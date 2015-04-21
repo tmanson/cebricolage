@@ -3,7 +3,12 @@
 namespace CE\ReservationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToArrayTransformer;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToRfc3339Transformer;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Tests\Extension\Core\DataTransformer\BaseDateTimeTransformerTest;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Date;
 
@@ -16,24 +21,26 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('startDate', 'date', array(
-                                        'widget' => 'single_text',
-                                        'pattern'=>'d M Y',
-                                        'attr' => array(
-                                            'onchange' => "reloadDevice()",
-                                            'id' => 'startDate'
-                                        )
-            ))
-            ->add('endDate', 'date', array(
-                                        'widget' => 'single_text',
-                                        'pattern'=>'d M Y',
-                                        'attr' => array(
-                                            'onchange' => "reloadDevice()",
-                                            'id' => 'endDate'
-                                        )
-            ))
             ->add('device')
-            ->add('employee')
+            ->add('startDate', 'datetime', array(
+                                            'widget' => 'single_text',
+                                            'read_only'=> true,
+                                            'format' => 'yyyy-MM-dd',
+                                            'attr' => array(
+                                                'class' => 'datepicker startDate',
+                                                'id' => 'startDate'
+                                            )
+                                        ))
+            ->add('endDate', 'datetime', array(
+                                            'widget' => 'single_text',
+                                            'read_only'=> true,
+                                            'format' => 'yyyy-MM-dd',
+                                            'attr' => array(
+                                                'class' => 'datepicker endDate',
+                                                'id' => 'endDate'
+                                            )
+            ))
+            ->add('user')
         ;
     }
     

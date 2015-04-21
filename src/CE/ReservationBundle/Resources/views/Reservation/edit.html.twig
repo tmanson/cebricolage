@@ -1,16 +1,6 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
 {% block body -%}
-    <h1>Reservation edit</h1>
-
-    {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('reservation') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    {{ include('CEReservationBundle:Reservation:reservationForm.html.twig',
+    {'titre': 'Modification d\'une réservation ', 'form': edit_form, 'showDeleteButton': true, 'editionMode': true}) }}
 {% endblock %}

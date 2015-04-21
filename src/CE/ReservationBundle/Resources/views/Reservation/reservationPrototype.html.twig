@@ -1,0 +1,13 @@
+<th class="col-xs-2 col-md-1">Matériel</th>
+<td>{{ form_errors(item.device) }}
+    {{ form_widget(item.device, { 'attr' : {'class':'onChangeDevice'} } ) }}
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate loading"></span></td>
+<th class="col-xs-2 col-md-1">Date de début</th>
+<td>{{ form_errors(item.startDate) }}
+    {{ form_widget(item.startDate) }}</td>
+<th class="col-xs-2 col-md-1">Date de fin</th>
+<td>{{ form_errors(item.endDate) }}
+    {{ form_widget(item.endDate) }}</td>
+<th class="col-xs-2 col-md-1">Emprunteur</th>
+<td>{{ form_errors(item.user) }}
+    {{ form_widget(item.user) }}</td>

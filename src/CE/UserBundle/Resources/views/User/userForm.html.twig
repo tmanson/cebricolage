@@ -25,6 +25,7 @@
                 <th class="col-xs-2 col-md-1">Identifiant</th>
                 <td>{{ form_errors(form.identifiant) }}
                     {{ form_widget(form.identifiant) }}
+
                 </td>
             </tr>
             <tr>
@@ -46,6 +47,11 @@
                 <th class="col-xs-2 col-md-1">Téléphone</th>
                 <td>{{ form_errors(form.phoneNumber) }}
                     {{ form_widget(form.phoneNumber) }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Groupe</th>
+                <td>{{ form_errors(form.groups) }}
+                    {{ form_widget(form.groups) }}</td>
             </tr>
             </tbody>
         </table>

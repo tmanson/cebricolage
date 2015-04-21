@@ -9,7 +9,7 @@ class MarqueType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('libelle', 'choice');
+        $builder->add('libelle', 'text');
     }
 
     public function getName()

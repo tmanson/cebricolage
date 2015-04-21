@@ -1,18 +1,8 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
 {% block body -%}
-    <h1>Reservation creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('reservation') }}">
-                    Back to the list
-                </a>
-            </li>
-        </ul>
-
+    {{ include('CEReservationBundle:Reservation:reservationForm.html.twig',
+    {'titre': 'Création d\'une réservation ', 'form': form, 'showDeleteButton': false, 'editionMode': false}) }}
 <script>
     function reloadDevice()
     {
