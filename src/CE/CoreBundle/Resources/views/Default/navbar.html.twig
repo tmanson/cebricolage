@@ -1,20 +1,14 @@
 <script>
     $(function () { $('.popover-toggle-login').popover('hide');});
 </script>
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="#">CE Bricolage</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {% if is_granted("ROLE_READ_RESERVATION") %}
@@ -37,25 +31,22 @@
                 {% endif %}
                 {% endif %}
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        {{ app.user.username }} |
-                        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-xs btn-info">
-                           se déconnecter
-                        </a>
-                    {% else %}
-                        <div style="padding-top: 13px" >
-                            <div class="dropdown">
-                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-xs btn-info">
-                                    Login
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                    {% include "CEUserBundle:Security:login.html.twig" %}
-                                </ul>
-                            </div>
-                        </div>
-                    {% endif %}
+            <ul class="nav navbar-nav navbar-right btn-group btn-group-xs">
+                <li class="dropdown">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+                    </ul>
+                {% else %}
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Connexion <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            {% include "CEUserBundle:Security:login.html.twig" %}
+                        </ul>
+                {% endif %}
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

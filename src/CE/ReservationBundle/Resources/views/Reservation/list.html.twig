@@ -10,7 +10,7 @@
                 <th class="col-md-1">Fin</th>
                 {%  if is_granted('ROLE_CRUD_RESERVATION') %}
                 <th class="col-md-1">
-                    <a class="btn btn-success" href="{{ path('reservation_new', {'statusCode': statusCode})}}">+ Ajouter</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('reservation_new', {'statusCode': statusCode})}}">+ Ajouter</a>
                 </th>
                 {% endif %}
             </tr>
@@ -24,9 +24,9 @@
                     <td>{% if entity.endDate %}{{ entity.endDate|date('d/m/Y') }}{% endif %}</td>
                     {%  if is_granted('ROLE_CRUD_RESERVATION') %}
                     <td class="btn-group btn-group-xs" role="group">
-                            <a class="btn btn-primary glyphicon glyphicon-edit" href="{{ path('reservation_edit', { 'id': entity.id }) }}"></a>
-                            <a class="btn btn-danger glyphicon glyphicon-remove delete" data-on-click-href="{{ path('reservation_delete', { 'id': entity.id }) }}" data-on-success-action="{{ jsReloadAction }}" title="Supprimer"></a>
-                            <a class="btn btn-success glyphicon glyphicon-check" onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#" title="{{ action }}"></a>
+                            <a class="btn btn-primary" href="{{ path('reservation_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a class="btn btn-danger" data-on-click-href="{{ path('reservation_delete', { 'id': entity.id }) }}" data-on-success-action="{{ jsReloadAction }}" title="Supprimer"><span class="glyphicon glyphicon-remove delete"></span></a>
+                            <a class="btn btn-success" onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#" title="{{ action }}"><span class="glyphicon glyphicon-check"></span></a>
                     </td>
                     {% endif %}
                 </tr>

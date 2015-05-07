@@ -2,69 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="de7d49f6-0040-42a0-b01d-c5b30029ae0e" name="Default" comment="Gestion des emprunts">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/edit_content.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\CEEmployeeBundle.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Controller\DefaultController.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Controller\EmployeeController.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\DependencyInjection\CEEmployeeExtension.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\DependencyInjection\Configuration.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Entity\Employee.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Form\EmployeeType.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\config\routing.yml" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\config\services.yml" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views\Default\index.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views\Employee\edit.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views\Employee\index.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views\Employee\new.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views\Employee\show.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Tests\Controller\DefaultControllerTest.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Tests\Controller\EmployeeControllerTest.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\ReservationBundle\Resources\views\Default\index.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Controller" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Tests\Controller" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views\Default" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\ReservationBundle\Resources\views\Default" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\DependencyInjection" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views\Employee" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Entity" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Form" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Tests" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\config" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp2\www\ce\src\CE\EmployeeBundle\Resources\views" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/DeviceBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/CE/DeviceBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/DeviceBundle/Form/DeviceType.php" afterPath="$PROJECT_DIR$/src/CE/DeviceBundle/Form/DeviceType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Entity/Group.php" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Entity/Group.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Controller/GroupController.php" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Controller/GroupController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Form/Type/GroupFormType.php" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Form/Type/GroupFormType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/DeviceBundle/Form/MarqueType.php" afterPath="$PROJECT_DIR$/src/CE/DeviceBundle/Form/MarqueType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Entity/Reservation.php" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Entity/Reservation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Entity/ReservationStatus.php" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Entity/ReservationStatus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Form/ReservationType.php" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Form/ReservationType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Controller/UserController.php" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Controller/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Form/UserType.php" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Form/UserType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Default/create.html.twig" afterPath="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Default/create.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/edit.html.twig" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/edit.html.twig" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/groupForm.html.twig" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/groupForm.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/index.html.twig" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/index.html.twig" />
+      <change type="MOVED" beforePath="C:\wamp2\www\ce\web\css\bootstrap.min.css" afterPath="$PROJECT_DIR$/web/css/bootstrap.min.css.original" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/web/fonts/glyphicons-halflings-regular.eot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/web/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/web/fonts/glyphicons-halflings-regular.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/layout.html.twig" afterPath="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/layout.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/Default/navbar.html.twig" afterPath="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/Default/navbar.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/new.html.twig" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/config/routing/reservation.yml" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/config/routing/reservation.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/show.html.twig" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/show.html.twig" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig" afterPath="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/User/userForm.html.twig" afterPath="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/User/userForm.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Ce.iws" />
@@ -91,43 +37,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="reservationForm.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48831168" vertical-offset="1460" max-vertical-offset="4097">
-              <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="680">
-              <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+            <state vertical-scroll-proportion="-1.9615384" vertical-offset="17" max-vertical-offset="697">
+              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReservationController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php">
+      <file leaf-file-name="navbar.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/Default/navbar.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.576923" vertical-offset="5120" max-vertical-offset="6001">
-              <caret line="325" column="5" selection-start-line="325" selection-start-column="5" selection-end-line="325" selection-end-column="5" />
+            <state vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="986">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
-                <element signature="e#51#99#0#PHP" expanded="true" />
+                <element signature="e#2442#2466#0#Twig" expanded="true" />
+                <element signature="e#2826#2863#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reservationPrototype.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationPrototype.html.twig">
+      <file leaf-file-name="bootstrap.min.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/css/bootstrap.min.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="323">
-              <caret line="2" column="30" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="30" />
+            <state vertical-scroll-proportion="-1.7586207" vertical-offset="0" max-vertical-offset="204">
+              <caret line="6" column="3055" selection-start-line="6" selection-start-column="3055" selection-end-line="6" selection-end-column="3055" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7049442" vertical-offset="0" max-vertical-offset="731">
+              <caret line="26" column="151" selection-start-line="26" selection-start-column="127" selection-end-line="26" selection-end-column="151" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-37.26923" vertical-offset="0" max-vertical-offset="1190">
+              <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -136,48 +93,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="816">
-              <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/edit.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="204">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delete.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/delete.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="578">
-              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reservation.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/config/routing/reservation.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1207">
-              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReservationType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Form/ReservationType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.615385" vertical-offset="156" max-vertical-offset="1054">
-              <caret line="38" column="80" selection-start-line="38" selection-start-column="80" selection-end-line="38" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="337" max-vertical-offset="1037">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -193,8 +110,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/User/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/list.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/UserBundle/Resources/config/routing/user.yml" />
         <option value="$PROJECT_DIR$/src/CE/UserBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/edit_content.html.twig" />
@@ -217,7 +132,6 @@
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Form/DeviceType.php" />
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/CE/UserBundle/Controller/UserController.php" />
-        <option value="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/Default/navbar.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/marqueForm.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/new.html.twig" />
@@ -230,7 +144,6 @@
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Entity/Reservations.php" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationPrototype.twig" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Entity/Reservation.php" />
-        <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig" />
         <option value="$PROJECT_DIR$/web/js/delete.js" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/index.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Entity/ReservationList.php" />
@@ -238,12 +151,16 @@
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/new.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/config/routing/reservation.yml" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php" />
-        <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationPrototype.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/edit.html.twig" />
-        <option value="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Form/ReservationType.php" />
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/style.css" />
+        <option value="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/Default/navbar.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/simplex.bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/web/css/bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/layout.html.twig" />
+        <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig" />
       </list>
     </option>
   </component>
@@ -305,6 +222,9 @@
       <sortByType ProjectPane="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -352,6 +272,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -505,32 +443,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ReservationBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="CoreBundle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -590,6 +502,40 @@
               <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Default" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CoreBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -606,9 +552,6 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
       </pane>
       <pane id="PackagesPane">
         <subPane />
@@ -637,11 +580,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp2\www\ce\web\fonts" />
       <recent name="C:\wamp2\www\ce\src\CE\ReservationBundle\Entity" />
       <recent name="C:\wamp2\www\ce\src\CE\ReservationBundle\Form" />
       <recent name="C:\wamp2\www\ce\src\CE\ReservationBundle\Resources\views\Reservation" />
       <recent name="C:\wamp2\www\ce\src\CE\DeviceBundle\Resources\views\Marque" />
-      <recent name="C:\wamp2\www\ce\src\CE\DeviceBundle\Resources\views\Default" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp2\www\ce\web\css" />
@@ -669,9 +612,6 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -679,6 +619,9 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="1">
@@ -755,33 +698,33 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.224581" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20782396" sideWeight="0.16282421" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.047557842" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.4992785" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21271394" sideWeight="0.83798885" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21271394" sideWeight="0.16201118" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.047557842" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20782396" sideWeight="0.8371758" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1496" height="826" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22544643" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1392405" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -820,62 +763,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08076009" vertical-offset="0" max-vertical-offset="842">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/UserBundle/Controller/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5328125" vertical-offset="2617" max-vertical-offset="4471">
-          <caret line="179" column="117" selection-start-line="179" selection-start-column="8" selection-end-line="179" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/DeviceBundle/Form/MarqueType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="391">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="697">
-          <caret line="24" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="680">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1071">
-          <caret line="41" column="48" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8824885" vertical-offset="679" max-vertical-offset="1547">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.884615" vertical-offset="0" max-vertical-offset="731">
-          <caret line="35" column="10" selection-start-line="3" selection-start-column="4" selection-end-line="35" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CE/UserBundle/Resources/views/Group/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="868">
@@ -911,13 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.153847" vertical-offset="25" max-vertical-offset="867">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/marqueForm.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="680">
@@ -936,13 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="5616" max-vertical-offset="108188">
           <caret line="342" column="17" selection-start-line="342" selection-start-column="11" selection-end-line="342" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/Default/navbar.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7171875" vertical-offset="0" max-vertical-offset="1139">
-          <caret line="27" column="55" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -1020,7 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.62801206" vertical-offset="4207" max-vertical-offset="31841">
           <caret line="279" column="23" selection-start-line="279" selection-start-column="15" selection-end-line="279" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1056,14 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="524" max-vertical-offset="2482">
           <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.0" vertical-offset="293" max-vertical-offset="1190">
-          <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1078,7 +942,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7675" max-vertical-offset="19244">
           <caret line="485" column="20" selection-start-line="485" selection-start-column="20" selection-end-line="485" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1086,9 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="697">
           <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding>
-            <element signature="e#45#85#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,16 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15437004" vertical-offset="0" max-vertical-offset="881">
           <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#47#76#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="731">
-          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1120,14 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
           <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-          <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1155,17 +997,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="680">
-          <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.576923" vertical-offset="5120" max-vertical-offset="6001">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5120" max-vertical-offset="6001">
           <caret line="325" column="5" selection-start-line="325" selection-start-column="5" selection-end-line="325" selection-end-column="5" />
           <folding>
             <element signature="e#51#99#0#PHP" expanded="true" />
@@ -1175,7 +1009,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Form/ReservationType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.615385" vertical-offset="156" max-vertical-offset="1054">
+        <state vertical-scroll-proportion="0.0" vertical-offset="156" max-vertical-offset="1054">
           <caret line="38" column="80" selection-start-line="38" selection-start-column="80" selection-end-line="38" selection-end-column="80" />
           <folding />
         </state>
@@ -1183,16 +1017,126 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationPrototype.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="323">
+        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="323">
           <caret line="2" column="30" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/bootstrap-theme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7871">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48831168" vertical-offset="1460" max-vertical-offset="4097">
-          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+        <state vertical-scroll-proportion="-7.6538463" vertical-offset="1824" max-vertical-offset="3757">
+          <caret line="123" column="32" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#157#0#Twig" expanded="false" />
+            <element signature="e#412#423#0#Twig" expanded="false" />
+            <element signature="e#1304#1462#0#Twig" expanded="false" />
+            <element signature="e#3008#3039#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="337" max-vertical-offset="1037">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/bootstrap-theme.css.map">
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="623">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/bootstrap.css.map">
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="539">
+          <caret line="0" column="264531" selection-start-line="0" selection-start-column="264530" selection-end-line="0" selection-end-column="264531" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/flaty.bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7586207" vertical-offset="0" max-vertical-offset="204">
+          <caret line="6" column="3566" selection-start-line="6" selection-start-column="3557" selection-end-line="6" selection-end-column="3566" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-37.26923" vertical-offset="0" max-vertical-offset="1190">
+          <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/Default/navbar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.461538" vertical-offset="0" max-vertical-offset="986">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="e#2442#2466#0#Twig" expanded="true" />
+            <element signature="e#2826#2863#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.103125" vertical-offset="25" max-vertical-offset="867">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/bootstrap.min.css.original">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.114285715" vertical-offset="0" max-vertical-offset="595">
+          <caret line="4" column="3366" selection-start-line="4" selection-start-column="3366" selection-end-line="4" selection-end-column="3366" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7586207" vertical-offset="0" max-vertical-offset="204">
+          <caret line="6" column="3055" selection-start-line="6" selection-start-column="3055" selection-end-line="6" selection-end-column="3055" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/CoreBundle/Resources/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="17" max-vertical-offset="697">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7049442" vertical-offset="0" max-vertical-offset="731">
+          <caret line="26" column="151" selection-start-line="26" selection-start-column="127" selection-end-line="26" selection-end-column="151" />
           <folding />
         </state>
       </provider>
