@@ -9,8 +9,8 @@
             <th class="col-xs-4 col-md-2">Désignation</th>
             <th class="col-xs-2 col-md-1">Marque</th>
             <th class="col-xs-2 col-md-1">Modèle</th>
-            <th class="col-xs-2 col-md-1">Etat</th>
             <th class="col-xs-4 col-md-2">Commentaire</th>
+            <th class="col-xs-4 col-md-2">Disponibilité</th>
             <th class="col-xs-2 col-md-1">Date d'achat</th>
             {%  if is_granted('ROLE_CRUD_DEVICE') %}
             <th class="col-xs-2 col-md-1">
@@ -24,15 +24,78 @@
                     <td>{{ device.libelle }}</td>
                     <td>{{ device.marque }}</td>
                     <td>{{ device.modele }}</td>
-                    <td>{{ device.etat }}</td>
                     <td>{{ device.commentaire }}</td>
+                    <td>{% if device.disponible %}
+                            OK
+                        {%  else %}
+                            {{ device.disponibleLib }}
+                        {%  endif %}</td>
                     <td>{{ device.dateAchat | date('d M Y')}}</td>
                     {%  if is_granted('ROLE_CRUD_DEVICE') %}
-                    <td><a class="btn btn-default" href="{{ path('device_edit', {"id":device.id}) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                    <td class="btn-group btn-group-xs" role="group">
+                        <a class="btn btn-xs btn-default" href="{{ path('device_edit', {"id":device.id}) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                        {% if device.disponible %}
+                            <a class="btn btn-xs btn-danger pull-left" data-toggle="modal" data-target="#disponibleModal" rel="{{ device.id }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        {%  else %}
+                            <a class="btn btn-xs btn-success pull-left" onclick="activate({{ device.id }});"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                        {%  endif %}
+                    </td>
                     {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    <!-- Modal -->
+    <div id="disponibleModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Inactivation du materiel : </h4>
+                </div>
+                <div class="modal-body">
+                    <p>Veuillez saisir la raison de l'inactivation de ce matériel.</p>
+                    <textarea name="commentaire"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function activate(id) {
+            $.ajax({
+                type: "POST",
+                url: '{{ path('device_activate') }}',
+                data: {id: id},
+                cache: false,
+                success: function (data) {
+                    alert('OK');
+                }
+            });
+        }
+        $('#disponibleModal').on('hidden.bs.modal', function () {
+            deviceID = $('#disponibleModal').attr('value');
+            var Id=$(this).attr("rel");
+            // TODO faire en sorte qu'on appel deactivate avec le bon ID et le commentaire
+            alert(Id);
+        })
+
+
+        function deactivate(id, commentaire) {
+            $.ajax({
+                type: "POST",
+                url: '{{ path('device_deactivate') }}',
+                data: {id: id, commentaire: commentaire},
+                cache: false,
+                success: function (data) {
+                }
+            });
+        }
+
+    </script>
+
 {% endblock body %}

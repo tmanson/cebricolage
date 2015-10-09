@@ -4,7 +4,7 @@
     </div>
 {% endif %}
 {{ form_start(form)}}
-<div class="table-responsive panel panel-default">
+<div class="table-responsive panel panel-default" class="form-group form-group-sm">
 
     <div class="container-fluid panel-heading">
         <div class="pull-left "><h4>{{ titre }}</h4></div>
@@ -16,7 +16,7 @@
             <input type="submit" value="Enregistrer"  class="btn btn-success"/>
         </div>
     </div>
-    <div>
+    <div >
         <input hidden="hidden" value="{{ status }}" id="status" name="status">
         {{ form_errors(form) }}
         {% if editionMode %}
@@ -29,12 +29,20 @@
             </table>
         {% else %}
             <table class="record_properties">
-                <tbody class="resevations" data-prototype="{% filter escape %}{{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form.reservations.vars.prototype }) }}{% endfilter %}">
+                <thead>
                 <tr>
-                    {% for item in form.reservations %}
-            {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': item }) }}
-        {% endfor %}
+                    <th>Matériel</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Emprunteur</th>
                 </tr>
+                </thead>
+                <tbody class="reservations" id="reservationList" data-prototype="{% filter escape %}{{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form.reservations.vars.prototype }) }}{% endfilter %}">
+                    {% for item in form.reservations %}
+                    <tr>
+                    {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': item }) }}
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         {% endif %}
@@ -50,146 +58,99 @@
 
 <script>
 
-    $(function() {
-
-        $('.loading').hide();
-        var periodArray = [];
-        function getDeviceReservedPeriod() {
-            doGetDeviceReservedPeriod(this);
-        }
-        function doGetDeviceReservedPeriod(inst) {
-            var deviceId = inst.value;
-            $('#' + inst.id.replace(/device/g, 'startDate')).datepicker('disable');
-            $('#' + inst.id.replace(/device/g, 'endDate')).datepicker('disable');
-            //inst.parentElement.parentElement.getElementsByClassName('startDate')[0].datepicker('disable');
-            //inst.parentElement.parentElement.getElementsByClassName('endDate')[0].datepicker('disable');
-            $('.loading').show();
+    var periodArray = [];
+    var startDateParams = {
+        dateFormat: "dd-mm-yy",
+        firstDay: 1,
+        minDate: new Date(),
+        onSelect: function (dateText, inst) {
+            var endId = '#' + inst.id.replace(/startDate/g, 'endDate');
+            $(endId).datepicker(endDateParams);
+            $(endId).removeAttr('disabled');
+            $(endId).attr('readonly','true');
+            enableSubmitBtn();
+        },
+        beforeShowDay: function (date) {
+            var endId = '#' + this.id.replace(/startDate/g, 'endDate');
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            var enable = true;
+            var endDateVal=$(endId).value;
+            if(endDateVal === undefined) {
+                endDateVal=$(endId)[0].value;
+            }
+            endDateVal=endDateVal.split("-");
+            var endDate = new Date(endDateVal[2]+"-"+endDateVal[1]+"-"+endDateVal[0]).getTime();
             {% if not editionMode %}
-                $(".startDate")[0].value = null;
-                $(".endDate")[0].value = null;
+            if(date >= endDate)// La date de début ne doit pas être supérieur à la date de fin
+            {
+                return [false];
+            }
             {% endif %}
-            //$('.startDate').datepicker('disable');
-            //$('.endDate').datepicker('disable');
-            var route = "{{ path('reservation_get_reserved_period', { 'deviceId': "DEVICE_ID" }) }}";
-            route = route.replace("DEVICE_ID", deviceId);
-            $.ajax({
-                type: 'GET',
-                url: route,
-                success: function (json) {
-                    periodArray = json;
-                    $('.loading').hide();
-                    $('.startDate').datepicker('enable');
-                    {% if editionMode %}
-                    // On supprime la periode actuelle
-                    var endDateVal = $(".endDate").value;
-                    if (endDateVal === undefined) {
-                        endDateVal = $(".endDate")[0].value;
-                    }
-                    endDateVal=endDateVal.split("-");
-                    var endDate = new Date(endDateVal[0]+"/"+endDateVal[1]+"/"+endDateVal[2]).getTime();
-                    var startDateVal = $(".startDate").value;
-                    if (startDateVal === undefined) {
-                        startDateVal = $(".startDate")[0].value;
-                    }
-                    startDateVal=startDateVal.split("-");
-                    var startDate = new Date(startDateVal[0]+"/"+startDateVal[1]+"/"+startDateVal[2]).getTime();
-                    for (period in periodArray) {
-                        d1 = periodArray[period][0] * 1000;
-                        d2 = periodArray[period][1] * 1000;
-                        if ((d1 == startDate && d2 == endDate)) {
-                            periodArray.splice(period, 1)
-                            console.log(period);
-                            break;
-                        }
-                    }
-                    {% endif %}
-                },
-                error: function () {
-                    console.log('erreur');
-                    $('.loading').hide();
-                }
-            });
-            return false;
-        }
+            for (var period in periodArray) {
+                var d1 = new Date(periodArray[period][0] * 1000);
+                var d2 = new Date(periodArray[period][1] * 1000);
 
+                if (d1 <= date && date <= d2) // Pas de date de début dans une période réservée
+                {
+                    enable = false;
+                    break;
+                }
+            }
+            return [enable];
+        }
+    };
+    var endDateParams = {
+        dateFormat: "dd-mm-yy",
+        firstDay: 1,
+        minDate: new Date(),
+        beforeShowDay: function (date) {
+            var enable = true;
+            var startId = '#' + this.id.replace(/endDate/g, 'startDate');
+            var startDateVal=$(startId).value;
+            if(startDateVal === undefined) {
+                startDateVal=$(startId)[0].value;
+            }
+            startDateVal=startDateVal.split("-");
+            var startDate = new Date(startDateVal[2]+"-"+startDateVal[1]+"-"+startDateVal[0]).getTime();
+            if(date <= startDate)// La date de fin ne doit pas être inférieur à la date de début
+            {
+                return [false];
+            }
+            for (var period in periodArray) {
+                var d1 = new Date(periodArray[period][0] * 1000);
+                var d2 = new Date(periodArray[period][1] * 1000);
+                if ((d1 <= date && date <= d2) // Pas de date de fin dans une période réservée
+                        || (startDate <= d1 && d2 <= date)
+                ) {
+                    enable = false;
+                    break;
+                }
+            }
+            return [enable];
+        }
+    }
+
+    $(function() {
+        $('.loading').hide();
         {% if editionMode %}
         doGetDeviceReservedPeriod($('#ce_reservationbundle_reservation_device')[0]);
         {% endif %}
+        // On bind la récupération des periode reservé sur le changement de materiel
+        $('#reservationList').on('change','.onChangeDevice', getDeviceReservedPeriod);
+        // On bind la récupération des periode reservé sur le changement de materiel
+        $('#reservationList').on('change','.enableSubmit',  enableSubmitBtn);
 
-        $('.onChangeDevice').on('change', getDeviceReservedPeriod);
-
-        $(".startDate").datepicker({
-            dateFormat: "yy-mm-dd",
-            firstDay: 1,
-            minDate: new Date(),
-            onSelect: function (dateText, inst) {
-                $('.endDate').datepicker('enable');
-            },
-            beforeShowDay: function (date) {
-
-                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                var enable = true;
-                var endDateVal=$(".endDate").value;
-                if(endDateVal === undefined) {
-                    endDateVal=$(".endDate")[0].value;
-                }
-                endDateVal=endDateVal.split("-");
-                var endDate = new Date(endDateVal[0]+"/"+endDateVal[1]+"/"+endDateVal[2]).getTime();
-                {% if not editionMode %}
-                if(date >= endDate)// La date de début ne doit pas être supérieur à la date de fin
-                {
-                    return [false];
-                }
-                {% endif %}
-                for (period in periodArray) {
-                    d1 = new Date(periodArray[period][0] * 1000);
-                    d2 = new Date(periodArray[period][1] * 1000);
-
-                    if (d1 <= date && date <= d2) // Pas de date de début dans une période réservée
-                    {
-                        enable = false;
-                        break;
-                    }
-                }
-                return [enable];
-            }
-        });
+        // Paramétrage des datePickers
         {% if editionMode %}
         $(".startDate").on('change', function(){
             $(".endDate")[0].value = null;
         });
         {%  endif %}
-
-        $(".endDate").datepicker({
-            dateFormat: "yy-mm-dd",
-            firstDay: 1,
-            minDate: new Date(),
-            beforeShowDay: function (date) {
-                var enable = true;
-
-                var startDate = new Date($(".startDate")[0].value);
-                if(date <= startDate)// La date de fin ne doit pas être inférieur à la date de début
-                {
-                    return [false];
-                }
-                for (period in periodArray) {
-                    var d1 = new Date(periodArray[period][0] * 1000);
-                    var d2 = new Date(periodArray[period][1] * 1000);
-                    if ((d1 <= date && date <= d2) // Pas de date de fin dans une période réservée
-                        || (startDate <= d1 && d2 <= date)
-                    ) {
-                        enable = false;
-                        break;
-                    }
-                }
-                return [enable];
-            }
-        });
     });
 
     // Récupère le div qui contient la collection de tags
-    var collectionHolder = $('tbody.resevations');
-    var $newResaLine = $('.resevations');
+    var collectionHolder = $('tbody.reservations');
+    var $newResaLine = $('.reservations');
     jQuery(document).ready(function() {
         // ajoute l'ancre « ajouter un tag » et li à la balise ul
         collectionHolder.append($newResaLine);
@@ -212,9 +173,101 @@
 
         // Affiche le formulaire dans la page dans un li, avant le lien "ajouter un tag"
         var $newFormLi = $('<tr></tr>').append(newForm);
-        $newFormLi.find('.startDate').datepicker();
-        $newFormLi.find('.endDate').datepicker();
+
+        // On désactive le champs startDate
+        $newFormLi.find('.startDate').datepicker(startDateParams);
+        $newFormLi.find('.startDate').attr('disabled','');
+
+        // On désactive le champs endDate
+        $newFormLi.find('.endDate').datepicker(endDateParams);
+        $newFormLi.find('.endDate').attr('disabled','');
+
         $newLinkLi.append($newFormLi);
         $('.loading').hide();
+    }
+
+    function getDeviceReservedPeriod() {
+        doGetDeviceReservedPeriod(this);
+    }
+    function doGetDeviceReservedPeriod(inst) {
+        var deviceId = inst.value;
+
+        var startId = '#' + inst.id.replace(/device/g, 'startDate');
+        var endId = '#' + inst.id.replace(/device/g, 'endDate');
+        var loadId = '.' + inst.id.replace(/device/g, 'loading');
+        $(startId).datepicker('disable');
+        $(startId).attr('disabled','');
+        $(startId).removeAttr('readonly');
+        $(endId).datepicker('disable');
+        $(endId).attr('disabled','');
+        $(endId).removeAttr('readonly');
+        {% if not editionMode %}
+        $(startId)[0].value = null;
+        $(endId)[0].value = null;
+        {% endif %}
+        if(deviceId==null || deviceId==""){
+            return;
+        }
+        $(loadId).show();
+
+        var route = "{{ path('reservation_get_reserved_period', { 'deviceId': "DEVICE_ID" }) }}";
+        route = route.replace("DEVICE_ID", deviceId);
+        $.ajax({
+            type: 'GET',
+            url: route,
+            success: function (json) {
+                var periodArray = json;
+                $(loadId).hide();
+                $(startId).datepicker(startDateParams);
+                $(startId).removeAttr('disabled');
+                $(startId).attr('readonly','true');
+                {% if editionMode %}
+                // On supprime la période actuelle
+                var endDateVal = $(endId).value;
+                if (endDateVal === undefined) {
+                    endDateVal = $(endId)[0].value;
+                }
+                endDateVal=endDateVal.split("-");
+                var endDate = new Date(endDateVal[0]+"/"+endDateVal[1]+"/"+endDateVal[2]).getTime();
+                var startDateVal = $(startId).value;
+                if (startDateVal === undefined) {
+                    startDateVal = $(startId)[0].value;
+                }
+                startDateVal=startDateVal.split("-");
+                var startDate = new Date(startDateVal[0]+"/"+startDateVal[1]+"/"+startDateVal[2]).getTime();
+                for (var period in periodArray) {
+                    var d1 = periodArray[period][0] * 1000;
+                    var d2 = periodArray[period][1] * 1000;
+                    if ((d1 == startDate && d2 == endDate)) {
+                        periodArray.splice(period, 1)
+                        break;
+                    }
+                }
+                {% endif %}
+            },
+            error: function () {
+                $(loadId).hide();
+            }
+        });
+        return false;
+    }
+    function enableSubmitBtn(){
+        var inputs, index, enableSubmit;
+        enableSubmit = true;
+
+        // Find its child `input` elements
+        inputs = $('form[name="ce_reservationbundle_list_reservation"] :input');
+        for (index = 0; index < inputs.length; ++index) {
+            // deal with inputs[index] element.
+            if(inputs[index].value==null || inputs[index].value==''){
+                enableSubmit = false;
+            }
+        }
+        if (enableSubmit){
+            $("input[type=submit]").removeAttr('disabled');
+        } else {
+            $("input[type=submit]").attr('disabled','');
+
+        }
     }
 </script>

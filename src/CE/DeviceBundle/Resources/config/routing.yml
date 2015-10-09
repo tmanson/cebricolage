@@ -15,3 +15,15 @@ device_edit:
     defaults: { _controller: CEDeviceBundle:Default:edit }
     requirements:
         id: \d+
+
+device_activate:
+    path:     /device_activate
+    defaults: { _controller: CEDeviceBundle:Default:activate }
+    requirements:
+        _method: POST
+
+device_deactivate:
+    path:     /device_deactivate
+    defaults: { _controller: CEDeviceBundle:Default:deactivate }
+    requirements:
+        _method: POST

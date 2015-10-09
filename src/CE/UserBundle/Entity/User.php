@@ -2,7 +2,6 @@
 
 namespace CE\UserBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -160,4 +159,11 @@ class User extends \FOS\UserBundle\Model\User
 
         return array_unique($roles);
     }
+
+    function __toString()
+    {
+        return ucfirst($this->getUsername()) . " " . ucfirst($this->getFirstname()) . " - " . strtoupper($this->getIdentifiant());
+    }
+
+
 }

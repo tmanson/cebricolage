@@ -42,11 +42,18 @@ class Device
     private $modele;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="etat", type="smallint")
+     * indique si le matériel est disponible ou non
+     * @ORM\Column(name="disponible", type="boolean")
      */
-    private $etat;
+    private $disponible;
+
+
+
+    /**
+     * raison de l'indisponibilité
+     * @ORM\Column(name="disponibleLib", type="string", length=255)
+     */
+    private $disponibleLib;
 
     /**
      * @var string
@@ -210,8 +217,43 @@ class Device
         return $this->dateAchat;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDisponible()
+    {
+        return $this->disponible;
+    }
+
+    /**
+     * @param mixed $disponible
+     */
+    public function setDisponible($disponible)
+    {
+        if($disponible){
+            $this->disponibleLib = null;
+        }
+        $this->disponible = $disponible;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDisponibleLib()
+    {
+        return $this->disponibleLib;
+    }
+
+    /**
+     * @param mixed $disponibleLib
+     */
+    public function setDisponibleLib($disponibleLib)
+    {
+        $this->disponibleLib = $disponibleLib;
+    }
+
     public function __toString()
     {
-        return ucfirst($this->libelle);
+        return ucfirst($this->libelle) . " - " . ucfirst($this->marque) . " " . ucfirst($this->modele);
     }
 }

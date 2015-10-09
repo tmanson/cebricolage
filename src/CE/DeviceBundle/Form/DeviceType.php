@@ -24,13 +24,8 @@ class DeviceType extends AbstractType
                 'widget' => 'single_text',
                 'pattern'=>'d M Y'
             ))
-            ->add('etat', 'entity', array(
-                                    'required' => true,
-                                    'class' => 'CEDeviceBundle:Status',
-                                    'query_builder' => function(EntityRepository $e) {
-                                            return $e->createQueryBuilder('c')
-                                                ->orderBy('c.libelle', 'ASC');
-                                        }))
+            ->add('disponible', 'hidden')
+            ->add('disponibleLib', 'hidden')
         ;
     }
 

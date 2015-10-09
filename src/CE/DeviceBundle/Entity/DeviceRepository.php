@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class DeviceRepository extends EntityRepository
 {
+    public function findByDisponible($disponible){
+        $qb = $this->createQueryBuilder('d')
+            ->where("d.disponible = :dispo")
+            ->setParameter('dispo', $disponible);
+
+        return $qb;
+    }
 }

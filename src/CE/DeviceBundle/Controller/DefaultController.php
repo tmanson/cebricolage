@@ -5,6 +5,7 @@ namespace CE\DeviceBundle\Controller;
 use CE\DeviceBundle\Entity\Device;
 use CE\DeviceBundle\Form\DeviceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -51,6 +52,47 @@ class DefaultController extends Controller
             return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
         }
         $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-success')));
-        return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView()));
+        return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView(), 'device' =>$device));
+    }
+
+    public function activateAction(Request $request)
+    {
+        $request = $this->container->get('request');
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $id = $request->get('id');
+            if (!isset($id)) {
+                throw $this->createNotFoundException('Id not given.');
+            }
+            $device = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findOneById($id);
+            $device->setDisponible(true);
+            $em->flush();
+
+            $response = new JsonResponse();
+            $response->setData(array('id' => $device->getId()));
+            return $response;
+        }
+        return null;
+    }
+    public function deActivateAction(Request $request)
+    {
+        $request = $this->container->get('request');
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $id = $request->get('id');
+            if (!isset($id)) {
+                throw $this->createNotFoundException('Id not given.');
+            }
+            $device = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findOneById($id);
+            $device->setDisponible(true);
+            $em->flush();
+
+            $response = new JsonResponse();
+            $response->setData(array('id' => $device->getId()));
+            return $response;
+        }
+        return null;
     }
 }

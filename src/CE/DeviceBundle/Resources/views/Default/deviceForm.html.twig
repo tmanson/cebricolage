@@ -48,9 +48,12 @@
                     {{ form_widget(form.dateAchat) }}</td>
             </tr>
             <tr>
-                <th class="col-xs-2 col-md-1">Etat</th>
-                <td>{{ form_errors(form.etat) }}
-                    {{ form_widget(form.etat) }}</td>
+                <th class="col-xs-2 col-md-1">Disponibilité</th>
+                <td>{% if device.disponible %}
+                        Le matériel est disponible.
+                    {%  else %}
+                        {{ device.disponibleLib }}
+                    {%  endif %}</td>
             </tr>
             </tbody>
         </table>

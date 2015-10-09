@@ -2,15 +2,10 @@
 
 namespace CE\ReservationBundle\Form;
 
+use CE\DeviceBundle\Entity\DeviceRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToArrayTransformer;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToRfc3339Transformer;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToTimestampTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Tests\Extension\Core\DataTransformer\BaseDateTimeTransformerTest;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Validator\Constraints\Date;
 
 class ReservationType extends AbstractType
 {
@@ -20,27 +15,37 @@ class ReservationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
-            ->add('device')
+            ->add('device', 'entity',  array(
+                'required' => true,
+                'empty_value' => 'Choisissez un matériel',
+                'empty_data' => null,
+                'class' => 'CE\DeviceBundle\Entity\Device',
+                'query_builder' => function(DeviceRepository $er) {
+                    return $er->findByDisponible(true);
+                }))
             ->add('startDate', 'datetime', array(
+                                            'required' => true,
                                             'widget' => 'single_text',
-                                            'read_only'=> true,
-                                            'format' => 'yyyy-MM-dd',
+                                            'format' => 'dd-MM-yyyy',
                                             'attr' => array(
-                                                'class' => 'datepicker startDate',
-                                                'id' => 'startDate'
+                                                'class' => 'datepicker startDate'
                                             )
                                         ))
             ->add('endDate', 'datetime', array(
+                                            'required' => true,
                                             'widget' => 'single_text',
-                                            'read_only'=> true,
-                                            'format' => 'yyyy-MM-dd',
+                                            'format' => 'dd-MM-yyyy',
                                             'attr' => array(
-                                                'class' => 'datepicker endDate',
-                                                'id' => 'endDate'
+                                                'class' => 'datepicker endDate'
                                             )
             ))
-            ->add('user')
+            ->add('user', 'entity',  array(
+                'required' => true,
+                'empty_value' => 'Choisissez un matériel',
+                'empty_data' => null,
+                'class' => 'CEUserBundle:User'))
         ;
     }
     
