@@ -18,71 +18,82 @@
             </th>
             {% endif %}
             </thead>
-            <tbody>
-            {% for device in devices %}
-                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
-                    <td>{{ device.libelle }}</td>
-                    <td>{{ device.marque }}</td>
-                    <td>{{ device.modele }}</td>
-                    <td>{{ device.commentaire }}</td>
-                    <td>{% if device.disponible %}
-                            OK
-                        {%  else %}
-                            {{ device.disponibleLib }}
-                        {%  endif %}</td>
-                    <td>{{ device.dateAchat | date('d M Y')}}</td>
-                    {%  if is_granted('ROLE_CRUD_DEVICE') %}
-                    <td class="btn-group btn-group-xs" role="group">
-                        <a class="btn btn-xs btn-default" href="{{ path('device_edit', {"id":device.id}) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                        {% if device.disponible %}
-                            <a class="btn btn-xs btn-danger pull-left" data-toggle="modal" data-target="#disponibleModal" rel="{{ device.id }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        {%  else %}
-                            <a class="btn btn-xs btn-success pull-left" onclick="activate({{ device.id }});"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
-                        {%  endif %}
-                    </td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
+            <tbody id="devices">
+                {{ include('CEDeviceBundle:Default:list.html.twig', {'devices':devices}) }}
             </tbody>
         </table>
     </div>
     <!-- Modal -->
-    <div id="disponibleModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div class="modal fade" role="dialog" id="disponibleModal">
+        <div class="modal-dialog" >
             <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Inactivation du materiel : </h4>
+                    <h4 class="modal-title" id="modalTitle">Inactivation du materiel</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Veuillez saisir la raison de l'inactivation de ce matériel.</p>
-                    <textarea name="commentaire"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <p>Le matériel suivant va être désactivé</p>
+                    <form class="form form-horizontal" data-toggle="validator" role="form" id="deactivateForm">
+                        <input type="hidden" id="deviceId" name="deviceId" value="" >
+                        <div class="form-group form-group-sm">
+                            <label class="col-sm-2 control-label">Désignation</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="deviceLabel" name="deviceLabel" value="" disabled class="form-control disabled">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label class="col-sm-2 control-label">Marque</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="deviceMarque" name="deviceMarque" value="" disabled class="form-control disabled">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label class="col-sm-2 control-label">Modèle</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="deviceModèle" name="deviceModèle" value="" disabled class="form-control disabled">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label" for="inactivationComment">Veuillez saisir la raison de l'inactivation de ce matériel.</label>
+                            <div class="col-sm-12">
+                                <input type="text" id="inactivationComment" name="commentaire" class="form-control" required data-error="La raison de l'inactivation est obligatoire."/>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-sm btn-danger pull-right" data-dismiss="modal" onclick="deactivateAction()">Désactiver</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        function activate(id) {
-            $.ajax({
-                type: "POST",
-                url: '{{ path('device_activate') }}',
-                data: {id: id},
-                cache: false,
-                success: function (data) {
-                    alert('OK');
-                }
-            });
+
+        //triggered when modal is about to be shown
+        $('#disponibleModal').on('shown.bs.modal', function(e) {
+            //get data-id attribute of the clicked element
+            var deviceId = $(e.relatedTarget).data('id');
+            var deviceLabel = $(e.relatedTarget).data('label');
+            var deviceMarque = $(e.relatedTarget).data('marque');
+            var deviceModèle = $(e.relatedTarget).data('modele');
+            //populate the textbox
+            $(".modal-body #deviceId").val(deviceId);
+            $(".modal-body #deviceLabel").val(deviceLabel);
+            $(".modal-body #deviceMarque").val(deviceMarque);
+            $(".modal-body #deviceModèle").val(deviceModèle);
+            $(".modal-body #inactivationComment").focusout();
+            $(".modal-body #inactivationComment").focus();
+
+        });
+        function deactivateAction() {
+            var deviceID = $(".modal-body #deviceId").val();
+            var comment = $(".modal-body #inactivationComment").val();
+            deactivate(deviceID, comment);
         }
-        $('#disponibleModal').on('hidden.bs.modal', function () {
-            deviceID = $('#disponibleModal').attr('value');
-            var Id=$(this).attr("rel");
-            // TODO faire en sorte qu'on appel deactivate avec le bon ID et le commentaire
-            alert(Id);
-        })
 
 
         function deactivate(id, commentaire) {
@@ -91,7 +102,25 @@
                 url: '{{ path('device_deactivate') }}',
                 data: {id: id, commentaire: commentaire},
                 cache: false,
+                success: reloadDevices
+            });
+        }
+        function activate(id) {
+            $.ajax({
+                type: "POST",
+                url: '{{ path('device_activate') }}',
+                data: {id: id},
+                cache: false,
+                success: reloadDevices
+            });
+        }
+        function reloadDevices(){
+            $.ajax({
+                type: "GET",
+                url: '{{ path('device_get_devices')}}',
+                cache: false,
                 success: function (data) {
+                    $('#devices').html(data);
                 }
             });
         }

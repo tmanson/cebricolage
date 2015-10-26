@@ -1,27 +1,25 @@
 ce_device_brand:
     resource: "@CEDeviceBundle/Resources/config/routing/marque.yml"
     prefix:   /brand
-
 device_management:
     path:     /device_management
     defaults: { _controller: CEDeviceBundle:Default:index }
-
 device_create:
     path:     /device_create
     defaults: { _controller: CEDeviceBundle:Default:create }
-
 device_edit:
     path:     /device_edit/{id}
     defaults: { _controller: CEDeviceBundle:Default:edit }
     requirements:
         id: \d+
-
+device_get_devices:
+    path:     /device_get_devices
+    defaults: { _controller: CEDeviceBundle:Default:getDevices }
 device_activate:
     path:     /device_activate
     defaults: { _controller: CEDeviceBundle:Default:activate }
     requirements:
         _method: POST
-
 device_deactivate:
     path:     /device_deactivate
     defaults: { _controller: CEDeviceBundle:Default:deactivate }

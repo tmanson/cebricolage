@@ -55,6 +55,14 @@ class DefaultController extends Controller
         return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView(), 'device' =>$device));
     }
 
+    public function getDevicesAction(){
+        $em = $this->getDoctrine()->getManager();
+        $devices = $em->getRepository('CEDeviceBundle:Device')->findAll();
+        return $this->render('CEDeviceBundle:Default:list.html.twig', array(
+            'devices' => $devices,
+        ));
+    }
+
     public function activateAction(Request $request)
     {
         $request = $this->container->get('request');
@@ -82,11 +90,16 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $id = $request->get('id');
+            $commentaire = $request->get('commentaire');
             if (!isset($id)) {
                 throw $this->createNotFoundException('Id not given.');
             }
+            if (!isset($commentaire)) {
+                throw $this->createNotFoundException('Commentaire not given.');
+            }
             $device = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findOneById($id);
-            $device->setDisponible(true);
+            $device->setDisponible(false);
+            $device->setDisponibleLib($commentaire);
             $em->flush();
 
             $response = new JsonResponse();
