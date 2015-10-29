@@ -9,11 +9,11 @@
     <div class="container-fluid panel-heading">
         <div class="pull-left "><h4>{{ titre }}</h4></div>
         <div class="btn-group pull-right">
-            <a href="{{ path('reservation') }}" class="btn btn-primary">Retour</a>
+            <a href="{{ path('reservation') }}" class="btn btn-sm btn-primary">Retour</a>
             {% if showDeleteButton %}
-                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
+                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">Supprimer</a>
             {% endif %}
-            <input type="submit" value="Enregistrer"  class="btn btn-success"/>
+            <input type="submit" value="Enregistrer"  class="btn btn-sm btn-success"/>
         </div>
     </div>
     <div >
@@ -35,6 +35,7 @@
                     <th>Date de début</th>
                     <th>Date de fin</th>
                     <th>Emprunteur</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody class="reservations" id="reservationList" data-prototype="{% filter escape %}{{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form.reservations.vars.prototype }) }}{% endfilter %}">
@@ -49,7 +50,7 @@
     </div>
    {% if not editionMode %}
         <div class="container-fluid panel-footer">
-            <a href="#" class="add_resa_link btn btn-success pull-left">+ Ajouter</a>
+            <a href="#" class="add_resa_link btn btn-sm btn-success pull-left">+ Ajouter</a>
         </div>
    {% endif %}
 </div>
@@ -145,6 +146,7 @@
         $(".startDate").on('change', function(){
             $(".endDate")[0].value = null;
         });
+
         {%  endif %}
     });
 
@@ -154,7 +156,10 @@
     jQuery(document).ready(function() {
         // ajoute l'ancre « ajouter un tag » et li à la balise ul
         collectionHolder.append($newResaLine);
-
+        // add a delete link to all of the existing tag form li elements
+        collectionHolder.children().each(function() {
+            addResaFormDeleteLink($(this));
+        });
         $('.add_resa_link').on('click', function(e) {
             // empêche le lien de créer un « # » dans l'URL
             e.preventDefault();
@@ -162,6 +167,18 @@
             addResaForm(collectionHolder, $newResaLine);
         });
     });
+    function addResaFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<a class="btn btn-sm btn-danger del_resa_link" title="Supprimer"><span class="glyphicon glyphicon-remove"></span></a>');
+        $tagFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // remove the li for the tag form
+            $tagFormLi.remove();
+        });
+    }
 
     function addResaForm(collectionHolder, $newLinkLi) {
         // Récupère l'élément ayant l'attribut data-prototype comme expliqué plus tôt
@@ -182,6 +199,7 @@
         $newFormLi.find('.endDate').datepicker(endDateParams);
         $newFormLi.find('.endDate').attr('disabled','');
 
+        addResaFormDeleteLink($newFormLi);
         $newLinkLi.append($newFormLi);
         $('.loading').hide();
     }

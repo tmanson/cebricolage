@@ -1,4 +1,4 @@
-{% if showDeleteButton %}
+{% if edit %}
     <div class="hidden">
         {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
     </div>
@@ -10,9 +10,9 @@
     <div class="container-fluid panel-heading">
         <div class="pull-left "><h4>{{ titre }}</h4></div>
         <div class="btn-group pull-right">
-            <a href="{{ path('device_management') }}" class="btn btn-primary">Retour</a>
-            {% if showDeleteButton %}
-                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
+            <a href="{{ path('device_management') }}" class="btn btn-sm btn-primary">Retour</a>
+            {% if edit %}
+                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">Supprimer</a>
             {% endif %}
             {{ form_widget(form.submit) }}
         </div>
@@ -47,14 +47,16 @@
                 <td>{{ form_errors(form.dateAchat) }}
                     {{ form_widget(form.dateAchat) }}</td>
             </tr>
+            {% if edit %}
             <tr>
                 <th class="col-xs-2 col-md-1">Disponibilité</th>
-                <td>{% if device.disponible %}
-                        Le matériel est disponible.
-                    {%  else %}
+                <td>{% if not device.disponible %}
                         {{ device.disponibleLib }}
+                    {%  else %}
+                        Le matériel est disponible.
                     {%  endif %}</td>
             </tr>
+            {% endif %}
             </tbody>
         </table>
     </div>

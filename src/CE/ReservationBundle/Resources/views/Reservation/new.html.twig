@@ -3,38 +3,4 @@
 {% block body -%}
     {{ include('CEReservationBundle:Reservation:reservationForm.html.twig',
     {'titre': 'Création d\'une réservation ', 'form': form, 'showDeleteButton': false, 'editionMode': false}) }}
-<script>
-    function reloadDevice()
-    {
-        // A mettre en place :
-        // On choisi un device puis on désactive les periode sur lesquels le device est reservé
-        //delay(function()
-        //{
-            $.ajax({
-                type: 'GET',
-                url: '{{ path('reservation_get_devices') }}',
-                data: {
-                    startDate: $('#startDate').val(),
-                    endDate: $('#endDate').val()
-                },
-                success: function(html) {
-                    $("#search_result").html(html);
-                },
-                error: function() {
-                    console.log('erreur');
-                }
-            });
-        //}, 250 );
-    }
-
-    /*var delay = (function(){
-        var timer = 0;
-        return function(callback, ms){
-            clearTimeout (timer);
-            timer = setTimeout(callback, ms);
-        };
-    })();*/
-
-</script>
-
 {% endblock %}

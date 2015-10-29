@@ -67,7 +67,7 @@ class MarqueController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array( 'class' => 'btn btn-success')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
 
         return $form;
     }
@@ -146,7 +146,7 @@ class MarqueController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-success')));
+        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
 
         return $form;
     }

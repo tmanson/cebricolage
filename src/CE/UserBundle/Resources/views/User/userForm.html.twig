@@ -10,9 +10,9 @@
     <div class="container-fluid panel-heading">
         <div class="pull-left "><h4>{{ titre }}</h4></div>
         <div class="btn-group pull-right">
-            <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
+            <a href="{{ path('user') }}" class="btn btn-sm btn-primary">Retour</a>
             {% if showDeleteButton %}
-                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
+                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">Supprimer</a>
             {% endif %}
             {{ form_widget(form.submit) }}
         </div>

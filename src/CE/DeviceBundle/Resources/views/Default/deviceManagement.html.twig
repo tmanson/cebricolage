@@ -14,7 +14,7 @@
             <th class="col-xs-2 col-md-1">Date d'achat</th>
             {%  if is_granted('ROLE_CRUD_DEVICE') %}
             <th class="col-xs-2 col-md-1">
-                    <a class="btn btn-success" href="{{ path('device_create') }}">+ Ajouter</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('device_create') }}">+ Ajouter</a>
             </th>
             {% endif %}
             </thead>

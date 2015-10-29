@@ -5,10 +5,10 @@
         <div class="container-fluid panel-heading">
             <div class="pull-left "><h4>{{ group.name | capitalize }}</h4></div>
             <div class="btn-group pull-right">
-                <a href="{{ path('fos_user_group_list') }}" class="btn btn-primary">Retour</a>
+                <a href="{{ path('fos_user_group_list') }}" class="btn btn-sm btn-primary">Retour</a>
                 {%  if is_granted('ROLE_CRUD_GROUP') %}
-                    <a href="{{ path('fos_user_group_edit', { 'groupName': group.name }) }}" class="btn btn-success">Modifier</a>
-                    <a href='{{ path('fos_user_group_delete', { 'groupName': group.name }) }}' class="btn btn-warning">Supprimer</a>
+                    <a href="{{ path('fos_user_group_edit', { 'groupName': group.name }) }}" class="btn btn-sm btn-success">Modifier</a>
+                    <a href='{{ path('fos_user_group_delete', { 'groupName': group.name }) }}' class="btn btn-sm btn-warning">Supprimer</a>
                 {%  endif %}
             </div>
         </div>

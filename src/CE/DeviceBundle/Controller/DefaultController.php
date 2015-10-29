@@ -23,17 +23,19 @@ class DefaultController extends Controller
         $device->setEtat(1);
         $form = $this->createForm(new DeviceType(), $device);
 
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $device->setDisponible(false);
+            $device->setDisponibleLib("Vient d'être créé");
             $em->persist($device);
             $em->flush();
 
             $devices = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findAll();
             return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
         }
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array( 'class' => 'btn btn-success')));
         return $this->render('CEDeviceBundle:Default:create.html.twig', array('form' => $form->createView()));
     }
 
@@ -51,7 +53,7 @@ class DefaultController extends Controller
             $devices = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findAll();
             return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
         }
-        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-success')));
+        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
         return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView(), 'device' =>$device));
     }
 

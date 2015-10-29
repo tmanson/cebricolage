@@ -10,7 +10,7 @@
             <th class="col-xs-2 col-md-1">Nom</th>
             <th class="col-xs-2 col-md-1">
                 {%  if is_granted('ROLE_CRUD_DEVICE') %}
-                    <a class="btn btn-success" href="{{ path('brand_new') }}">+ Ajouter</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('brand_new') }}">+ Ajouter</a>
                 {% endif %}
             </th>
         </tr>
@@ -20,11 +20,11 @@
         {% for entity in entities %}
             <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
                 <td>{{ entity.libelle }}</td>
-                <td>
-                    <a href="{{ path('brand_show', { 'id': entity.id }) }}" class="glyphicon glyphicon-user"></a>
+                <td  class="btn-group btn-group-xs" role="group">
                     {%  if is_granted('ROLE_CRUD_DEVICE') %}
-                        <a href="{{ path('brand_edit', { 'id': entity.id }) }}" class="glyphicon glyphicon-edit"></a>
+                        <a href="{{ path('brand_edit', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
                     {% endif %}
+                    <a href="{{ path('brand_show', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></a>
                 </td>
             </tr>
         {% endfor %}

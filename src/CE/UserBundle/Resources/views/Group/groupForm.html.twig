@@ -10,11 +10,11 @@
     <div class="container-fluid panel-heading">
         <div class="pull-left "><h4>{{ titre }}</h4></div>
         <div class="btn-group pull-right">
-            <a href="{{ path('fos_user_group_list') }}" class="btn btn-primary">Retour</a>
+            <a href="{{ path('fos_user_group_list') }}" class="btn btn-sm btn-primary">Retour</a>
             {% if showDeleteButton %}
-                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
+                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">Supprimer</a>
             {% endif %}
-            <input type="submit" value="Enregistrer"  class="btn btn-success"/>
+            <input type="submit" value="Enregistrer"  class="btn btn-sm btn-success"/>
         </div>
     </div>
     <div>
@@ -30,7 +30,7 @@
                     {{ form_errors(form.roles) }}
                     <div class="btn-group btn-group-vertical" data-toggle="buttons">
                         {% for child in form.roles %}
-                            <div class="btn btn-info {% if child.vars.checked %}active{% endif %}">
+                            <div class="btn btn-sm btn-info {% if child.vars.checked %}active{% endif %}">
                                 {{ form_widget(child) }} {{ form_label(child) }}
                             </div>
                         {% endfor %}
