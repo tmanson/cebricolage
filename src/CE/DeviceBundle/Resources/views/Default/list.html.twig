@@ -1,0 +1,26 @@
+{% for device in devices %}
+    <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
+        <td>{{ device.libelle }}</td>
+        <td>{{ device.marque }}</td>
+        <td>{{ device.modele }}</td>
+        <td>{{ device.commentaire }}</td>
+        <td>{% if device.disponible %}
+                OK
+            {%  else %}
+                {{ device.disponibleLib }}
+            {%  endif %}</td>
+        <td>{{ device.dateAchat | date('d M Y')}}</td>
+        {%  if is_granted('ROLE_CRUD_DEVICE') %}
+            <td class="btn-group btn-group-xs" role="group">
+                <a class="btn btn-xs btn-default" href="{{ path('device_edit', {"id":device.id}) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                {% if device.disponible %}
+                    <a class="btn btn-xs btn-danger pull-left open-disponibleModal" data-toggle="modal" data-target="#disponibleModal" data-id="{{ device.id }}" data-label="{{ device.libelle }}" data-marque="{{ device.marque }}" data-modele="{{ device.modele }}">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                {%  else %}
+                    <a class="btn btn-xs btn-success pull-left" onclick="activate({{ device.id }});"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                {%  endif %}
+            </td>
+        {% endif %}
+    </tr>
+{% endfor %}
