@@ -2,6 +2,7 @@
 
 namespace CE\UserBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -18,6 +19,13 @@ class RegistrationFormType extends AbstractType
             ->add('identifiant')
             ->add('firstname')
             ->add('phoneNumber')
+            ->add('groups', 'entity', array(
+                'required' => true,
+                'class' => 'CEUserBundle:Group',
+                'query_builder' => function(EntityRepository $e) {
+                    return $e->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                }))
         ;
     }
     

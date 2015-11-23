@@ -152,7 +152,10 @@ class User extends \FOS\UserBundle\Model\User
      */
     public function getRoles()
     {
-        $roles = $this->groups->getRoles();
+        if(!is_null($this->groups))
+        {
+            $roles = $this->groups->getRoles();
+        }
 
         // we need to make sure to have at least one role
         $roles[] = static::ROLE_DEFAULT;

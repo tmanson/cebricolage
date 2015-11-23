@@ -2,7 +2,6 @@
 
 namespace CE\UserBundle\Form;
 
-use CE\UserBundle\Controller\GroupController;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
