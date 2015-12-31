@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new CE\UserBundle\CEUserBundle(),
             new CE\DeviceBundle\CEDeviceBundle(),
             new CE\ReservationBundle\CEReservationBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
