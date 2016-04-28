@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list readonly="true" id="de7d49f6-0040-42a0-b01d-c5b30029ae0e" name="Default" comment="" />
     <list default="true" id="148c7766-fa40-4729-a65f-bd16bfbcdd26" name="Do Not Commit" comment="Correction Mise en page&#10;Correction de bug divers&#10;Ajout bouton suppression création de réservation/emrpunts">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/parameters.yml" afterPath="$PROJECT_DIR$/app/config/parameters.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Ce.iws" />
@@ -46,18 +43,134 @@
       <file leaf-file-name="AppKernel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="765">
+            <state vertical-scroll-proportion="-12.846154" vertical-offset="40" max-vertical-offset="765">
               <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.95472705" vertical-offset="796" max-vertical-offset="1649">
-              <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1649">
+              <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Version20160428094522.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20160428094522.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="3.4230769" vertical-offset="412" max-vertical-offset="1037">
+              <caret line="20" column="23" selection-start-line="18" selection-start-column="8" selection-end-line="20" selection-end-column="23" />
+              <folding>
+                <marker date="1461829522220" expanded="true" signature="584:848" placeholder="CREATE TABLE..user_group..." />
+                <marker date="1461829522220" expanded="true" signature="875:1889" placeholder="CREATE TABLE..User..." />
+                <marker date="1461829522220" expanded="true" signature="1916:2311" placeholder="CREATE TABLE..Device..." />
+                <marker date="1461829522220" expanded="true" signature="2338:2548" placeholder="CREATE TABLE..History..." />
+                <marker date="1461829522220" expanded="true" signature="2575:2742" placeholder="CREATE TABLE..Marque..." />
+                <marker date="1461829522220" expanded="true" signature="2769:3166" placeholder="CREATE TABLE..Reservation..." />
+                <marker date="1461829522220" expanded="true" signature="3193:3371" placeholder="CREATE TABLE..ReservationStatus..." />
+                <marker date="1461829522220" expanded="true" signature="3398:3506" placeholder="ALTER TABLE User..." />
+                <marker date="1461829522220" expanded="true" signature="3533:3632" placeholder="ALTER TABLE Device..." />
+                <marker date="1461829522220" expanded="true" signature="3659:3764" placeholder="ALTER TABLE Reservation..." />
+                <marker date="1461829522220" expanded="true" signature="3791:3892" placeholder="ALTER TABLE Reservation..." />
+                <marker date="1461829522220" expanded="true" signature="3919:4035" placeholder="ALTER TABLE Reservation..." />
+                <marker date="1461829522220" expanded="true" signature="4388:4404" placeholder="ALTER TABLE User..." />
+                <marker date="1461829522220" expanded="true" signature="4468:4491" placeholder="ALTER TABLE Reservation..." />
+                <marker date="1461829522220" expanded="true" signature="4555:4578" placeholder="ALTER TABLE Reservation..." />
+                <marker date="1461829522220" expanded="true" signature="4642:4660" placeholder="ALTER TABLE Device..." />
+                <marker date="1461829522220" expanded="true" signature="4723:4746" placeholder="ALTER TABLE Reservation..." />
+                <marker date="1461829522220" expanded="true" signature="4810:4831" placeholder="DROP TABLE u..." />
+                <marker date="1461829522220" expanded="true" signature="4858:4873" placeholder="DROP TABLE U..." />
+                <marker date="1461829522220" expanded="true" signature="4900:4917" placeholder="DROP TABLE D..." />
+                <marker date="1461829522220" expanded="true" signature="4944:4962" placeholder="DROP TABLE H..." />
+                <marker date="1461829522220" expanded="true" signature="4989:5006" placeholder="DROP TABLE M..." />
+                <marker date="1461829522220" expanded="true" signature="5033:5055" placeholder="DROP TABLE R..." />
+                <marker date="1461829522220" expanded="true" signature="5082:5110" placeholder="DROP TABLE R..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Version20160428095114.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20160428095114.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.67421603" vertical-offset="310" max-vertical-offset="952">
+              <caret line="42" column="61" selection-start-line="42" selection-start-column="61" selection-end-line="42" selection-end-column="61" />
+              <folding>
+                <marker date="1461846228469" expanded="true" signature="591:667" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="591:685" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="591:688" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="591:705" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="591:728" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="591:836" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="591:927" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="762:765" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="762:799" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="762:802" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="762:819" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="762:833" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="762:836" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="870:873" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="870:904" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="870:927" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="1018:1345" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="1018:1631" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="1018:1719" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="1797:1985" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="1797:1991" placeholder="INSERT INTO ..." />
+                <marker date="1461846228469" expanded="true" signature="2001:2041" placeholder="/** * @param..." />
+                <marker date="1461846228469" expanded="true" signature="2256:2284" placeholder="DELETE FROM ..." />
+                <marker date="1461846228469" expanded="true" signature="2256:2291" placeholder="DELETE FROM ..." />
+                <marker date="1461846228469" expanded="true" signature="2318:2353" placeholder="DELETE FROM ..." />
+                <marker date="1461846228469" expanded="true" signature="2380:2415" placeholder="DELETE FROM ..." />
+                <marker date="1461846228469" expanded="true" signature="2442:2471" placeholder="DELETE FROM ..." />
+                <marker date="1461846228469" expanded="true" signature="2498:2540" placeholder="DELETE FROM ..." />
+                <marker date="1461846228469" expanded="true" signature="2567:2609" placeholder="DELETE FROM ..." />
+                <marker date="1461846228469" expanded="true" signature="2636:2678" placeholder="DELETE FROM ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReservationController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.076923" vertical-offset="149" max-vertical-offset="5797">
+              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/composer.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1139">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,8 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/config/routing.yml" />
-        <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/new.html.twig" />
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Form/MarqueType.php" />
         <option value="$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/show.html.twig" />
@@ -134,6 +245,8 @@
         <option value="$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/app/DoctrineMigrations/Version20160428095114.php" />
       </list>
     </option>
   </component>
@@ -240,6 +353,98 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="doctrine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="doctrine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="doctrine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Doctrine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DBAL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -375,133 +580,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="DeviceBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DeviceBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoreBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoreBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoreBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoreBundle" />
+              <option name="myItemId" value="ReservationBundle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -537,7 +616,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="DoctrineMigrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ce" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cache" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -587,6 +684,7 @@
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="909" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
+    <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -603,6 +701,118 @@
       <recent name="C:\wamp\www\ce\src\CE\DeviceBundle\Resources\views\Default" />
       <recent name="C:\wamp\www\ce\web" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree">
+    <UpdateInfo date="Moments ago" ActionInfo="_Update">
+      <UpdatedFiles>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated from server" />
+          <option name="myStatusName" value="Changed on server" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CHANGED_ON_SERVER" />
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Updated" />
+            <option name="myStatusName" value="Changed" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="UPDATED" />
+            <PATH vcs="svn" revision="22">C:\wamp\www\ce</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Created" />
+            <option name="myStatusName" value="Created" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="CREATED" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Deleted" />
+            <option name="myStatusName" value="Deleted" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="true" />
+            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Restored" />
+            <option name="myStatusName" value="Will be restored" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="RESTORED" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Modified" />
+          <option name="myStatusName" value="Modified" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MODIFIED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Skipped" />
+          <option name="myStatusName" value="Skipped" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SKIPPED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with conflicts" />
+          <option name="myStatusName" value="Will be merged with conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with tree conflicts" />
+          <option name="myStatusName" value="Merged with tree conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with property conflicts" />
+          <option name="myStatusName" value="Will be merged with property conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged" />
+          <option name="myStatusName" value="Will be merged" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Not in repository" />
+          <option name="myStatusName" value="Not in repository" />
+          <option name="mySupportsDeletion" value="true" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UNKNOWN" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally added" />
+          <option name="myStatusName" value="Locally added" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_ADDED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally removed" />
+          <option name="myStatusName" value="Locally removed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_REMOVED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Switched" />
+          <option name="myStatusName" value="Switched" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SWITCHED" />
+        </FILE-GROUP>
+      </UpdatedFiles>
+    </UpdateInfo>
   </component>
   <component name="RunManager">
     <configuration default="false" name="Configuration.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/src/CE/ReservationBundle/DependencyInjection/Configuration.php">
@@ -622,15 +832,15 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="1">
@@ -722,7 +932,13 @@
       <option name="project" value="LOCAL" />
       <updated>1446128677307</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ajout script doctrine migration">
+      <created>1451558528370</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1451558528370</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -732,25 +948,25 @@
     <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.4992785" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24513888" sideWeight="0.83140284" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24513888" sideWeight="0.16859716" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24513888" sideWeight="0.8304348" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24513888" sideWeight="0.16956522" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4328524" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11196911" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1496" height="826" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -758,7 +974,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2238342" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13822894" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13770914" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -785,7 +1001,8 @@
     <MESSAGE value="Début mise en place de l'activation/désactivation du matériel&#10;refactoring divers" />
     <MESSAGE value="Activation/désactivation du matériel&#10;" />
     <MESSAGE value="Correction Mise en page&#10;Correction de bug divers&#10;Ajout bouton suppression création de réservation/emrpunts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction Mise en page&#10;Correction de bug divers&#10;Ajout bouton suppression création de réservation/emrpunts" />
+    <MESSAGE value="Ajout script doctrine migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout script doctrine migration" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -799,6 +1016,46 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="731">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2890" max-vertical-offset="5032">
+          <caret line="170" column="147" selection-start-line="170" selection-start-column="147" selection-end-line="170" selection-end-column="147" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="765">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1649">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="731">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Resources/views/Reservation/reservationForm.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5032">
@@ -916,13 +1173,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.9085715" vertical-offset="486" max-vertical-offset="2450">
           <caret line="154" column="25" selection-start-line="154" selection-start-column="25" selection-end-line="154" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3900" max-vertical-offset="4774">
-          <caret line="332" column="33" selection-start-line="332" selection-start-column="33" selection-end-line="332" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1078,19 +1328,138 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/doctrine.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="751">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1139">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="765">
+        <state vertical-scroll-proportion="-12.846154" vertical-offset="40" max-vertical-offset="765">
           <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/migrations/lib/Doctrine/DBAL/Migrations/AbstractMigration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44965518" vertical-offset="2292" max-vertical-offset="3043">
+          <caret line="170" column="23" selection-start-line="170" selection-start-column="23" selection-end-line="170" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95472705" vertical-offset="796" max-vertical-offset="1649">
-          <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="898" max-vertical-offset="1649">
+          <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CE/ReservationBundle/Controller/ReservationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.076923" vertical-offset="149" max-vertical-offset="5797">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20160428094522.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.4230769" vertical-offset="412" max-vertical-offset="1037">
+          <caret line="20" column="23" selection-start-line="18" selection-start-column="8" selection-end-line="20" selection-end-column="23" />
+          <folding>
+            <marker date="1461829522220" expanded="true" signature="584:848" placeholder="CREATE TABLE..user_group..." />
+            <marker date="1461829522220" expanded="true" signature="875:1889" placeholder="CREATE TABLE..User..." />
+            <marker date="1461829522220" expanded="true" signature="1916:2311" placeholder="CREATE TABLE..Device..." />
+            <marker date="1461829522220" expanded="true" signature="2338:2548" placeholder="CREATE TABLE..History..." />
+            <marker date="1461829522220" expanded="true" signature="2575:2742" placeholder="CREATE TABLE..Marque..." />
+            <marker date="1461829522220" expanded="true" signature="2769:3166" placeholder="CREATE TABLE..Reservation..." />
+            <marker date="1461829522220" expanded="true" signature="3193:3371" placeholder="CREATE TABLE..ReservationStatus..." />
+            <marker date="1461829522220" expanded="true" signature="3398:3506" placeholder="ALTER TABLE User..." />
+            <marker date="1461829522220" expanded="true" signature="3533:3632" placeholder="ALTER TABLE Device..." />
+            <marker date="1461829522220" expanded="true" signature="3659:3764" placeholder="ALTER TABLE Reservation..." />
+            <marker date="1461829522220" expanded="true" signature="3791:3892" placeholder="ALTER TABLE Reservation..." />
+            <marker date="1461829522220" expanded="true" signature="3919:4035" placeholder="ALTER TABLE Reservation..." />
+            <marker date="1461829522220" expanded="true" signature="4388:4404" placeholder="ALTER TABLE User..." />
+            <marker date="1461829522220" expanded="true" signature="4468:4491" placeholder="ALTER TABLE Reservation..." />
+            <marker date="1461829522220" expanded="true" signature="4555:4578" placeholder="ALTER TABLE Reservation..." />
+            <marker date="1461829522220" expanded="true" signature="4642:4660" placeholder="ALTER TABLE Device..." />
+            <marker date="1461829522220" expanded="true" signature="4723:4746" placeholder="ALTER TABLE Reservation..." />
+            <marker date="1461829522220" expanded="true" signature="4810:4831" placeholder="DROP TABLE u..." />
+            <marker date="1461829522220" expanded="true" signature="4858:4873" placeholder="DROP TABLE U..." />
+            <marker date="1461829522220" expanded="true" signature="4900:4917" placeholder="DROP TABLE D..." />
+            <marker date="1461829522220" expanded="true" signature="4944:4962" placeholder="DROP TABLE H..." />
+            <marker date="1461829522220" expanded="true" signature="4989:5006" placeholder="DROP TABLE M..." />
+            <marker date="1461829522220" expanded="true" signature="5033:5055" placeholder="DROP TABLE R..." />
+            <marker date="1461829522220" expanded="true" signature="5082:5110" placeholder="DROP TABLE R..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20160428095114.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67421603" vertical-offset="310" max-vertical-offset="952">
+          <caret line="42" column="61" selection-start-line="42" selection-start-column="61" selection-end-line="42" selection-end-column="61" />
+          <folding>
+            <marker date="1461846228469" expanded="true" signature="591:667" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="591:685" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="591:688" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="591:705" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="591:728" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="591:836" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="591:927" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="762:765" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="762:799" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="762:802" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="762:819" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="762:833" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="762:836" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="870:873" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="870:904" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="870:927" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="1018:1345" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="1018:1631" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="1018:1719" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="1797:1985" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="1797:1991" placeholder="INSERT INTO ..." />
+            <marker date="1461846228469" expanded="true" signature="2001:2041" placeholder="/** * @param..." />
+            <marker date="1461846228469" expanded="true" signature="2256:2284" placeholder="DELETE FROM ..." />
+            <marker date="1461846228469" expanded="true" signature="2256:2291" placeholder="DELETE FROM ..." />
+            <marker date="1461846228469" expanded="true" signature="2318:2353" placeholder="DELETE FROM ..." />
+            <marker date="1461846228469" expanded="true" signature="2380:2415" placeholder="DELETE FROM ..." />
+            <marker date="1461846228469" expanded="true" signature="2442:2471" placeholder="DELETE FROM ..." />
+            <marker date="1461846228469" expanded="true" signature="2498:2540" placeholder="DELETE FROM ..." />
+            <marker date="1461846228469" expanded="true" signature="2567:2609" placeholder="DELETE FROM ..." />
+            <marker date="1461846228469" expanded="true" signature="2636:2678" placeholder="DELETE FROM ..." />
+          </folding>
         </state>
       </provider>
     </entry>
