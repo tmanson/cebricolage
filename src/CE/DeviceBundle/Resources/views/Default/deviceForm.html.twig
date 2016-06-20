@@ -46,7 +46,22 @@
                 <th class="col-xs-2 col-md-1">Date d'achat</th>
                 <td>{{ form_errors(form.dateAchat) }}
                     {{ form_widget(form.dateAchat) }}</td>
+
             </tr>
+            {% if device.image is not null %}
+            <tr>
+
+                <th class="col-xs-2 col-md-1">Image</th>
+                <td>{{ form_errors(form.image) }}
+                    {{ form_widget(form.image) }}
+                <img
+                        src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url) }}"
+                        alt="{{ device.image.alt }}"
+                        />
+                </td>
+            </tr>
+            {% endif %}
+
             {% if edit %}
             <tr>
                 <th class="col-xs-2 col-md-1">Disponibilité</th>
@@ -57,6 +72,7 @@
                     {%  endif %}</td>
             </tr>
             {% endif %}
+
             </tbody>
         </table>
     </div>

@@ -43,17 +43,19 @@ class DefaultController extends Controller
     {
         $device = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findOneById($id);
         $form = $this->createForm(new DeviceType(), $device);
-
+        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
         $form->handleRequest($request);
 
+
         if ($form->isValid()) {
+            $device->getImage()->upload();
             $em = $this->getDoctrine()->getManager();
+
             $em->flush();
 
             $devices = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findAll();
             return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
         }
-        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
         return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView(), 'device' =>$device));
     }
 

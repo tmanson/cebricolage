@@ -58,7 +58,7 @@ class Device
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="string", length=1024)
+     * @ORM\Column(name="commentaire", type="string", nullable=true, length=1024)
      */
     private $commentaire;
 
@@ -256,4 +256,23 @@ class Device
     {
         return ucfirst($this->libelle) . " - " . ucfirst($this->marque) . " " . ucfirst($this->modele);
     }
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="CE\DeviceBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
+
+
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
 }

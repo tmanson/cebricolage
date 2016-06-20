@@ -1,5 +1,14 @@
 {% for device in devices %}
     <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
+        <td>
+        {% if device.image is not null %}
+            <img
+                    src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url)  }}"
+                    width="100px" height="100px"
+                    alt="{{ device.image.alt }}"
+                    />
+        {% endif %}
+        </td>
         <td>{{ device.libelle }}</td>
         <td>{{ device.marque }}</td>
         <td>{{ device.modele }}</td>
