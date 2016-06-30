@@ -70,6 +70,12 @@ class Device
     private $dateAchat;
 
     /**
+     * @ORM\OneToOne(targetEntity="CE\DeviceBundle\Entity\Image", cascade={"persist"})
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
+     */
+    private $image;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -256,13 +262,6 @@ class Device
     {
         return ucfirst($this->libelle) . " - " . ucfirst($this->marque) . " " . ucfirst($this->modele);
     }
-
-
-    /**
-     * @ORM\OneToOne(targetEntity="CE\DeviceBundle\Entity\Image", cascade={"persist"})
-     */
-    private $image;
-
 
     public function setImage(Image $image = null)
     {

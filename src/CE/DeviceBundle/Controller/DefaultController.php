@@ -30,6 +30,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $device->setDisponible(false);
             $device->setDisponibleLib("Vient d'être créé");
+            $device->getImage()->upload();
             $em->persist($device);
             $em->flush();
 
@@ -45,7 +46,7 @@ class DefaultController extends Controller
         $form = $this->createForm(new DeviceType(), $device);
         $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
         $form->handleRequest($request);
-
+        $deleteForm = $this->createDeleteForm($id);
 
         if ($form->isValid()) {
             $device->getImage()->upload();
@@ -56,14 +57,54 @@ class DefaultController extends Controller
             $devices = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findAll();
             return $this->render('CEDeviceBundle:Default:deviceManagement.html.twig', array('devices' => $devices));
         }
-        return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView(), 'device' =>$device));
+        return $this->render('CEDeviceBundle:Default:edit.html.twig', array('form' => $form->createView(), 'device' =>$device,
+            'delete_form' =>  $deleteForm->createView()));
+    }
+
+    /**
+     * Deletes a User entity.
+     *
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('CEDeviceBundle:Device')->find($id);
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find device entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+        return $this->redirect($this->generateUrl('device'));
+    }
+
+    /**
+     * Creates a form to delete a User entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('device_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array( 'class' => 'btn btn-sm btn-warning')))
+            ->getForm()
+            ;
     }
 
     public function getDevicesAction(){
         $em = $this->getDoctrine()->getManager();
         $devices = $em->getRepository('CEDeviceBundle:Device')->findAll();
         return $this->render('CEDeviceBundle:Default:list.html.twig', array(
-            'devices' => $devices,
+            'devices' => $devices
         ));
     }
 
@@ -79,6 +120,7 @@ class DefaultController extends Controller
             }
             $device = $this->getDoctrine()->getRepository('CEDeviceBundle:Device')->findOneById($id);
             $device->setDisponible(true);
+            $device->setDisponibleLib('');
             $em->flush();
 
             $response = new JsonResponse();

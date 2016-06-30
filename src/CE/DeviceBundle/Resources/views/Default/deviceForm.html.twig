@@ -48,20 +48,28 @@
                     {{ form_widget(form.dateAchat) }}</td>
 
             </tr>
-            {% if device.image is not null %}
+
+
             <tr>
 
                 <th class="col-xs-2 col-md-1">Image</th>
-                <td>{{ form_errors(form.image) }}
-                    {{ form_widget(form.image) }}
-                <img
+                <td>
+
+                {% if device.image is not null %}
+                    <div class="clearfix content-heading">
+                        <img
                         src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url) }}"
                         alt="{{ device.image.alt }}"
+                        class="col-xs-4 col-md-2 img-thumbnail img-responsive clear"
                         />
+                    </div>
+                    Remplacer image :
+                {% endif %}
+                    {{ form_errors(form.image) }}
+                    {{ form_widget(form.image) }}
+
                 </td>
             </tr>
-            {% endif %}
-
             {% if edit %}
             <tr>
                 <th class="col-xs-2 col-md-1">Disponibilité</th>

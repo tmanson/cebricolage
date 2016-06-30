@@ -23,12 +23,13 @@ class DeviceType extends AbstractType
             ->add('modele')
             ->add('commentaire')
             ->add('dateAchat', 'date', array(
-                'widget' => 'single_text',
-                'pattern'=>'d M Y'
+                'widget' => 'choice',
+                'input' => 'datetime',
+                'pattern'=>'dd-MM-yyyy'
             ))
             ->add('disponible', 'hidden')
             ->add('disponibleLib', 'hidden')
-            ->add('image',      new ImageType())
+            ->add('image', new ImageType())
 
         ;
     }
