@@ -33,6 +33,7 @@ Initialisation des réfrentiels
 > php app/console doctrine:migration:migrate
 
 3) Connexion à l'application
+----------------------------------
 Un utilisateur ayant tout les droits dans l'application est créée.
 login : admin
 password : admin
