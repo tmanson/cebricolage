@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/src/CE/DeviceBundle/Controller/DefaultController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/CE/DeviceBundle/Entity/Device.php" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Default/create.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Default/deviceForm.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Default/deviceManagement.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Default/edit.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/CE/DeviceBundle/Resources/views/Marque/marqueForm.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/CE/ReservationBundle/Form/ReservationType.php" charset="UTF-8" />
+  </component>
+</project>

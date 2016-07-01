@@ -58,7 +58,7 @@ class Device
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="string", length=1024)
+     * @ORM\Column(name="commentaire", type="string", nullable=true, length=1024)
      */
     private $commentaire;
 
@@ -68,6 +68,12 @@ class Device
      * @ORM\Column(name="date_achat", type="date")
      */
     private $dateAchat;
+
+    /**
+     * @ORM\OneToOne(targetEntity="CE\DeviceBundle\Entity\Image", cascade={"persist"})
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
+     */
+    private $image;
 
     /**
      * Get id
@@ -256,4 +262,16 @@ class Device
     {
         return ucfirst($this->libelle) . " - " . ucfirst($this->marque) . " " . ucfirst($this->modele);
     }
+
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
 }
