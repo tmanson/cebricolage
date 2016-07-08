@@ -55,7 +55,7 @@
                 <th class="col-xs-2 col-md-1">Image</th>
                 <td>
 
-                {% if device.image is not null %}
+                {% if edit and device.image is not null %}
                     <div class="clearfix content-heading">
                         <img
                         src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url) }}"

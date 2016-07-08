@@ -23,7 +23,7 @@ class DeviceType extends AbstractType
             ->add('modele')
             ->add('commentaire')
             ->add('dateAchat', 'date', array(
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'input' => 'datetime',
                 'pattern'=>'dd-MM-yyyy'
             ))
