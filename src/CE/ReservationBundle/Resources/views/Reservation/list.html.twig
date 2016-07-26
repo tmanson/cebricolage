@@ -25,7 +25,7 @@
                     {%  if is_granted('ROLE_CRUD_RESERVATION') %}
                     <td class="btn-group btn-group-xs" role="group">
                             <a class="btn btn-default" href="{{ path('reservation_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a class="btn btn-danger" data-on-click-href="{{ path('reservation_delete', { 'id': entity.id }) }}" data-on-success-action="{{ jsReloadAction }}" title="Supprimer"><span class="glyphicon glyphicon-remove delete"></span></a>
+                            <a class="btn btn-danger" data-on-click-href="{{ path('reservation_delete', { 'id': entity.id }) }}" onclick="return confirm('Voulez vous vraiment supprimer cette réservation ?');" data-on-success-action="{{ jsReloadAction }}" title="Supprimer"><span class="glyphicon glyphicon-remove delete"></span></a>
                             <a class="btn btn-success" onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#" title="{{ action }}"><span class="glyphicon glyphicon-check"></span></a>
                     </td>
                     {% endif %}
