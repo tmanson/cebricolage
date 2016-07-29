@@ -21,6 +21,14 @@ class Device
      */
     private $id;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=50)
+     */
+    private $reference;
+
     /**
      * @var string
      *
@@ -84,6 +92,32 @@ class Device
     {
         return $this->id;
     }
+
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     * @return Device
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+
 
     /**
      * Set libelle
