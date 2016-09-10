@@ -22,6 +22,7 @@ class DeviceType extends AbstractType
                                                         ->orderBy('c.libelle', 'ASC');
                                                 }))
             ->add('modele')
+            ->add('categories')
             ->add('commentaire')
             ->add('dateAchat', 'date', array(
                 'widget' => 'single_text',

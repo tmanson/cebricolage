@@ -45,6 +45,11 @@
                     {{ form_widget(form.modele) }}</td>
             </tr>
             <tr>
+                <th class="col-xs-2 col-md-1">Catégories</th>
+                <td>{{ form_errors(form.categories) }}
+                    {{ form_widget(form.categories) }}</td>
+            </tr>
+            <tr>
                 <th class="col-xs-2 col-md-1">Commentaire</th>
                 <td>{{ form_errors(form.commentaire) }}
                     {{ form_widget(form.commentaire) }}</td>

@@ -13,6 +13,7 @@
         <td>{{ device.libelle }}</td>
         <td>{{ device.marque }}</td>
         <td>{{ device.modele }}</td>
+        <td>{% for category in device.categories %}{{ category }}{% endfor %}</td>
         <td>{{ device.commentaire }}</td>
         <td>{% if device.disponible %}
                 OK

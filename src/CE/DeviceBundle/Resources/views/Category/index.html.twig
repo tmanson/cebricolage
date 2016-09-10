@@ -1,0 +1,40 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="table-responsive panel panel-default">
+    <div class="panel-heading">Liste des catégories</div>
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th class="col-xs-2 col-md-1">Code</th>
+            <th class="col-xs-2 col-md-1">Nom</th>
+            <th class="col-xs-2 col-md-1">Categorie parente</th>
+            <th class="col-xs-2 col-md-1">
+                {%  if is_granted('ROLE_CRUD_DEVICE') %}
+                    <a class="btn btn-sm btn-success" href="{{ path('category_new') }}">+ Ajouter</a>
+                {% endif %}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for entity in entities %}
+            <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
+                <td>{{ entity.code }}</td>
+                <td>{{ entity.libelle }}</td>
+                <td>{{ entity.parentId }}</td>
+                <td  class="btn-group btn-group-xs" role="group">
+                    {%  if is_granted('ROLE_CRUD_DEVICE') %}
+                        <a href="{{ path('category_edit', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
+                    {% endif %}
+                    <a href="{{ path('category_show', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}
+
+

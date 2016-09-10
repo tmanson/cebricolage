@@ -55,6 +55,13 @@ class Device
      */
     private $disponible;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Category")
+     */
+    private $categories;
+
+
+
 
 
     /**
@@ -274,6 +281,22 @@ class Device
             $this->disponibleLib = null;
         }
         $this->disponible = $disponible;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param mixed $categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
     }
 
     /**
