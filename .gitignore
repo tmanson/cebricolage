@@ -1,1 +1,19 @@
 .idea/
+app/cache/
+app/logs/
+Would skip repository vendor/friendsofsymfony/user-bundle
+vendor/autoload.php
+vendor/composer
+vendor/doctrine
+vendor/incenteev
+vendor/ircmaxell
+vendor/jdorn
+vendor/kriswallsmith
+vendor/monolog
+vendor/paragonie
+vendor/psr
+vendor/sensio
+vendor/sensiolabs
+vendor/swiftmailer
+vendor/symfony
+vendor/twig
