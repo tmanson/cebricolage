@@ -18,3 +18,4 @@ vendor/swiftmailer
 vendor/symfony
 vendor/twig
 vendor/friendsofsymfony
+app/bootstrap.php.cache
