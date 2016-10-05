@@ -17,3 +17,4 @@ vendor/sensiolabs
 vendor/swiftmailer
 vendor/symfony
 vendor/twig
+vendor/friendsofsymfony
