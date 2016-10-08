@@ -45,7 +45,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentId")
      */
     private $subCategories;
 

@@ -17,10 +17,20 @@ class CategoryType extends AbstractType
         $builder
             ->add('code')
             ->add('libelle')
-            ->add('parentId')
-        ;
+            ->add('parentId', 'entity', array(
+                'placeholder' => 'Choissisez une catégorie',
+                'class' => 'CEDeviceBundle:Category',
+                'property' => 'libelle',
+                'multiple' => true,
+                'required' => false,
+                'query_builder' => function ($e) {
+                    return $e->createQueryBuilder('c')
+                        ->orderBy('c.libelle', 'ASC')
+                        ->where('c.parentId IS NULL');
+                }
+            ));
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

@@ -1,36 +1,43 @@
 {% for device in devices %}
     <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
         <td>
-        {% if device.image is not null %}
-            <img
-                    src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url)  }}"
-                    width="100px" height="100px"
-                    alt="{{ device.image.alt }}"
-                    />
-        {% endif %}
+            {% if device.image is not null %}
+                <img
+                        src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url) }}"
+                        width="100px" height="100px"
+                        alt="{{ device.image.alt }}"
+                />
+            {% endif %}
         </td>
         <td>{{ device.reference }}</td>
         <td>{{ device.libelle }}</td>
         <td>{{ device.marque }}</td>
         <td>{{ device.modele }}</td>
-        <td>{% for category in device.categories %}{{ category }}{% endfor %}</td>
+        <td>
+            {% for category in device.categories %}
+                    <kbd>{{ category }}</kbd> {% endfor %}
+        </td>
         <td>{{ device.commentaire }}</td>
         <td>{% if device.disponible %}
                 OK
-            {%  else %}
+            {% else %}
                 {{ device.disponibleLib }}
-            {%  endif %}</td>
-        <td>{{ device.dateAchat | date('d M Y')}}</td>
-        {%  if is_granted('ROLE_CRUD_DEVICE') %}
+            {% endif %}</td>
+        <td>{{ device.dateAchat | date('d M Y') }}</td>
+        {% if is_granted('ROLE_CRUD_DEVICE') %}
             <td class="btn-group btn-group-xs" role="group">
-                <a class="btn btn-xs btn-default" href="{{ path('device_edit', {"id":device.id}) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                <a class="btn btn-xs btn-default" href="{{ path('device_edit', {"id":device.id}) }}"><span
+                            class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 {% if device.disponible %}
-                    <a class="btn btn-xs btn-danger pull-left open-disponibleModal" data-toggle="modal" data-target="#disponibleModal" data-id="{{ device.id }}" data-label="{{ device.libelle }}" data-marque="{{ device.marque }}" data-modele="{{ device.modele }}">
+                    <a class="btn btn-xs btn-danger pull-left open-disponibleModal" data-toggle="modal"
+                       data-target="#disponibleModal" data-id="{{ device.id }}" data-label="{{ device.libelle }}"
+                       data-marque="{{ device.marque }}" data-modele="{{ device.modele }}">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </a>
-                {%  else %}
-                    <a class="btn btn-xs btn-success pull-left" onclick="activate({{ device.id }});"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
-                {%  endif %}
+                {% else %}
+                    <a class="btn btn-xs btn-success pull-left" onclick="activate({{ device.id }});"><span
+                                class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                {% endif %}
             </td>
         {% endif %}
     </tr>
