@@ -1,3 +1,7 @@
+ce_device_category:
+    resource: "@CEDeviceBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
 ce_device_brand:
     resource: "@CEDeviceBundle/Resources/config/routing/marque.yml"
     prefix:   /brand

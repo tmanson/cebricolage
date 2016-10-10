@@ -30,7 +30,10 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $device->setDisponible(false);
             $device->setDisponibleLib("Vient d'être créé");
-            $device->getImage()->upload();
+            $image = $device->getImage();
+            if(isset($image)) {
+                $image->upload();
+            }
             $em->persist($device);
             $em->flush();
 

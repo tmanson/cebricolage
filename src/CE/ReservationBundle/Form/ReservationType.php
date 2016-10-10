@@ -43,7 +43,7 @@ class ReservationType extends AbstractType
             ))
             ->add('user', 'entity',  array(
                 'required' => true,
-                'empty_value' => 'Choisissez un matériel',
+                'empty_value' => 'Choisissez un utilisateur',
                 'empty_data' => null,
                 'class' => 'CEUserBundle:User'))
         ;

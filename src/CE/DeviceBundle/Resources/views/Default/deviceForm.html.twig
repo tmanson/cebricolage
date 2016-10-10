@@ -22,6 +22,13 @@
         <table class="record_properties">
             <tbody>
             <tr>
+                <th class="col-xs-2 col-md-1">Référence</th>
+                <td>{{ form_errors(form.reference) }}
+                    {{ form_widget(form.reference) }}
+                </td>
+            </tr>
+            <tr>
+            <tr>
                 <th class="col-xs-2 col-md-1">Libellé</th>
                 <td>{{ form_errors(form.libelle) }}
                     {{ form_widget(form.libelle) }}
@@ -36,6 +43,12 @@
                 <th class="col-xs-2 col-md-1">Modèle</th>
                 <td>{{ form_errors(form.modele) }}
                     {{ form_widget(form.modele) }}</td>
+            </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Catégories</th>
+                <td>{{ form_errors(form.categories) }}
+                    {{ form_widget(form.categories) }}
+                </td>
             </tr>
             <tr>
                 <th class="col-xs-2 col-md-1">Commentaire</th>
@@ -55,7 +68,7 @@
                 <th class="col-xs-2 col-md-1">Image</th>
                 <td>
 
-                {% if device.image is not null %}
+                {% if edit and device.image is not null %}
                     <div class="clearfix content-heading">
                         <img
                         src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url) }}"

@@ -1,0 +1,8 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+    {{ include('CEDeviceBundle:Category:categoryForm.html.twig',
+    {'titre': 'Créer une catégorie', 'form': form, 'showDeleteButton': false}) }}
+{% endblock %}
+
+
