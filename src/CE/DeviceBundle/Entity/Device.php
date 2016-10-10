@@ -21,6 +21,14 @@ class Device
      */
     private $id;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=50)
+     */
+    private $reference;
+
     /**
      * @var string
      *
@@ -46,6 +54,13 @@ class Device
      * @ORM\Column(name="disponible", type="boolean")
      */
     private $disponible;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Category")
+     */
+    private $categories;
+
+
 
 
 
@@ -84,6 +99,32 @@ class Device
     {
         return $this->id;
     }
+
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     * @return Device
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+
 
     /**
      * Set libelle
@@ -240,6 +281,22 @@ class Device
             $this->disponibleLib = null;
         }
         $this->disponible = $disponible;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param mixed $categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
     }
 
     /**

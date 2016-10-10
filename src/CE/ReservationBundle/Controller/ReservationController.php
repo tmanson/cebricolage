@@ -3,6 +3,7 @@
 namespace CE\ReservationBundle\Controller;
 
 use CE\ReservationBundle\Entity\ReservationList;
+use CE\ReservationBundle\Entity\ReservationRepository;
 use CE\ReservationBundle\Form\ListReservationType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -54,19 +55,36 @@ class ReservationController extends Controller
         $reservations = new ReservationList();
         $form = $this->createCreateForm($reservations);
         $form->handleRequest($request);
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $status = $this->getStatusRepository()->findOneById($statusId);
 
-            foreach ($form->getData()['reservations'] as $reservation){
-                $reservation->setStatus($status);
-                $em->persist($reservation);
+            foreach ($form->getData()['reservations'] as $reservation) {
+
+                $em2 = $this->getDoctrine()->getManager();
+                $reservatsCheck = $em2->getRepository('CEReservationBundle:Reservation')->findByDate($reservation->getStartDate(), $reservation->getEndDate());
+
+                $resa_ok = 'OK';
+                foreach ($reservatsCheck as $resa) {
+                    if (($resa->getDevice()->getId()) == ($reservation->getDevice()->getId())) {
+                        $Mes = "Reservation déja en cours pour le matériel : " . $reservation->getDevice()->getLibelle() . ", entre le " . date('d M Y', $reservation->getStartDate()->getTimestamp()) . " et le " . date('d M Y', $reservation->getEndDate()->getTimestamp());
+                        echo "<script type='text/javascript'>alert('{$Mes}')</script>";
+                        $resa_ok = 'KO';
+                    }
+                }
+                if ($resa_ok == 'OK') {
+                    /*echo '<script type="text/javascript">window.alert("Reservation OK pour le Materiel : ".$reservation->getDevice()->getLibelle());</script>';*/
+                    $reservation->setStatus($status);
+                    $em->persist($reservation);
+                } else {
+                    flush();
+                    sleep(1);
+                }
             }
             $em->flush();
-
             return $this->redirect($this->generateUrl('reservation'));
         }
-
         return $this->render('CEReservationBundle:Reservation:new.html.twig', array(
             'form'   => $form->createView(),
         ));
@@ -215,6 +233,7 @@ class ReservationController extends Controller
         $em->flush();
         return $this->redirect($this->generateUrl('reservation'));
     }
+
 
     /**
      * Creates a form to delete a Reservation entity by id.

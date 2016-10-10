@@ -16,11 +16,13 @@ class ReservationRepository extends EntityRepository
         return $this->createQueryBuilder("r")->where('r.status = :id')->setParameter('id', $id)->getQuery()->getResult();
     }
 
+
+
     public function findByDate($startDate,$endDate) {
 
         $result = $this->createQueryBuilder("r")
             ->where('r.endDate >= :startDate AND r.endDate <= :endDate')
-            ->orWhere('r.startDate => :startDate AND r.endDate <= :endDate')
+            ->orWhere('r.startDate >= :startDate AND r.endDate <= :endDate')
             ->orWhere('r.startDate <= :endDate AND r.startDate >= :startDate')
             ->orWhere('r.startDate <= :startDate AND r.endDate >= :endDate')
             ->setParameter('startDate', $startDate)
