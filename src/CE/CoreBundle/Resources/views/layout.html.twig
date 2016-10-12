@@ -7,6 +7,7 @@
     <link href="{{ asset('css/bootstrap-toggle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" />
     {% block javascripttop %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
@@ -14,6 +15,7 @@
         <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script>
         <script src="{{ asset('js/validator.js') }}"></script>
         <script src="{{ asset('js/delete.js') }}"></script>
+
 
     {% endblock javascripttop %}
 </head>
@@ -34,5 +36,7 @@
     {% endblock body %}
 
 </div>
+{% block javascriptbootom %}
+{% endblock javascriptbootom %}
 </body>
 </html>

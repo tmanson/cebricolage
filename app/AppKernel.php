@@ -21,7 +21,10 @@ class AppKernel extends Kernel
             new CE\UserBundle\CEUserBundle(),
             new CE\DeviceBundle\CEDeviceBundle(),
             new CE\ReservationBundle\CEReservationBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new CE\PermanenceBundle\CEPermanenceBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

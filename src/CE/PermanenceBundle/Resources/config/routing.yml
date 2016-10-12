@@ -1,0 +1,3 @@
+ce_permanence_homepage:
+    path:     /permanence/
+    defaults: { _controller: CEPermanenceBundle:Default:index }

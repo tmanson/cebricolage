@@ -21,7 +21,7 @@ class CategoryType extends AbstractType
                 'placeholder' => 'Choissisez une catégorie',
                 'class' => 'CEDeviceBundle:Category',
                 'property' => 'libelle',
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
                 'query_builder' => function ($e) {
                     return $e->createQueryBuilder('c')

@@ -1,0 +1,17 @@
+
+{% extends "CECoreBundle::layout.html.twig" %}
+
+{% block body %}
+
+<h1>Permanence</h1>
+    {% include 'ADesignsCalendarBundle::calendar.html.twig' %}
+
+{% endblock %}
+{% block javascriptbootom %}
+<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/jquery/jquery-1.8.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/calendar-settings.js') }}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+{% endblock javascriptbootom %}
+
