@@ -1,0 +1,18 @@
+<tr class="banPeriods">
+    <td></td>
+    <td>
+        {{ form_errors(item.startDate) }}
+        {{ form_widget(item.startDate, {'attr': {'class': 'form-control input-sm
+        startDate'}}) }}
+    </td>
+    <td>
+        {{ form_errors(item.endDate) }}
+        {{ form_widget(item.endDate, {'attr': {'class': 'form-control input-sm
+        endDate'}}) }}
+    </td>
+    <td>
+        {{ form_errors(item.commentaire) }}
+        {{ form_widget(item.commentaire, {'attr': {'class': 'form-control input-sm'}})
+        }}
+    </td>
+</tr>

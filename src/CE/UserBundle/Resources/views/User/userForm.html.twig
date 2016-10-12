@@ -1,60 +1,110 @@
-{% if showDeleteButton %}
+{% block javascripttop %}
+        {% javascripts '@CEUserBundle/Resources/public/js/*' %}
+<script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endblock javascripttop%}
+        <!-- TODO voir pourquoi le script n'est pas inclus dans la partie head de la page HTML -->
+
+        {% if showDeleteButton %}
 <div class="hidden">
     {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
 </div>
-{% endif %}
+        {% endif %}
 
-{{ form_start(form)}}
+        {{ form_start(form)}}
 <div class="table-responsive panel panel-default">
 
     <div class="container-fluid panel-heading">
-        <div class="pull-left "><h4>{{ titre }}</h4></div>
+        <div class="pull-left ">
+            <h4>{{ titre }}</h4>
+        </div>
         <div class="btn-group pull-right">
             <a href="{{ path('user') }}" class="btn btn-sm btn-primary">Retour</a>
             {% if showDeleteButton %}
-                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">Supprimer</a>
+            <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">
+                Supprimer
+            </a>
             {% endif %}
             {{ form_widget(form.submit) }}
         </div>
     </div>
     <div>
         {{ form_errors(form) }}
-        <table class="record_properties">
+        <table class="record_properties table-responsive col-md-7">
             <tbody>
-            <tr>
-                <th class="col-xs-2 col-md-1">Identifiant</th>
-                <td>{{ form_errors(form.identifiant) }}
-                    {{ form_widget(form.identifiant) }}
+                <tr>
+                    <th class="col-xs-2 col-md-1">Identifiant</th>
+                    <td>{{ form_errors(form.identifiant) }}
+                        {{ form_widget(form.identifiant, {'attr': {'class': 'form-control input-sm'}}) }}
 
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Nom</th>
-                <td>{{ form_errors(form.username) }}
-                    {{ form_widget(form.username) }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Prénom</th>
-                <td>{{ form_errors(form.firstname) }}
-                    {{ form_widget(form.firstname) }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Email</th>
-                <td>{{ form_errors(form.email) }}
-                    {{ form_widget(form.email) }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Téléphone</th>
-                <td>{{ form_errors(form.phoneNumber) }}
-                    {{ form_widget(form.phoneNumber) }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Groupe</th>
-                <td>{{ form_errors(form.groups) }}
-                    {{ form_widget(form.groups) }}</td>
-            </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-md-1">Nom</th>
+                    <td>{{ form_errors(form.username) }}
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Prénom</th>
+                    <td>{{ form_errors(form.firstname) }}
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Email</th>
+                    <td>{{ form_errors(form.email) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Téléphone</th>
+                    <td>{{ form_errors(form.phoneNumber) }}
+                        {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Groupe</th>
+                    <td>{{ form_errors(form.groups) }}
+                        {{ form_widget(form.groups, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Status</th>
+                    <td>{{ form_errors(form.enabled) }}
+                        {{ form_widget(form.enabled, {'attr': {'class': 'form-control input-sm toogleCheckbox',
+                        'data-on-text': 'Actif',
+                        'data-off-text': 'Inactif'}}) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="record_properties table-responsive col-md-8">
+            <tbody>
+
+                <tr>
+                    <th class="col-md-2">Exclusions</th>
+                    <th class="col-md-2">Date de debut</th>
+                    <th class="col-md-2">Date de fin</th>
+                    <th class="col-md-2">Commentaire</th>
+                    <tr>
+                        <td>
+                            <a id='addBanPeriodLink' href="#" class="add_bannedPeriods_link">Ajouter une periode</a>
+                        </td>
+                    </tr>
+                    <tr id="bannedPeriods" data-prototype="{% filter escape %}{{ include('CEUserBundle:User:bannedPeriodPrototype.html.twig',
+                                                    {'item': form.bannedPeriods.vars.prototype }) }}{% endfilter %}"></tr>
+                {% if entity.bannedPeriods is not empty %}
+                    {% for bannedPeriod in form.bannedPeriods %}
+                    {{ include('CEUserBundle:User:bannedPeriodPrototype.html.twig',
+                    {'item': bannedPeriod}) }}
+                    {% endfor %}
+                {% else %}
+                    <tr id="emptyBanPeriods"><td>Aucune période d'exclusion</td></tr>
+                {% endif %}
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
-{{ form_end(form) }}
+        {{ form_end(form) }}

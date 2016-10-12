@@ -2,6 +2,7 @@
 
 namespace CE\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,9 +50,24 @@ class User extends \FOS\UserBundle\Model\User
     protected $groups;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="BannedPeriod", mappedBy="userId", cascade={"persist","remove"})
+     */
+    private $bannedPeriods;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->bannedPeriods = new ArrayCollection();
+    }
+
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -74,7 +90,7 @@ class User extends \FOS\UserBundle\Model\User
     /**
      * Get identifiant
      *
-     * @return string 
+     * @return string
      */
     public function getIdentifiant()
     {
@@ -97,7 +113,7 @@ class User extends \FOS\UserBundle\Model\User
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -120,7 +136,7 @@ class User extends \FOS\UserBundle\Model\User
     /**
      * Get phoneNumber
      *
-     * @return string 
+     * @return string
      */
     public function getPhoneNumber()
     {
@@ -152,8 +168,7 @@ class User extends \FOS\UserBundle\Model\User
      */
     public function getRoles()
     {
-        if(!is_null($this->groups))
-        {
+        if (!is_null($this->groups)) {
             $roles = $this->groups->getRoles();
         }
 
@@ -163,9 +178,30 @@ class User extends \FOS\UserBundle\Model\User
         return array_unique($roles);
     }
 
+    /**
+     * @return mixed
+     */
+    public function getBannedPeriods()
+    {
+        return $this->bannedPeriods;
+    }
+
+    public function addBannedPeriod(BannedPeriod $bannedPeriods)
+    {
+        $bannedPeriods->setUserId($this);
+        $this->bannedPeriods->add($bannedPeriods);
+    }
+
+    public function removeBannedPeriod(BannedPeriod $bannedPeriods)
+    {
+        $this->bannedPeriods->removeElement($bannedPeriods);
+    }
+
     function __toString()
     {
-        return ucfirst($this->getUsername()) . " " . ucfirst($this->getFirstname()) . " - " . strtoupper($this->getIdentifiant());
+        return ucfirst($this->getUsername()) . " " . ucfirst($this->getFirstname()) . " - " . strtoupper(
+            $this->getIdentifiant()
+        );
     }
 
 

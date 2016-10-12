@@ -18,11 +18,11 @@
             </tr>
             <tr>
                 <th>Date de début</th>
-                <td>{{ entity.startDate|date() }}</td>
+                <td>{{ entity.startDate|date('d/m/Y') }}</td>
             </tr>
             <tr>
                 <th>Date de fib</th>
-                <td>{{ entity.endDate|date() }}</td>
+                <td>{{ entity.endDate|date('d/m/Y') }}</td>
             </tr>
         </tbody>
     </table>

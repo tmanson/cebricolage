@@ -1,19 +1,21 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
-{% block body %}
+        {% block body %}
 
 <div class="hidden">
     {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
 </div>
 <div class="table-responsive panel panel-default">
     <div class="container-fluid panel-heading">
-        <div class="pull-left "><h4>{{ entity.firstname | capitalize }} {{ entity.username | upper}}</h4></div>
+        <div class="pull-left ">
+            <h4>{{ entity.firstname | capitalize }} {{ entity.username | upper}}</h4>
+        </div>
         <div class="btn-group pull-right">
             <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
-        {%  if is_granted('ROLE_CRUD_USER') %}
+            {% if is_granted('ROLE_CRUD_USER') %}
             <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-success">Modifier</a>
             <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
-        {%  endif %}
+            {% endif %}
         </div>
     </div>
     <table class="record_properties">
@@ -38,8 +40,34 @@
                 <th class="col-xs-2 col-md-1">Téléphone</th>
                 <td>{{ entity.phoneNumber }}</td>
             </tr>
+            <tr>
+                <th class="col-xs-2 col-md-1">Status</th>
+                <td>{% if entity.enabled %}
+                    Actif
+                    {%  else %}
+                    Inactif
+                    {%  endif %}</td>
+            </tr>
+            {% if entity.bannedPeriods is not empty %}
+            <tr>
+                <th class="col-xs-2 col-md-1">Exclusions</th>
+                <th class="col-xs-2 col-md-1">Date de debut</th>
+                <th class="col-xs-2 col-md-1">Date de fin</th>
+                <th class="col-xs-2 col-md-1">Commentaire</th>
+            </tr>
+            {% for bannedPeriod in entity.bannedPeriods %}
+            <tr>
+                <td class="col-xs-2 col-md-1"></td>
+                <td class="col-xs-2 col-md-1">{{ bannedPeriod.startDate|date('d/m/Y') }}</td>
+                <td class="col-xs-2 col-md-1">{{ bannedPeriod.endDate|date('d/m/Y') }}</td>
+                {% if bannedPeriod.commentaire %}
+                <td class="col-xs-2 col-md-1">{{ bannedPeriod.commentaire }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 
 </div>
-{% endblock %}
+        {% endblock %}
