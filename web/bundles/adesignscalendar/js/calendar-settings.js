@@ -17,6 +17,18 @@ $(function () {
 
             // for all other views
             '': 'h:mmt'         // 7p
-        }
+        },
+        eventSources: [
+            {
+                url: Routing.generate('fullcalendar_loader'),
+                type: 'POST',
+                // A way to add custom filters to your event listeners
+                data: {
+                },
+                error: function() {
+                   //alert('There was an error while fetching Google Calendar!');
+                }
+            }
+        ]
     });
 });
