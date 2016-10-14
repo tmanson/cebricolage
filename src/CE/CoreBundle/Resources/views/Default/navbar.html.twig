@@ -29,7 +29,13 @@
                     <li class="{% block Groupes %}{% endblock %}"><a href="{{ path('fos_user_group_list') }}">Groupes</a></li>
                 {% endif %}
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li class=""><a href="{{ path('ce_permanence_homepage') }}">Permanence</a></li>
+                    <li class="">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Permanence <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path("ce_permanence_homepage") }}">Calendrier</a></li>
+                            <li><a href="{{ path("permanence_management") }}">Gestion des permanences</a></li>
+                        </ul>
+                    </li>
                 {% endif %}
                 {% endif %}
             </ul>

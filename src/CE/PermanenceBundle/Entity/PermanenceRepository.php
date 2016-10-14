@@ -10,4 +10,12 @@ namespace CE\PermanenceBundle\Entity;
  */
 class PermanenceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllBetween($startDate, $endDate)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.startDate BETWEEN :startDate and :endDate')
+            ->setParameter('startDate', $startDate->format('Y-m-d H:i:s'))
+            ->setParameter('endDate', $endDate->format('Y-m-d H:i:s'))
+            ->getQuery()->getResult();
+    }
 }

@@ -32,54 +32,30 @@ class CalendarEventListener
         $request = $calendarEvent->getRequest();
         $filter = $request->get('filter');
 
+        $permanenceEvents = $this->entityManager->getRepository('CEPermanenceBundle:Permanence')->findAllBetween($startDate, $endDate);
 
-        // load events using your custom logic here,
-        // for instance, retrieving events from a repository
+        foreach($permanenceEvents as $permanenceEvent) {
 
-//IMPORTANT
-//        $companyEvents = $this->entityManager->getRepository('AcmeDemoBundle:MyCompanyEvents')
-//            ->createQueryBuilder('company_events')
-//            ->where('company_events.event_datetime BETWEEN :startDate and :endDate')
-//            ->setParameter('startDate', $startDate->format('Y-m-d H:i:s'))
-//            ->setParameter('endDate', $endDate->format('Y-m-d H:i:s'))
-//            ->getQuery()->getResult();
+            $libelle = $permanenceEvent->getLibelle()." - ".$permanenceEvent->getUser()->getFirstname();
+            // create an event with a start/end time, or an all day event
+            if ($permanenceEvent->getAllDay() === false) {
+                $eventEntity = new EventEntity($libelle, $permanenceEvent->getStartDate(), $permanenceEvent->getEndDate());
+            } else {
+                $eventEntity = new EventEntity($libelle, $permanenceEvent->getStartDate(), null, true);
+            }
 
-        // $companyEvents and $companyEvent in this example
-        // represent entities from your database, NOT instances of EventEntity
-        // within this bundle.
-        //
-        // Create EventEntity instances and populate it's properties with data
-        // from your own entities/database values.
-//IMPORTANT
-//        foreach($companyEvents as $companyEvent) {
-//
-//            // create an event with a start/end time, or an all day event
-//            if ($companyEvent->getAllDayEvent() === false) {
-//                $eventEntity = new EventEntity($companyEvent->getTitle(), $companyEvent->getStartDatetime(), $companyEvent->getEndDatetime());
-//            } else {
-//                $eventEntity = new EventEntity($companyEvent->getTitle(), $companyEvent->getStartDatetime(), null, true);
-//            }
-//
-//            //optional calendar event settings
-//            $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
-//            $eventEntity->setBgColor('#FF0000'); //set the background color of the event's label
-//            $eventEntity->setFgColor('#FFFFFF'); //set the foreground color of the event's label
-//            $eventEntity->setUrl('http://www.google.com'); // url to send user to when event label is clicked
-//            $eventEntity->setCssClass('my-custom-class'); // a custom class you may want to apply to event labels
-//
-//            //finally, add the event to the CalendarEvent for displaying on the calendar
-//            $calendarEvent->addEvent($eventEntity);
-//        }
-        $startDate = new \DateTime('2016-10-30 15:00:00');
-        $eventEntity = new EventEntity('Mon premier evenement', $startDate, null, true);
-        //optional calendar event settings
-        $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
-        $eventEntity->setBgColor('#FF0000'); //set the background color of the event's label
-        $eventEntity->setFgColor('#FFFFFF'); //set the foreground color of the event's label
-        $eventEntity->setUrl('http://www.google.com'); // url to send user to when event label is clicked
-        $eventEntity->setCssClass('my-custom-class'); // a custom class you may want to apply to event labels
+            //optional calendar event settings
+            $eventEntity->setAllDay(true); // default is false, set to true if this is an all day event
+            $eventEntity->setBgColor('#FF0000'); //set the background color of the event's label
+            $eventEntity->setFgColor('#FFFFFF'); //set the foreground color of the event's label
+            //TODO : Faire un vrai lien en créant un service ou en injectant le routeur ou en mettant l'adresse en dur comme un gros porc
+            //$eventEntity->setUrl($this->get('router')->generate('permanence_management_create',array('id' => $permanenceEvent->getId()))); // url to send user to when event label is clicked
+            $eventEntity->setCssClass('my-custom-class'); // a custom class you may want to apply to event labels
+            $eventEntity->setId($permanenceEvent->getId());
 
-        //finally, add the event to the CalendarEvent for displaying on the calendar
-        $calendarEvent->addEvent($eventEntity);
+            //finally, add the event to the CalendarEvent for displaying on the calendar
+            $calendarEvent->addEvent($eventEntity);
+        }
+
     }
 }
