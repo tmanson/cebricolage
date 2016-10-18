@@ -53,6 +53,11 @@ security:
         - { path: ^/get_reservation, roles: ROLE_READ_RESERVATION }
         - { path: ^/device_create, roles: ROLE_CRUD_DEVICE }
         - { path: ^/device_edit/[0-9]+, roles: ROLE_CRUD_DEVICE }
+        - { path: ^/category/$, roles: ROLE_READ_DEVICE }
+        - { path: ^/category/new, roles: ROLE_READ_DEVICE }
+        - { path: ^/category/[0-9]+/show, roles: ROLE_READ_DEVICE }
+        - { path: ^/category/[0-9]+/.+, roles: ROLE_CRUD_DEVICE }
+        - { path: ^/category/.+, roles: ROLE_CRUD_DEVICE }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
