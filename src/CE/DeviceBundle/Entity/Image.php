@@ -94,22 +94,22 @@ class Image
             return;
         }
 
-        // On récupère le nom original du fichier de l'internaute
+        // On rÃ©cupÃ©re le nom original du fichier de l'internaute
         $name = $this->file->getClientOriginalName();
 
-        // On déplace le fichier envoyé dans le répertoire de notre choix
+        // On dÃ©place le fichier envoyÃ© dans le rÃ©pertoire de notre choix
         $this->file->move($this->getUploadRootDir(), $name);
 
         // On sauvegarde le nom de fichier dans notre attribut $url
         $this->url = $name;
 
-        // On crée également le futur attribut alt de notre balise <img>
+        // On crÃ©e Ã©galement le futur attribut alt de notre balise <img>
         $this->alt = $name;
     }
 
     public function getUploadDir()
     {
-        // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
+        // On retourne le chemin relatif vers l'image pour un navigateur (relatif au rÃ©pertoire /web donc)
         return 'uploads/img';
     }
 

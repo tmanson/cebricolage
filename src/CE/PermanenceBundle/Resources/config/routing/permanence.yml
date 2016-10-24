@@ -1,0 +1,30 @@
+permanence_management:
+    path:     /
+    defaults: { _controller: "CEPermanenceBundle:Permanence:index" }
+
+permanence_management_show:
+    path:     /{id}/show
+    defaults: { _controller: "CEPermanenceBundle:Permanence:show" }
+
+permanence_management_new:
+    path:     /new
+    defaults: { _controller: "CEPermanenceBundle:Permanence:new" }
+
+permanence_management_create:
+    path:     /create
+    defaults: { _controller: "CEPermanenceBundle:Permanence:create" }
+    methods:  POST
+
+permanence_management_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CEPermanenceBundle:Permanence:edit" }
+
+permanence_management_update:
+    path:     /{id}/update
+    defaults: { _controller: "CEPermanenceBundle:Permanence:update" }
+    methods:  [POST, PUT]
+
+permanence_management_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CEPermanenceBundle:Permanence:delete" }
+    methods:  [POST, DELETE]

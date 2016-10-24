@@ -1,0 +1,6 @@
+services:
+    ce_permanence.calendar.event.listener:
+        class: CE\PermanenceBundle\EventListener\CalendarEventListener
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_listener, event: calendar.load_events, method: loadEvents}

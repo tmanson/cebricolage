@@ -1,0 +1,7 @@
+ce_permanence_permanence_management:
+    resource: "@CEPermanenceBundle/Resources/config/routing/permanence.yml"
+    prefix:   /permanence_management
+
+ce_permanence_homepage:
+    path:     /permanence/
+    defaults: { _controller: CEPermanenceBundle:Default:index }

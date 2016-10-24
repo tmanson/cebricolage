@@ -50,7 +50,7 @@ class Device
     private $modele;
 
     /**
-     * indique si le matériel est disponible ou non
+     * indique si le matÃ©riel est disponible ou non
      * @ORM\Column(name="disponible", type="boolean")
      */
     private $disponible;
@@ -65,7 +65,7 @@ class Device
 
 
     /**
-     * raison de l'indisponibilité
+     * raison de l'indisponibilitÃ©
      * @ORM\Column(name="disponibleLib", type="string", length=255)
      */
     private $disponibleLib;

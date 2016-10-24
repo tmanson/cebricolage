@@ -8,6 +8,7 @@
         <link href="{{ asset('css/bootstrap-switch.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" />
         {% block javascripttop %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
@@ -20,9 +21,10 @@
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
-        {% endblock javascripttop %}
-    </head>
-    <body>
+
+    {% endblock javascripttop %}
+</head>
+<body>
 
         {% for type, messages in app.session.flashbag.all() %}
         {% for message in messages %}
@@ -38,6 +40,8 @@
             {% block body %}
             {% endblock body %}
 
-        </div>
-    </body>
+</div>
+{% block javascriptbootom %}
+{% endblock javascriptbootom %}
+</body>
 </html>
