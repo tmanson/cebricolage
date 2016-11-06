@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8"/>
+<head>
+    <meta charset="UTF-8"/>
 
-        <link href="{{ asset('css/simplex.bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/bootstrap-toggle.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/bootstrap-switch.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" />
-        {% block javascripttop %}
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap-switch.min.js') }}"></script>
-        <script src="{{ asset('js/validator.js') }}"></script>
-        <script src="{{ asset('js/delete.js') }}"></script>
-        {% javascripts '@CECoreBundle/Resources/public/js/*' %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
-
+    <link href="{{ asset('css/simplex.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-toggle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-switch.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}"/>
+    {% block stylesheets %}
+    {% endblock %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-switch.min.js') }}"></script>
+    <script src="{{ asset('js/validator.js') }}"></script>
+    <script src="{{ asset('js/delete.js') }}"></script>
+    {% javascripts '@CECoreBundle/Resources/public/js/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% block javascripttop %}
     {% endblock javascripttop %}
 </head>
 <body>
 
-        {% for type, messages in app.session.flashbag.all() %}
-        {% for message in messages %}
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
         <div class="flash-{{ type }}">
             {{ message }}
         </div>
-        {% endfor %}
-        {% endfor %}
+    {% endfor %}
+{% endfor %}
 
-        <div class="container">
+<div class="container">
 
-            {% include 'CECoreBundle:Default:navbar.html.twig' %}
-            {% block body %}
-            {% endblock body %}
+    {% include 'CECoreBundle:Default:navbar.html.twig' %}
+    {% block body %}
+    {% endblock body %}
 
 </div>
 {% block javascriptbootom %}
