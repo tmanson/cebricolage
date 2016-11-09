@@ -1,4 +1,5 @@
 .idea/
+ce.iml
 app/cache/
 app/logs/
 Would skip repository vendor/friendsofsymfony/user-bundle

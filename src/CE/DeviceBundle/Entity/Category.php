@@ -37,7 +37,7 @@ class Category
 
     /**
      * @var integer
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="subCategories")
      * @ORM\JoinColumn(name="parentId", referencedColumnName="id", nullable=true)
      */
     private $parentId;
@@ -45,7 +45,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentId")
+     * @ORM\ManyToMany(targetEntity="Category", mappedBy="parentId")
      */
     private $subCategories;
 

@@ -4,6 +4,7 @@ namespace CE\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use CE\UserBundle\Entity\User;
 use CE\UserBundle\Form\UserType;
@@ -194,11 +195,24 @@ class UserController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
+        $originalBannedPeriods = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Tag objects in the database
+        foreach ($entity->getBannedPeriods() as $period) {
+            $originalBannedPeriods->add($period);
+        }
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
+            // On supprime les periodes supprimées
+            foreach ($originalBannedPeriods as $period) {
+                if (false === $entity->getBannedPeriods()->contains($period)) {
+                    $period->setUserId(null);
+                    $em->remove($period);
+                }
+            }
             $em->flush();
             // On met à jour les roles de l'utilisateur connecté
             $loggedInUser = $this->get('security.context')->getToken()->getUser();
@@ -210,7 +224,7 @@ class UserController extends Controller
             );
 
             $this->container->get('security.context')->setToken($token);
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user'));
         }
 
         return $this->render('CEUserBundle:User:edit.html.twig', array(

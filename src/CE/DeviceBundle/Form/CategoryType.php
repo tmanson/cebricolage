@@ -8,6 +8,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CategoryType extends AbstractType
 {
+    private $id;
+
+    public function __construct($id) {
+        $this->id=$id;
+    }
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -21,12 +26,14 @@ class CategoryType extends AbstractType
                 'placeholder' => 'Choissisez une catégorie',
                 'class' => 'CEDeviceBundle:Category',
                 'property' => 'libelle',
-                'multiple' => false,
+                'multiple' => true,
                 'required' => false,
                 'query_builder' => function ($e) {
                     return $e->createQueryBuilder('c')
-                        ->orderBy('c.libelle', 'ASC')
-                        ->where('c.parentId IS NULL');
+                        ->where('c.id <> :current')
+                        ->setParameters(array('current' => $this->id))
+                        ->orderBy('c.libelle', 'ASC');
+                        //->where('c.parentId IS NULL');
                 }
             ));
     }
