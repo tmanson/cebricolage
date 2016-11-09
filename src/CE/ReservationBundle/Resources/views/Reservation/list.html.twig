@@ -32,12 +32,37 @@
                     <td class="btn-group btn-group-xs" role="group">
                             <a class="btn btn-default" href="{{ path('reservation_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
                             <a class="btn btn-danger" data-on-click-href="{{ path('reservation_delete', { 'id': entity.id }) }}" onclick="return confirm('Voulez vous vraiment supprimer cette réservation ?');" data-on-success-action="{{ jsReloadAction }}" title="Supprimer"><span class="glyphicon glyphicon-remove delete"></span></a>
-                            <a class="btn btn-success" onclick="{{ jsActionFunction }}({{ entity.id }});" class="btn btn-warning" href="#" title="{{ action }}"><span class="glyphicon glyphicon-check"></span></a>
+                            <a class="btn btn-success" data-toggle="modal" data-target="#modalRestit"  class="btn btn-warning" href="#" title="{{ action }}"><span class="glyphicon glyphicon-check"></span></a>
                     </td>
                     {% endif %}
                 </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="modalRestit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Ajouter un commentaire de restitution</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" id="commentaire" name="commentaire" maxlength="1024" class="form-control input-sm enableSubmit" value="{{ entity.commentaire }}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                {#<button type="button" onclick="{{ jsActionFunction }}({{ entity.id }},'commetfeiuzhhfdishf');" class="btn btn-primary">Restituer</button>#}
+                                <button type="button" onclick="{{ jsActionFunction }}({{ entity.id }},$('#commentaire').val());" class="btn btn-primary">Restituer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
+
+<!-- Button trigger modal -->
+{#<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">#}
+    {#Launch demo modal 1#}
+{#</button>#}
+

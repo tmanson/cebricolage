@@ -147,7 +147,7 @@ class ReservationController extends Controller
 
         return $this->render('CEReservationBundle:Reservation:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'delete_form' => $deleteForm->createView()
         ));
     }
 
@@ -252,6 +252,22 @@ class ReservationController extends Controller
         ;
     }
 
+//    /**
+//     * Creates a form to delete a Reservation entity by id.
+//     *
+//     * @param mixed $id The entity id
+//     *
+//     * @return \Symfony\Component\Form\Form The form
+//     */
+//    private function createUpdateCommentaireForm($commentaire)
+//    {
+//        return $this->createFormBuilder()
+//            ->setAction($this->generateUrl('reservation_restitue', array('commentaire' => $commentaire)))
+//            ->add('commentaire')
+//            ->getForm()
+//            ;
+//    }
+
     /**
      *
      *
@@ -265,7 +281,7 @@ class ReservationController extends Controller
      *
      *
      */
-    public function restitueAction()
+    public function restitueAction($commentaire)
     {
         return $this->changeReservationStatus(ReservationController::RESTITUE_STATUS);
     }
@@ -276,13 +292,14 @@ class ReservationController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function changeReservationStatus($statusId)
+    private function changeReservationStatus($statusId, $commentaire='')
     {
         $request = $this->container->get('request');
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
 
             $id = $request->get('id');
+            $commentaire = $request->get('commentaire');
             if(!isset($id)) {
                 throw $this->createNotFoundException('Id not given.');
             }
@@ -295,6 +312,7 @@ class ReservationController extends Controller
 
             $status = $em->getRepository('CEReservationBundle:ReservationStatus')->findOneById($statusId);
             $entity->setStatus($status);
+            $entity->setCommentaire($commentaire);
             $em->flush();
 
             $response = new JsonResponse();

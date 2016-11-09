@@ -47,6 +47,29 @@ class Reservation
     private $status;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", nullable=true, length=1024)
+     */
+    private $commentaire;
+
+    /**
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * @param string $commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+    }
+
+    /**
      * Get id
      *
      * @return integer 

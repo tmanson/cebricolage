@@ -46,6 +46,7 @@ class ReservationType extends AbstractType
                 'empty_value' => 'Choisissez un utilisateur',
                 'empty_data' => null,
                 'class' => 'CEUserBundle:User'))
+            ->add('commentaire')
         ;
     }
     

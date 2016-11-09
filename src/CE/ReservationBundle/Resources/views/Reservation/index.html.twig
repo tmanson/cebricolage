@@ -24,13 +24,14 @@
                 }
             });
         }
-        function restitue(id) {
+        function restitue(id, commentaire) {
             $.ajax({
                 type: "POST",
                 url: '{{ path('reservation_restitue')}}',
-                data: {id: id},
+                data: {id: id, commentaire: commentaire},
                 cache: false,
                 success: function (data) {
+                    $('#modalRestit').modal('hide');
                     emprunt_reload();
                 }
             });

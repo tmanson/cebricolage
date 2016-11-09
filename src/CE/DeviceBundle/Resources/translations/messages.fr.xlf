@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="1">
                 <source>Label</source>
-                <target>Désignation</target>
+                <target>DÃ©signation</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>Brand</source>
@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="3">
                 <source>Model</source>
-                <target>Modèle</target>
+                <target>ModÃ¨le</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>Status</source>
