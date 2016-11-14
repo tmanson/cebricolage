@@ -16,7 +16,7 @@ class Version20160428095114 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-
+/*
         // Ajout creation des groupes (admin, Membre de la section bricolage, Salaries)
         $this->addSql('INSERT INTO user_group (id, name, roles)
                         VALUES  (1, \'Administrateurs\', \'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}\'),
@@ -30,7 +30,7 @@ class Version20160428095114 extends AbstractMigration
         $this->addSql("INSERT INTO reservationstatus (id, libelle)
                         VALUES  (1, 'Réservé'),
                                 (2, 'Emprunté'),
-                                (3, 'Restitué');");
+                                (3, 'Restitué');");*/
     }
 
     /**
@@ -39,13 +39,13 @@ class Version20160428095114 extends AbstractMigration
     public function down(Schema $schema)
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-
+/*
         $this->addSql('DELETE FROM user_group WHERE id = 1');
         $this->addSql('DELETE FROM user_group WHERE id = 2');
         $this->addSql('DELETE FROM user_group WHERE id = 3');
         $this->addSql('DELETE FROM user WHERE id = 1');
         $this->addSql('DELETE FROM reservationstatus WHERE id = 1');
         $this->addSql('DELETE FROM reservationstatus WHERE id = 2');
-        $this->addSql('DELETE FROM reservationstatus WHERE id = 3');
+        $this->addSql('DELETE FROM reservationstatus WHERE id = 3');*/
     }
 }
