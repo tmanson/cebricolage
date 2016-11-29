@@ -25,7 +25,7 @@ reservation_update:
     requirements: { _method: post }
 
 reservation_delete:
-    path:     /{id}/delete
+    path:     /delete
     defaults: { _controller: "CEReservationBundle:Reservation:delete" }
     requirements: { _method: post|delete }
 

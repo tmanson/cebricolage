@@ -213,22 +213,24 @@ class ReservationController extends Controller
 
     /**
      * Deletes a Reservation entity.
-     * @param int $id identifiant technique de la reservation
-     * @return redirect to reservation main page
+     * @return JSON contenant l'ID de l'entité supprimé si il y a eu une erreur, null sinon
      *
      */
-    public function deleteAction($id)
+    public function deleteAction()
     {
+        $request = $this->container->get('request');
+        $id = $request->get('id');
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('CEReservationBundle:Reservation')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Reservation entity.');
         }
-
         $em->remove($entity);
         $em->flush();
-        return $this->redirect($this->generateUrl('reservation'));
+        $response = new JsonResponse();
+        $response->setData(array('id' => $entity->getId()));
+        return $response;
     }
 
 
@@ -331,13 +333,14 @@ class ReservationController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $reservations = $em->getRepository('CEReservationBundle:Reservation')->findByReservationStatus($statusId);
-        $reservationsJson = array();
+        $reservationsJson['data'] = array();
         foreach ($reservations as $resa) {
-            $reservationsJson[] = array(
+            $reservationsJson['data'][] = array(
+                'id' => $resa->getId(),
                 'device' => $resa->getDevice()->__toString(),
                 'user' => $resa->getUser()->__toString(),
-                'startDate' => $resa->getStartDate()->format('Y,m,d,H,i,s'),
-                'endDate' => $resa->getEndDate()->format('Y,m,d,H,i,s'),
+                'startDate' => $resa->getStartDate()->format('d/m/Y'),
+                'endDate' => $resa->getEndDate()->format('d/m/Y'),
             );
         }
         return new JsonResponse($reservationsJson);
