@@ -24,7 +24,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface
         $admin->setUsername('admin');
         $admin->setGroups($this->getReference('admin-group'));
         $admin->setIdentifiant('Administrateur');
-        $admin->setLastLogin('2016-04-28 10:38:49');
+        $admin->setLastLogin(new \DateTime('2016-04-28 10:38:49'));
         $admin->setPhoneNumber('0557298014');
         $admin->setEmail('ce.tsv.bricolage@gmail.com');
         $admin->setPlainPassword('admin');
