@@ -30,9 +30,9 @@ class DeviceType extends AbstractType
                 'required' => true,
                 'group_by' => 'parentId',
                 'query_builder' => function(EntityRepository $e) {
-                    return $e->createQueryBuilder('c')
-                        ->orderBy('c.libelle', 'ASC')
-                        ->where('c.parentId IS NOT NULL');
+                    $qb = $e->createQueryBuilder('c');
+                    return $qb
+                        ->orderBy('c.libelle', 'ASC');
                 })
             )
             ->add('commentaire')
