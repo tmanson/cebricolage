@@ -1,69 +1,44 @@
 
+{% block javascripttop %}
+<script type="text/javascript">
+    $(document).ready(function () {
+    initTable(
+    "{{idTable}}",
+    "{{ url }}",
+    "{{ asset('DataTables/french.json') }}",
+    "{{ path('reservation_edit', { 'id': ':ID' }) }}",
+    "{{ path('reservation_delete') }}",
+    "{{ actionUrl }}",
+    "{{ action }}"
+    )
+    });
+</script>
+        {% endblock javascripttop %}
 <div class="col-md-6">
     <div class="table-responsive panel panel-default ">
-        <div class="panel-heading">{{ titre }}</div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th class="col-md-1">Matériel</th>
-                <th class="col-md-2">Utilisateur</th>
-                <th class="col-md-1">Début</th>
-                <th class="col-md-1">Fin</th>
-                {%  if is_granted('ROLE_CRUD_RESERVATION') %}
-                <th class="col-md-1">
-                    <a class="btn btn-sm btn-success" href="{{ path('reservation_new', {'statusCode': statusCode})}}">+ Ajouter</a>
-                </th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody id="list_emprunt">
-            {% for entity in entities %}
-                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''" id="{% if entity.id %}restitue_{{ entity.id }}{% endif %}">
-                    <td>{% if entity.device %}{{ entity.device }}{% endif %}</td>
-                    <td>{% if entity.user %}{{ entity.user }}{% endif %}</td>
-                    <td>{% if entity.startDate %}{{ entity.startDate|date('d/m/Y') }}{% endif %}</td>
-                    {% if entity.endDate %}
-                    <td {% if entity.endDate|date('d/m/Y') <= 'now'|date('d/m/Y') and  entity.status.getId() == 2%}class="danger"{% endif %}>
-                        {{ entity.endDate|date('d/m/Y') }}
-                    </td>
-                    {% else %}
-                    <td></td>
-                    {% endif %}
-                    {%  if is_granted('ROLE_CRUD_RESERVATION') %}
-                    <td class="btn-group btn-group-xs" role="group">
-                            <a class="btn btn-default" href="{{ path('reservation_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a class="btn btn-danger" data-on-click-href="{{ path('reservation_delete', { 'id': entity.id }) }}" onclick="return confirm('Voulez vous vraiment supprimer cette réservation ?');" data-on-success-action="{{ jsReloadAction }}" title="Supprimer"><span class="glyphicon glyphicon-remove delete"></span></a>
-                            <a class="btn btn-success" data-toggle="modal" data-target="#modalRestit"  class="btn btn-warning" href="#" title="{{ action }}"><span class="glyphicon glyphicon-check"></span></a>
-                    </td>
-                    {% endif %}
-                </tr>
-                <!-- Modal -->
-                <div class="modal fade" id="modalRestit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Ajouter un commentaire de restitution</h4>
-                            </div>
-                            <div class="modal-body">
-                                <input type="text" id="commentaire" name="commentaire" maxlength="1024" class="form-control input-sm enableSubmit" value="{{ entity.commentaire }}">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                {#<button type="button" onclick="{{ jsActionFunction }}({{ entity.id }},'commetfeiuzhhfdishf');" class="btn btn-primary">Restituer</button>#}
-                                <button type="button" onclick="{{ jsActionFunction }}({{ entity.id }},$('#commentaire').val());" class="btn btn-primary">Restituer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="panel-heading">{{ titre }}
+            {% if is_granted('ROLE_CRUD_RESERVATION') %}
+            <span class="pull-right">
+                <a class="btn btn-sm btn-success"
+                   href="{{ path('reservation_new', {'statusCode': statusCode})}}">+ Ajouter
+                </a>
+            </span>
+
+            {% endif %}
+        </div>
+        <div class="list">
+            <table class="table" id="{{idTable}}">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">Matériel</th>
+                        <th class="col-md-2">Utilisateur</th>
+                        <th class="col-md-1">Début</th>
+                        <th class="col-md-1">Fin</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
-
-<!-- Button trigger modal -->
-{#<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">#}
-    {#Launch demo modal 1#}
-{#</button>#}
 

@@ -1,142 +1,55 @@
 {% extends "CECoreBundle::layout.html.twig" %}
-{% block javascripttop %}
+        {% block stylesheets %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('DataTables/datatables.css') }}"/>
 
-    <script type="text/ecmascript" src="{{ asset('js/i18n/grid.locale-fr.js') }}"></script>
-    <script type="text/ecmascript" src="{{ asset('js/jquery.jqGrid.min.js') }}"></script>
-    <script>
-        $.jgrid.defaults.width = 600;
-        $.jgrid.defaults.responsive = true;
-        $.jgrid.defaults.styleUI = 'Bootstrap';
-    </script>
-{% endblock javascripttop %}
-{% block stylesheets %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/ui.jqgrid-bootstrap.css') }}">
+        {% stylesheets '@CEReservationBundle/Resources/public/css/*' filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
 {% endblock %}
-{% block body %}
-    <div style="margin-left:20px;">
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
-    </div>
-    <script type="text/javascript">
 
-        $(document).ready(function () {
-            $("#jqGrid").jqGrid({
-                url: '{{ path('reservation_get_reservation') }}',
-                mtype: "GET",
-                datatype: "json",
-                page: 1,
-                colModel: [
-                    {   label : "Matériel",
-                        //sorttype: 'integer',
-                        name: "device",
-                        //key: true,
-                        width: 100
-                    },
-                   {
-                        label: "Utilisateur",
-                        name: 'user',
-                        width: 100,
-                        // stype defines the search type control - in this case HTML select (dropdownlist)
-                        stype: "select",
-                        // searchoptions value - name values pairs for the dropdown - they will appear as options
-                        searchoptions: { value: ":[All];ALFKI:ALFKI;ANATR:ANATR;ANTON:ANTON;AROUT:AROUT;BERGS:BERGS;BLAUS:BLAUS;BLONP:BLONP;BOLID:BOLID;BONAP:BONAP;BOTTM:BOTTM;BSBEV:BSBEV;CACTU:CACTU;CENTC:CENTC;CHOPS:CHOPS;COMMI:COMMI;CONSH:CONSH;DRACD:DRACD;DUMON:DUMON;EASTC:EASTC;ERNSH:ERNSH;FAMIA:FAMIA;FOLIG:FOLIG;FOLKO:FOLKO;FRANK:FRANK;FRANR:FRANR;FRANS:FRANS;FURIB:FURIB;GALED:GALED;GODOS:GODOS;GOURL:GOURL;GREAL:GREAL;GROSR:GROSR;HANAR:HANAR;HILAA:HILAA;HUNGC:HUNGC;HUNGO:HUNGO;ISLAT:ISLAT;KOENE:KOENE;LACOR:LACOR;LAMAI:LAMAI;LAUGB:LAUGB;LAZYK:LAZYK;LEHMS:LEHMS;LETSS:LETSS;LILAS:LILAS;LINOD:LINOD;LONEP:LONEP;MAGAA:MAGAA;MAISD:MAISD;MEREP:MEREP;MORGK:MORGK;NORTS:NORTS;OCEAN:OCEAN;OLDWO:OLDWO;OTTIK:OTTIK;PERIC:PERIC;PICCO:PICCO;PRINI:PRINI;QUEDE:QUEDE;QUEEN:QUEEN;QUICK:QUICK;RANCH:RANCH;RATTC:RATTC;REGGC:REGGC;RICAR:RICAR;RICSU:RICSU;ROMEY:ROMEY;SANTG:SANTG;SAVEA:SAVEA;SEVES:SEVES;SIMOB:SIMOB;SPECD:SPECD;SPLIR:SPLIR;SUPRD:SUPRD;THEBI:THEBI;THECR:THECR;TOMSP:TOMSP;TORTU:TORTU;TRADH:TRADH;TRAIH:TRAIH;VAFFE:VAFFE;VICTE:VICTE;VINET:VINET;WANDK:WANDK;WARTH:WARTH;WELLI:WELLI;WHITC:WHITC;WILMK:WILMK;WOLZA:WOLZA" }
-                    },
-                    {
-                        label: "Début",
-                        name: 'startDate',
-                        width: 40,
-                        sorttype:'date',
-                        formatter: 'date'
-                    },
-                    {
-                        label : "Fin",
-                        name: 'endDate',
-                        width: 40,
-                        sorttype:'date',
-                        formatter: 'date'
-                    },
-                ],
-                loadonce: true,
-                viewrecords: true,
-                width: 600,
-                height: 250,
-                rowNum: 10,
-                pager: "#jqGridPager"
-            });
-            // activate the toolbar searching
-            $('#jqGrid').jqGrid('filterToolbar');
-            $('#jqGrid').jqGrid('navGrid',"#jqGridPager", {
-                search: false, // show search button on the toolbar
-                add: false,
-                edit: false,
-                del: false,
-                refresh: true
-            });
+        {% block javascripttop %}
+<script type="text/javascript" src="{{ asset('DataTables/datatables.js') }}"></script>
+        {% javascripts '@CEReservationBundle/Resources/public/js/*' %}
+<script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endblock javascripttop %}
 
-        });
-
-    </script>
-
-
+        {% block body %}
 
     <div id="reservationList" class="resList">
+    {% set url = path('reservation_get_reservation') %}
+    {% set actionUrl = path('reservation_emprunt') %}
         {{ include('CEReservationBundle:Reservation:list.html.twig',
-        {'titre': 'Liste du matériel réservé','action':'Emprunté','entities':entities, 'jsActionFunction': 'emprunt', 'jsReloadAction': 'restitue_reload', 'statusCode': 'RESERVATION'}) }}
+    {
+    'titre': 'Liste du matériel réservé',
+    'action':'Emprunté',
+    'entities':entities,
+    'jsActionFunction': 'emprunt',
+    'jsReloadAction': 'restitue_reload',
+    'statusCode': 'RESERVATION',
+    'idTable': 'tableReservations',
+    'url': url,
+    'actionUrl': actionUrl
+    }
+    ) }}
     </div>
 
     <div id="empruntList" class="resList">
+    {% set url = path('reservation_get_emprunt') %}
+    {% set actionUrl = path('reservation_restitue') %}
         {{ include('CEReservationBundle:Reservation:list.html.twig',
-        {'titre': 'Liste du matériel emprunté','action':'Restitué','entities':emprunts, 'jsActionFunction': 'restitue', 'jsReloadAction': 'emprunt_reload', 'statusCode': 'EMPRUNT'}) }}
+    {
+    'titre': 'Liste du matériel emprunté',
+    'action':'Restitué',
+    'entities':emprunts,
+    'jsActionFunction': 'restitue',
+    'jsReloadAction': 'emprunt_reload',
+    'statusCode': 'EMPRUNT',
+    'idTable': 'tableEmprunts',
+    'url': url,
+    'actionUrl': actionUrl
+    }
+    ) }}
     </div>
-    <script>
-        function emprunt(id) {
-            $.ajax({
-                type: "POST",
-                url: '{{ path('reservation_emprunt') }}',
-                data: {id: id},
-                cache: false,
-                success: function (data) {
-                    emprunt_reload();
-                    restitue_reload();
-                }
-            });
-        }
-        function restitue(id, commentaire) {
-            $.ajax({
-                type: "POST",
-                url: '{{ path('reservation_restitue')}}',
-                data: {id: id, commentaire: commentaire},
-                cache: false,
-                success: function (data) {
-                    $('#modalRestit').modal('hide');
-                    emprunt_reload();
-                }
-            });
-        }
-        function emprunt_reload() {
-            $.ajax({
-                type: "GET",
-                url: '{{ path('reservation_get_emprunt') }}',
-                cache: false,
-                success: function (data) {
-                    $('#empruntList').html(data);
-                }
-            });
-        }
-        function restitue_reload() {
-            $.ajax({
-                type: "GET",
-                url: '{{ path('reservation_get_reservation') }}',
-                cache: false,
-                success: function (data) {
-                    $('#reservationList').html(data);
-                }
-            });
-        }
-        // Fonction apelée après la suppression d'un element
-        function delete_callback() {
-            emprunt_reload();
-            restitue_reload();
-        }
     </script>
 {% endblock %}
