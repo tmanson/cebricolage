@@ -10,4 +10,11 @@ namespace CE\DeviceBundle\Entity;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllSortByLibelle()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.libelle', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

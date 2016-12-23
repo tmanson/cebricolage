@@ -60,13 +60,9 @@ class Device
      */
     private $categories;
 
-
-
-
-
     /**
      * raison de l'indisponibilité
-     * @ORM\Column(name="disponibleLib", type="string", length=255)
+     * @ORM\Column(name="disponibleLib", type="string", nullable=true, length=255)
      */
     private $disponibleLib;
 

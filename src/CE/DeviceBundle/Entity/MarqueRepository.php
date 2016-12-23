@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class MarqueRepository extends EntityRepository
 {
+    public function findAllSortByLibelle()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.libelle', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    
 }

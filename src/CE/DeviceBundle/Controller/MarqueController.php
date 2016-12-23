@@ -23,7 +23,7 @@ class MarqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CEDeviceBundle:Marque')->findAll();
+        $entities = $em->getRepository('CEDeviceBundle:Marque')->findAllSortByLibelle();
 
         return $this->render('CEDeviceBundle:Marque:index.html.twig', array(
             'entities' => $entities,

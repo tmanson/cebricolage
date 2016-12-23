@@ -5,7 +5,7 @@
         {% stylesheets '@CEReservationBundle/Resources/public/css/*' filter='cssrewrite' %}
 <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
-{% endblock %}
+        {% endblock %}
 
         {% block javascripttop %}
 <script type="text/javascript" src="{{ asset('DataTables/datatables.js') }}"></script>
@@ -16,10 +16,10 @@
 
         {% block body %}
 
-    <div id="reservationList" class="resList">
+<div id="reservationList" class="resList">
     {% set url = path('reservation_get_reservation') %}
     {% set actionUrl = path('reservation_emprunt') %}
-        {{ include('CEReservationBundle:Reservation:list.html.twig',
+    {{ include('CEReservationBundle:Reservation:list.html.twig',
     {
     'titre': 'Liste du matériel réservé',
     'action':'Emprunté',
@@ -32,12 +32,12 @@
     'actionUrl': actionUrl
     }
     ) }}
-    </div>
+</div>
 
-    <div id="empruntList" class="resList">
+<div id="empruntList" class="resList">
     {% set url = path('reservation_get_emprunt') %}
     {% set actionUrl = path('reservation_restitue') %}
-        {{ include('CEReservationBundle:Reservation:list.html.twig',
+    {{ include('CEReservationBundle:Reservation:list.html.twig',
     {
     'titre': 'Liste du matériel emprunté',
     'action':'Restitué',
@@ -50,6 +50,6 @@
     'actionUrl': actionUrl
     }
     ) }}
-    </div>
-    </script>
-{% endblock %}
+</div>
+        </script>
+        {% endblock %}

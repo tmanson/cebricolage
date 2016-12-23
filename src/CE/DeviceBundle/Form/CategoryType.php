@@ -22,18 +22,18 @@ class CategoryType extends AbstractType
         $builder
             ->add('code')
             ->add('libelle')
-            ->add('parentId', 'entity', array(
+            ->add('parent', 'entity', array(
                 'placeholder' => 'Choissisez une catégorie',
                 'class' => 'CEDeviceBundle:Category',
                 'property' => 'libelle',
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
+                'group_by' => 'parent',
                 'query_builder' => function ($e) {
                     return $e->createQueryBuilder('c')
                         ->where('c.id <> :current')
                         ->setParameters(array('current' => $this->id))
                         ->orderBy('c.libelle', 'ASC');
-                        //->where('c.parentId IS NULL');
                 }
             ));
     }

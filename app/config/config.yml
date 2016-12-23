@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: "%kernel.debug%"
-    bundles:        [ CECoreBundle, CEUserBundle, CEReservationBundle ]
+    bundles:        [ CECoreBundle, CEDeviceBundle, CEUserBundle, CEReservationBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

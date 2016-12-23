@@ -14,11 +14,9 @@ device_create:
 device_edit:
     path:     /device_edit/{id}
     defaults: { _controller: CEDeviceBundle:Default:edit }
-    requirements:
-        id: \d+
 device_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "CEDeviceBundle:User:delete" }
+    path:     /delete
+    defaults: { _controller: CEDeviceBundle:Default:delete }
     requirements: { _method: post|delete }
 device_get_devices:
     path:     /device_get_devices

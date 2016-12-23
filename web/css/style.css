@@ -48,7 +48,7 @@
 .table>thead>tr>td,
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
-    padding: 5px;
+    padding: 1px;
 }
 /* enable absolute positioning */
 .inner-addon {

@@ -1,18 +1,22 @@
 {% if edit %}
-    <div class="hidden">
-        {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
-    </div>
-{% endif %}
+<div class="hidden">
+    {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
+</div>
+        {% endif %}
 
-{{ form_start(form)}}
+        {{ form_start(form)}}
 <div class="table-responsive panel panel-default">
 
     <div class="container-fluid panel-heading">
-        <div class="pull-left "><h4>{{ titre }}</h4></div>
+        <div class="pull-left ">
+            <h4>{{ titre }}</h4>
+        </div>
         <div class="btn-group pull-right">
             <a href="{{ path('device_management') }}" class="btn btn-sm btn-primary">Retour</a>
             {% if edit %}
-                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">Supprimer</a>
+            <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">
+                Supprimer
+            </a>
             {% endif %}
             {{ form_widget(form.submit) }}
         </div>
@@ -21,81 +25,96 @@
         {{ form_errors(form) }}
         <table class="record_properties">
             <tbody>
-            <tr>
-                <th class="col-xs-2 col-md-1">Référence</th>
-                <td>{{ form_errors(form.reference) }}
-                    {{ form_widget(form.reference) }}
-                </td>
-            </tr>
-            <tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Libellé</th>
-                <td>{{ form_errors(form.libelle) }}
-                    {{ form_widget(form.libelle) }}
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Marque</th>
-                <td>{{ form_errors(form.marque) }}
-                    {{ form_widget(form.marque) }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Modèle</th>
-                <td>{{ form_errors(form.modele) }}
-                    {{ form_widget(form.modele) }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Catégories</th>
-                <td>{{ form_errors(form.categories) }}
-                    {{ form_widget(form.categories) }}
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Commentaire</th>
-                <td>{{ form_errors(form.commentaire) }}
-                    {{ form_widget(form.commentaire) }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Date d'achat</th>
-                <td>{{ form_errors(form.dateAchat) }}
-                    {{ form_widget(form.dateAchat) }}</td>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Référence</th>
+                    <td>{{ form_errors(form.reference) }}
+                        {{ form_widget(form.reference) }}
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Libellé</th>
+                    <td>{{ form_errors(form.libelle) }}
+                        {{ form_widget(form.libelle) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Marque</th>
+                    <td>{{ form_errors(form.marque) }}
+                        {{ form_widget(form.marque) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Modèle</th>
+                    <td>{{ form_errors(form.modele) }}
+                        {{ form_widget(form.modele) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Catégories</th>
+                    <td>{{ form_errors(form.categories) }}
+                        {{ form_widget(form.categories) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Commentaire</th>
+                    <td>{{ form_errors(form.commentaire) }}
+                        {{ form_widget(form.commentaire) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Date d'achat</th>
+                    <td>{{ form_errors(form.dateAchat) }}
+                        {{ form_widget(form.dateAchat) }}
+                    </td>
 
-            </tr>
+                </tr>
 
 
-            <tr>
+                <tr>
 
-                <th class="col-xs-2 col-md-1">Image</th>
-                <td>
+                    <th class="col-xs-2 col-md-1">Image</th>
+                    <td>
 
-                {% if edit and device.image is not null %}
-                    <div class="clearfix content-heading">
-                        <img
-                        src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url) }}"
-                        alt="{{ device.image.alt }}"
-                        class="col-xs-4 col-md-2 img-thumbnail img-responsive clear"
-                        />
-                    </div>
-                    Remplacer image :
-                {% endif %}
-                    {{ form_errors(form.image) }}
-                    {{ form_widget(form.image) }}
+                        {% if edit and device.image is not null %}
+                        <div class="clearfix content-heading">
+                            <img
+                                    src="{{ asset(device.image.uploadDir ~ '/' ~ device.image.url) }}"
+                                    alt="{{ device.image.alt }}"
+                                    class="col-xs-4 col-md-2 img-thumbnail img-responsive clear"
+                            />
+                        </div>
+                        Remplacer image :
+                        {% endif %}
+                        {{ form_errors(form.image) }}
+                        {{ form_widget(form.image) }}
 
-                </td>
-            </tr>
-            {% if edit %}
-            <tr>
-                <th class="col-xs-2 col-md-1">Disponibilité</th>
-                <td>{% if not device.disponible %}
+                    </td>
+                </tr>
+                {% if edit %}
+                <tr>
+                    <th class="col-xs-2 col-md-1">Disponibilité</th>
+                    <td>{% if not device.disponible %}
                         {{ device.disponibleLib }}
-                    {%  else %}
+                        {% else %}
                         Le matériel est disponible.
-                    {%  endif %}</td>
-            </tr>
-            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
 
             </tbody>
         </table>
     </div>
 </div>
-{{ form_end(form) }}
+        {{ form_end(form) }}
+<script>
+    $(document).ready(function() {
+    $('.achatDate').datepicker({
+    dateFormat: "dd-mm-yy",
+    firstDay: 1,
+    maxDate: new Date,
+    minDate: new Date(0)
+    });
+    });
+</script>

@@ -10,10 +10,11 @@
             <a href="{{ path('category') }}" class="btn btn-primary">Retour</a>
             {% if is_granted('ROLE_CRUD_GROUP') %}
             <a href="{{ path('category_edit', { 'id': entity.id }) }}" class="btn btn-success">Modifier</a>
-            <a href='{{ path('category_delete', { 'id': entity.id }) }}' class="btn btn-warning">Supprimer</a>
-            {% endif %}
-        </div>
+            <a href='{{ path('category_delete', { 'id': entity.id }) }}' class="btn btn-warning">Supprimer
+        </a>
+        {% endif %}
     </div>
+</div>
 <table class="record_properties">
     <tbody>
         <tr>
@@ -25,15 +26,13 @@
             <td>{{ entity.libelle }}</td>
         </tr>
         <tr>
-            <th class="col-xs-2 col-md-1">Catégories parentes</th>
-        {% if entity.parentId is not empty %}
+            <th class="col-xs-2 col-md-1">Catégorie parente</th>
             <td>
-            {% for parent in entity.parentId %}
-                <kbd>{{ parent.libelle }}</kbd>
-            {% endfor %}
-        </td>
+                {% if entity.parent is not empty %}
+                <kbd>{{ entity.parent }}</kbd>
+                {% endif %}
+            </td>
         </tr>
-        {% endif %}
     </tbody>
 </table>
 

@@ -37,15 +37,15 @@ class Category
 
     /**
      * @var integer
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="subCategories")
-     * @ORM\JoinColumn(name="parentId", referencedColumnName="id", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
-    private $parentId;
+    private $parent;
 
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="Category", mappedBy="parentId")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      */
     private $subCategories;
 
@@ -111,17 +111,17 @@ class Category
     /**
      * @return mixed
      */
-    public function getParentId()
+    public function getParent()
     {
-        return $this->parentId;
+        return $this->parent;
     }
 
     /**
-     * @param mixed $parentId
+     * @param mixed $parent
      */
-    public function setParentId($parentId)
+    public function setParent($parent)
     {
-        $this->parentId = $parentId;
+        $this->parent = $parent;
     }
 
     /**

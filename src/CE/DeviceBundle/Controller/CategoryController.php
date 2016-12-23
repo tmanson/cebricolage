@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CEDeviceBundle:Category')->findAll();
+        $entities = $em->getRepository('CEDeviceBundle:Category')->findAllSortByLibelle();
 
         return $this->render('CEDeviceBundle:Category:index.html.twig', array(
             'entities' => $entities,

@@ -107,16 +107,16 @@ class Image
         $this->alt = $name;
     }
 
-    public function getUploadDir()
+    public static function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
         return 'uploads/img';
     }
 
-    protected function getUploadRootDir()
+    public static function getUploadRootDir()
     {
         // On retourne le chemin relatif vers l'image pour notre code PHP
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__ . '/../../../../web/' . self::getUploadDir();
     }
 
 

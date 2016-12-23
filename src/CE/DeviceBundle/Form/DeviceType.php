@@ -15,47 +15,67 @@ class DeviceType extends AbstractType
         $builder
             ->add('reference')
             ->add('libelle')
-                ->add('marque', 'entity', array(
-                                            'required' => true,
-                                            'class' => 'CEDeviceBundle:Marque',
-                                            'query_builder' => function(EntityRepository $e) {
-                                                    return $e->createQueryBuilder('c')
-                                                        ->orderBy('c.libelle', 'ASC');
-                                                }))
+            ->add(
+                'marque',
+                'entity',
+                array(
+                    'required' => true,
+                    'class' => 'CEDeviceBundle:Marque',
+                    'query_builder' => function (EntityRepository $e) {
+                        return $e->createQueryBuilder('c')
+                            ->orderBy('c.libelle', 'ASC');
+                    }
+                )
+            )
             ->add('modele')
-            ->add('categories','entity', array(
-                'class' => 'CEDeviceBundle:Category',
-                'property' => 'libelle',
-                'multiple' => true,
-                'required' => true,
-                'group_by' => 'parentId',
-                'query_builder' => function(EntityRepository $e) {
-                    $qb = $e->createQueryBuilder('c');
-                    return $qb
-                        ->orderBy('c.libelle', 'ASC');
-                })
+            ->add(
+                'categories',
+                'entity',
+                array(
+                    'class' => 'CEDeviceBundle:Category',
+                    'property' => 'libelle',
+                    'multiple' => true,
+                    'required' => true,
+                    'group_by' => 'parent.libelle',
+                    'query_builder' => function (EntityRepository $e) {
+                        return $e->createQueryBuilder('c')
+                            ->orderBy('c.libelle', 'ASC')
+                            ->where('c.parent IS NOT NULL');
+                    }
+                )
             )
             ->add('commentaire')
-            ->add('dateAchat', 'date', array(
-                'widget' => 'single_text',
-                'input' => 'datetime',
-                'pattern'=>'dd-MM-yyyy'
-            ))
+            ->add(
+                'dateAchat',
+                'datetime',
+                array(
+                    'required' => true,
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
+                    'attr' => array(
+                        'class' => 'datepicker achatDate'
+                    )
+                )
+            )
             ->add('disponible', 'hidden')
             ->add('disponibleLib', 'hidden')
-            ->add('image', new ImageType(), array(
-                'required' => false
-            ))
-
-        ;
+            ->add(
+                'image',
+                new ImageType(),
+                array(
+                    'required' => false
+                )
+            );
     }
 
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'CE\DeviceBundle\Entity\Device'
-        ));
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'CE\DeviceBundle\Entity\Device'
+            )
+        );
     }
 
 
