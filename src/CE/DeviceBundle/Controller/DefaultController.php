@@ -42,6 +42,7 @@ class DefaultController extends Controller
                 'modele' => $device->getModele(),
                 'categories' => $retCategories,
                 'commentaire' => $device->getCommentaire(),
+                'disponible' => $device->getDisponible(),
                 'disponibilite' => $device->getDisponibleLib(),
                 'dateAchat' => $device->getDateAchat()->format('d/m/Y'),
             );
@@ -117,18 +118,19 @@ class DefaultController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CEDeviceBundle:Device')->find($id);
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find device entity.');
-            }
-            $em->remove($entity);
-            $em->flush();
+        $request = $this->container->get('request');
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CEDeviceBundle:Device')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Device entity.');
         }
-        return $this->redirect($this->generateUrl('device_management'));
+        $em->remove($entity);
+        $em->flush();
+        $response = new JsonResponse();
+        $response->setData(array('id' => $entity->getId()));
+        return $response;
     }
 
     /**

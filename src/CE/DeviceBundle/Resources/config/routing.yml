@@ -31,3 +31,8 @@ device_deactivate:
     defaults: { _controller: CEDeviceBundle:Default:deactivate }
     requirements:
         _method: POST
+device_toggle_state:
+    path:     /device_toggle_state
+    defaults: { _controller: CEDeviceBundle:Default:toggleState }
+    requirements:
+        _method: POST

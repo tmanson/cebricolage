@@ -5,9 +5,9 @@
  * @param langFilePath le chemin vers le fichier lang
  * @param editUrl L'URL pour l'édition d'un matériel
  * @param deleteUrl L'URL pour la suppression d'un matériel
- * @param activationUrl L'URL pour activer/désactiver un matériel
+ * @param changeStateUrl L'URL pour activer/désactiver un matériel
  */
-function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activationUrl, actionTitle, imageDir) {
+function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, deactivateUrl) {
     // TODO MAJ boutons
     // TODO refacto : code dupliqué avec reseration/public/js/tableau.js
 
@@ -24,10 +24,16 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activationUrl
             title="Supprimer">\
             <span class="glyphicon glyphicon-remove delete deleteBtn"></span>\
         </a>\
-        <a class="btn btn-success actionbtn" \
-            data-href="' + activationUrl + '"\
-            title="' + actionTitle + '">\
-            <span class="glyphicon glyphicon-check actionBtn"></span>\
+        <a class="btn btn-success activateButton" \
+            data-href="' + activateUrl + '"\
+            title="Activer">\
+            <span class="glyphicon glyphicon-eye-open actionBtn"></span>\
+        </a>\
+        <a class="btn btn-xs btn-info pull-left open-disponibleModal deactivateButton" \
+            data-toggle="modal" data-href="' + deactivateUrl + '"\
+            data-target="#disponibleModal" data-id="{{ device.id }}" data-label="{{ device.libelle }}"\
+            data-marque="{{ device.marque }}" data-modele="{{ device.modele }}">\
+        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>\
         </a>\
         </span>';
 
@@ -55,9 +61,7 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activationUrl
                 {
                     "data": "categories",
                     'render': function (data, type, row, meta) {
-                        return data.reduce(function (ret, cat) {
-                            return ret + "<kbd>" + cat + "</kbd>";
-                        }, "");
+                        return renderCategories(data);
                     }
                 },
                 {"data": "commentaire"},
@@ -80,9 +84,20 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activationUrl
                     "defaultContent": buttons
                 }
             ],
-            "autoWidth": false
-        })
-        ;
+            "autoWidth": false,
+            "rowCallback": function (row, data, index) {
+                var dispo = data.disponible;
+                if (dispo) {
+                    // Affiche bouton desativation
+                    $(row).find('.deactivateButton').show();
+                    $(row).find('.activateButton').hide();
+                } else {
+                    // Affiche bouton activation
+                    $(row).find('.deactivateButton').hide();
+                    $(row).find('.activateButton').show();
+                }
+            }
+        });
 
     // Edition de l'entité
     $('#' + idTable).on('click', 'a.editbtn', function (event) {
@@ -123,8 +138,8 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activationUrl
             )
         })
     });
-    // Activation/désactivation de l'entité
-    $('#' + idTable).on('click', 'a.actionbtn', function (event) {
+    // Activation de l'entité
+    $('#' + idTable).on('click', 'a.activateButton', function (event) {
         var button = $(event.currentTarget);
         var tr = $(this).closest('tr');
         var row = table.row(tr);
@@ -141,11 +156,61 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activationUrl
                     if (status != 'success') {
                         alert('L\'action a échouée !')
                     } else {
-                        // reload les deux tables
-                        $.fn.dataTable.tables({visible: true, api: true}).ajax.reload();
+                        table.ajax.reload();
                     }
                 }
             });
     });
+    // Désactivation de l'entité
+    $('#disponibleModal').on('click', 'button.submitDeactivateBtn', function (event) {
+        var deviceID = $(".modal-body #deviceId").val();
+        var comment = $(".modal-body #inactivationComment").val();
+        $.ajax(
+            {
+                url: deactivateUrl,
+                type: 'POST',
+                async: false,
+                data: {id: deviceID, commentaire: comment},
+                cache: false,
+                complete: function (response, status) {
+                    if (status != 'success') {
+                        alert('L\'action a échouée !')
+                    } else {
+                        table.ajax.reload();
+                    }
+                }
+            });
+    });
+    // triggered when modal is about to be shown
+    $('#disponibleModal').on('shown.bs.modal', function (e) {
+        //get data-id attribute of the clicked element
+        var tr = e.relatedTarget.closest('tr');
+        var row = table.row(tr);
+        var deviceId = row.id();
+        var deviceRef = row.data().reference;
+        var deviceLabel = row.data().designation;
+        var deviceMarque = row.data().marque;
+        var deviceModele = row.data().modele;
+        var deviceCat = row.data().categories;
+        //populate the textbox
+        $(".modal-body #deviceId").val(deviceId);
+        $(".modal-body #deviceReference").val(deviceRef);
+        $(".modal-body #deviceLabel").val(deviceLabel);
+        $(".modal-body #deviceMarque").val(deviceMarque);
+        $(".modal-body #deviceModele").val(deviceModele);
+        $(".modal-body #deviceCategories").html(renderCategories(deviceCat));
+        $(".modal-body #inactivationComment").focusout();
+        $(".modal-body #inactivationComment").focus();
+
+    });
+    function renderCategories(data) {
+        return data.reduce(function (ret, cat) {
+            return ret + "<kbd>" + cat + "</kbd>";
+        }, "");
+    }
 }
+
+
+
+
 
