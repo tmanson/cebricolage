@@ -51,6 +51,7 @@ security:
         - { path: ^/reservation/.+, roles: ROLE_CRUD_RESERVATION }
         - { path: ^/get_emprunt, roles: ROLE_READ_RESERVATION }
         - { path: ^/get_reservation, roles: ROLE_READ_RESERVATION }
+        - { path: ^/device_management, roles: ROLE_READ_DEVICE }
         - { path: ^/device_create, roles: ROLE_CRUD_DEVICE }
         - { path: ^/device_edit/[0-9]+, roles: ROLE_CRUD_DEVICE }
         - { path: ^/category/$, roles: ROLE_READ_DEVICE }
