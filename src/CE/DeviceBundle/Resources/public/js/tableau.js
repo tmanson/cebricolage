@@ -30,6 +30,7 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
             <span class="glyphicon glyphicon-eye-open actionBtn"></span>\
         </a>\
         <a class="btn btn-xs btn-info pull-left open-disponibleModal deactivateButton" \
+            title="Désactiver"\
             data-toggle="modal" data-href="' + deactivateUrl + '"\
             data-target="#disponibleModal" data-id="{{ device.id }}" data-label="{{ device.libelle }}"\
             data-marque="{{ device.marque }}" data-modele="{{ device.modele }}">\

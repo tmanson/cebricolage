@@ -63,13 +63,13 @@ class ReservationController extends Controller
                 $resa_ok = 'OK';
                 foreach ($reservatsCheck as $resa) {
                     if (($resa->getDevice()->getId()) == ($reservation->getDevice()->getId())) {
+                        // FIXME Je ne sais pas qui a osé faire un truc dégueulasse comme ça !
                         $Mes = "Reservation déja en cours pour le matériel : " . $reservation->getDevice()->getLibelle() . ", entre le " . date('d M Y', $reservation->getStartDate()->getTimestamp()) . " et le " . date('d M Y', $reservation->getEndDate()->getTimestamp());
                         echo "<script type='text/javascript'>alert('{$Mes}')</script>";
                         $resa_ok = 'KO';
                     }
                 }
                 if ($resa_ok == 'OK') {
-                    /*echo '<script type="text/javascript">window.alert("Reservation OK pour le Materiel : ".$reservation->getDevice()->getLibelle());</script>';*/
                     $reservation->setStatus($status);
                     $em->persist($reservation);
                 } else {
