@@ -4,7 +4,7 @@
     </div>
 {% endif %}
 {{ form_start(form)}}
-<div class="table-responsive panel panel-default" class="form-group form-group-sm">
+<div class="table-responsive panel panel-default form-group form-group-sm">
 
     <div class="container-fluid panel-heading">
         <div class="pull-left "><h4>{{ titre }}</h4></div>
@@ -71,10 +71,13 @@
             $(endId).datepicker(endDateParams);
             $(endId).removeAttr('disabled');
             $(endId).attr('readonly','true');
+            // On supprime la date de fin déjà selectionnée
+            $.datepicker._clearDate($(endId));
             enableSubmitBtn();
         },
         beforeShowDay: function (date) {
             var endId = '#' + this.id.replace(/startDate/g, 'endDate');
+            var rowId = this.id.split('_')[5];
             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
             var enable = true;
             var endDateVal=$(endId).value;
@@ -89,9 +92,9 @@
                 return [false];
             }
             {% endif %}
-            for (var period in periodArray) {
-                var d1 = new Date(periodArray[period][0] * 1000);
-                var d2 = new Date(periodArray[period][1] * 1000);
+            for (var period in periodArray[rowId]) {
+                var d1 = new Date(periodArray[rowId][period][0] * 1000);
+                var d2 = new Date(periodArray[rowId][period][1] * 1000);
 
                 if (d1 <= date && date <= d2) // Pas de date de début dans une période réservée
                 {
@@ -109,6 +112,8 @@
         beforeShowDay: function (date) {
             var enable = true;
             var startId = '#' + this.id.replace(/endDate/g, 'startDate');
+
+            var rowId = this.id.split('_')[5];
             var startDateVal=$(startId).value;
             if(startDateVal === undefined) {
                 startDateVal=$(startId)[0].value;
@@ -119,9 +124,9 @@
             {
                 return [false];
             }
-            for (var period in periodArray) {
-                var d1 = new Date(periodArray[period][0] * 1000);
-                var d2 = new Date(periodArray[period][1] * 1000);
+            for (var period in periodArray[rowId]) {
+                var d1 = new Date(periodArray[rowId][period][0] * 1000);
+                var d2 = new Date(periodArray[rowId][period][1] * 1000);
                 if ((d1 <= date && date <= d2) // Pas de date de fin dans une période réservée
                         || (startDate <= d1 && d2 <= date)
                 ) {
@@ -218,6 +223,7 @@
         var startId = '#' + inst.id.replace(/device/g, 'startDate');
         var endId = '#' + inst.id.replace(/device/g, 'endDate');
         var loadId = '.' + inst.id.replace(/device/g, 'loading');
+        var rowId = inst.id.split('_')[5];
         $(startId).datepicker('disable');
         $(startId).attr('disabled','');
         $(startId).removeAttr('readonly');
@@ -239,7 +245,7 @@
             type: 'GET',
             url: route,
             success: function (json) {
-                var periodArray = json;
+                periodArray[rowId] = json;
                 $(loadId).hide();
                 $(startId).datepicker(startDateParams);
                 $(startId).removeAttr('disabled');
@@ -258,11 +264,11 @@
                 }
                 startDateVal=startDateVal.split("-");
                 var startDate = new Date(startDateVal[0]+"/"+startDateVal[1]+"/"+startDateVal[2]).getTime();
-                for (var period in periodArray) {
-                    var d1 = periodArray[period][0] * 1000;
-                    var d2 = periodArray[period][1] * 1000;
+                for (var period in periodArray[rowId]) {
+                    var d1 = periodArray[rowId][period][0] * 1000;
+                    var d2 = periodArray[rowId][period][1] * 1000;
                     if ((d1 == startDate && d2 == endDate)) {
-                        periodArray.splice(period, 1)
+                        periodArray[rowId].splice(period, 1)
                         break;
                     }
                 }
@@ -282,7 +288,8 @@
         inputs = $('form[name="ce_reservationbundle_list_reservation"] :input');
         for (index = 0; index < inputs.length; ++index) {
             // deal with inputs[index] element.
-            if(inputs[index].value==null || inputs[index].value==''){
+            if(inputs[index].value==null || inputs[index].value==''
+                && !inputs[index].name.includes('commentaire')){
                 enableSubmit = false;
             }
         }

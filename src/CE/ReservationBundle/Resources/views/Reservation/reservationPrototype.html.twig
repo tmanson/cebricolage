@@ -6,14 +6,14 @@
     <div class="inner-addon left-addon">
     <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate loading {{ item.vars.id }}_loading" ></i>
     {{ form_errors(item.startDate) }}
-    {{ form_widget(item.startDate, {'attr': {'class': 'form-control input-sm enableSubmit', 'disabled': 'disabled'}}) }}
+    {{ form_widget(item.startDate, {'attr': {'class': 'form-control input-sm enableSubmit startDate', 'disabled': 'disabled'}}) }}
     </div>
 </td>
 <td class='col-md-1'>
     <div class="inner-addon left-addon">
     <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate loading {{ item.vars.id }}_loading" ></i>
     {{ form_errors(item.endDate) }}
-    {{ form_widget(item.endDate, {'attr': {'class': 'form-control input-sm enableSubmit', 'disabled': 'disabled'}}) }}
+    {{ form_widget(item.endDate, {'attr': {'class': 'form-control input-sm enableSubmit endDate', 'disabled': 'disabled'}}) }}
     </div>
 </td>
 <td class='col-md-4'>{{ form_errors(item.user) }}
