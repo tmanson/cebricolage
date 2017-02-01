@@ -87,9 +87,17 @@ class Device
     private $image;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="emplacement", type="string", nullable=true, length=32)
+     */
+    private $emplacement;
+
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -121,7 +129,6 @@ class Device
     }
 
 
-
     /**
      * Set libelle
      *
@@ -138,7 +145,7 @@ class Device
     /**
      * Get libelle
      *
-     * @return string 
+     * @return string
      */
     public function getLibelle()
     {
@@ -161,7 +168,7 @@ class Device
     /**
      * Get marque
      *
-     * @return string 
+     * @return string
      */
     public function getMarque()
     {
@@ -184,7 +191,7 @@ class Device
     /**
      * Get modele
      *
-     * @return string 
+     * @return string
      */
     public function getModele()
     {
@@ -207,7 +214,7 @@ class Device
     /**
      * Get etat
      *
-     * @return integer 
+     * @return integer
      */
     public function getEtat()
     {
@@ -230,7 +237,7 @@ class Device
     /**
      * Get commentaire
      *
-     * @return string 
+     * @return string
      */
     public function getCommentaire()
     {
@@ -253,7 +260,7 @@ class Device
     /**
      * Get dateAchat
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateAchat()
     {
@@ -273,7 +280,7 @@ class Device
      */
     public function setDisponible($disponible)
     {
-        if($disponible){
+        if ($disponible) {
             $this->disponibleLib = null;
         }
         $this->disponible = $disponible;
@@ -313,7 +320,9 @@ class Device
 
     public function __toString()
     {
-        return ucfirst($this->libelle) . " - " . ucfirst($this->marque) . " " . ucfirst($this->modele);
+        return ucfirst($this->libelle) . " - " . ucfirst($this->marque) . " " . ucfirst(
+                $this->modele
+            ) . " - " . $this->emplacement;
     }
 
     public function setImage(Image $image = null)
@@ -326,5 +335,19 @@ class Device
         return $this->image;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEmplacement()
+    {
+        return $this->emplacement;
+    }
 
+    /**
+     * @param mixed $emplacement
+     */
+    public function setEmplacement($emplacement)
+    {
+        $this->emplacement = $emplacement;
+    }
 }

@@ -41,6 +41,7 @@ class DefaultController extends Controller
                 'marque' => $device->getMarque()->__toString(),
                 'modele' => $device->getModele(),
                 'categories' => $retCategories,
+                'emplacement' => $device->getEmplacement(),
                 'commentaire' => $device->getCommentaire(),
                 'disponible' => $device->getDisponible(),
                 'disponibilite' => $device->getDisponibleLib(),

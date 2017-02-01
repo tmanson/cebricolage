@@ -65,7 +65,8 @@ class DeviceType extends AbstractType
                 array(
                     'required' => false
                 )
-            );
+            )
+            ->add('emplacement');
     }
 
 
