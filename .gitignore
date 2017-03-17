@@ -20,3 +20,10 @@ vendor/symfony
 vendor/twig
 vendor/friendsofsymfony
 app/bootstrap.php.cache
+web/bundles/cecore/
+web/bundles/cereservation/
+web/bundles/ceuser/
+web/css/42ae233.css
+web/js/5d2d267.js
+web/js/9fd9289.js
+web/js/fb60e99.js
