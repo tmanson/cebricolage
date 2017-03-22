@@ -7,36 +7,36 @@
  * @param deleteUrl L'URL pour la suppression d'un matériel
  * @param changeStateUrl L'URL pour activer/désactiver un matériel
  */
-function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, deactivateUrl) {
+function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, deactivateUrl, editRights) {
     // TODO MAJ boutons
     // TODO refacto : code dupliqué avec reseration/public/js/tableau.js
 
     var buttons = '\
-    <span class="btn-group btn-group-xs" role="group">\
-        <a class="btn btn-default editbtn"\
-            title="Editer"\
-            data-href="' + editUrl + '">\
-            <span class="glyphicon glyphicon-edit"></span>\
-        </a>\
-        <a class="btn btn-danger deletebtn"\
-            data-confirm="Etes-vous certain de vouloir supprimer ?"\
-            data-href="' + deleteUrl + '"\
-            title="Supprimer">\
-            <span class="glyphicon glyphicon-remove delete deleteBtn"></span>\
-        </a>\
-        <a class="btn btn-success activateButton" \
-            data-href="' + activateUrl + '"\
-            title="Activer">\
-            <span class="glyphicon glyphicon-eye-open actionBtn"></span>\
-        </a>\
-        <a class="btn btn-xs btn-info pull-left open-disponibleModal deactivateButton" \
-            title="Désactiver"\
-            data-toggle="modal" data-href="' + deactivateUrl + '"\
-            data-target="#disponibleModal" data-id="{{ device.id }}" data-label="{{ device.libelle }}"\
-            data-marque="{{ device.marque }}" data-modele="{{ device.modele }}">\
-        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>\
-        </a>\
-        </span>';
+        <span class="btn-group btn-group-xs" role="group">\
+            <a class="btn btn-default editbtn"\
+                title="Editer"\
+                data-href="' + editUrl + '">\
+                <span class="glyphicon glyphicon-edit"></span>\
+            </a>\
+            <a class="btn btn-danger deletebtn"\
+                data-confirm="Etes-vous certain de vouloir supprimer ?"\
+                data-href="' + deleteUrl + '"\
+                title="Supprimer">\
+                <span class="glyphicon glyphicon-remove delete deleteBtn"></span>\
+            </a>\
+            <a class="btn btn-success activateButton" \
+                data-href="' + activateUrl + '"\
+                title="Activer">\
+                <span class="glyphicon glyphicon-eye-open actionBtn"></span>\
+            </a>\
+            <a class="btn btn-xs btn-info pull-left open-disponibleModal deactivateButton" \
+                title="Désactiver"\
+                data-toggle="modal" data-href="' + deactivateUrl + '"\
+                data-target="#disponibleModal" data-id="{{ device.id }}" data-label="{{ device.libelle }}"\
+                data-marque="{{ device.marque }}" data-modele="{{ device.modele }}">\
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>\
+            </a>\
+            </span>';
 
     var table = $('#' + idTable).DataTable(
         {
@@ -65,7 +65,10 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
                         return renderCategories(data);
                     }
                 },
-                {"data": "commentaire"},
+                {
+                    "data": "commentaire",
+                    "visible": editRights
+                },
                 {
                     "data": "disponibilite",
                     "defaultContent": "OK",
@@ -76,11 +79,11 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
                         return 'OK';
                     }
                 },
-                {"data": "dateAchat"},
                 {
                     "className": 'actions',
                     "orderable": false,
                     "searchable": false,
+                    "visible": editRights,
                     "data": null,
                     "defaultContent": buttons
                 }
@@ -100,7 +103,7 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
             }
         });
 
-    // Edition de l'entité
+// Edition de l'entité
     $('#' + idTable).on('click', 'a.editbtn', function (event) {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
@@ -109,7 +112,7 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
         var editUrl = button.data('href').replace(':ID', entityId);
         $(location).attr("href", editUrl);
     });
-    // Suppression de l'entité
+// Suppression de l'entité
     $('#' + idTable).on('click', 'a.deletebtn', function (event) {
         var button = $(event.currentTarget);
         var recipient = button.data('confirm');
@@ -139,7 +142,7 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
             )
         })
     });
-    // Activation de l'entité
+// Activation de l'entité
     $('#' + idTable).on('click', 'a.activateButton', function (event) {
         var button = $(event.currentTarget);
         var tr = $(this).closest('tr');
@@ -162,7 +165,7 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
                 }
             });
     });
-    // Désactivation de l'entité
+// Désactivation de l'entité
     $('#disponibleModal').on('click', 'button.submitDeactivateBtn', function (event) {
         var deviceID = $(".modal-body #deviceId").val();
         var comment = $(".modal-body #inactivationComment").val();
@@ -182,7 +185,7 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
                 }
             });
     });
-    // triggered when modal is about to be shown
+// triggered when modal is about to be shown
     $('#disponibleModal').on('shown.bs.modal', function (e) {
         //get data-id attribute of the clicked element
         var tr = e.relatedTarget.closest('tr');

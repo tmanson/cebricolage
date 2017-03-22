@@ -15,7 +15,9 @@ security:
         ROLE_CRUD_RESERVATION:   [ROLE_READ_RESERVATION]
         ROLE_READ_DEVICE:   [ROLE_USER, IS_AUTHENTICATED_REMEMBERED]
         ROLE_CRUD_DEVICE:   [ROLE_READ_DEVICE]
-        ROLE_ADMIN:       [ROLE_CRUD_USER, ROLE_CRUD_RESERVATION, ROLE_CRUD_GROUP, ROLE_CRUD_DEVICE]
+        ROLE_READ_PERMANENCE:   [ROLE_USER, IS_AUTHENTICATED_REMEMBERED]
+        ROLE_CRUD_PERMANENCE:   [ROLE_READ_PERMANENCE]
+        ROLE_ADMIN:       [ROLE_CRUD_USER, ROLE_CRUD_RESERVATION, ROLE_CRUD_GROUP, ROLE_CRUD_DEVICE, ROLE_CRUD_PERMANENCE]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
@@ -59,6 +61,8 @@ security:
         - { path: ^/category/[0-9]+/show, roles: ROLE_READ_DEVICE }
         - { path: ^/category/[0-9]+/.+, roles: ROLE_CRUD_DEVICE }
         - { path: ^/category/.+, roles: ROLE_CRUD_DEVICE }
+        - { path: ^/permanence/$, roles: ROLE_READ_PERMANENCE }
+        - { path: ^/permanence_management/.+, roles: ROLE_CRUD_PERMANENCE }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
