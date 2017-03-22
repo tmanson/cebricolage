@@ -47,7 +47,7 @@
             <ul class="nav navbar-nav navbar-right btn-group btn-group-xs">
                 <li class="dropdown">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.firstname | capitalize }} {{ app.user.username | upper}} <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.firstname | capitalize }} {{ app.user.name | upper}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="divider"></li>
                         <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>

@@ -39,6 +39,13 @@ class User extends \FOS\UserBundle\Model\User
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="phoneNumber", type="string", length=255)
      */
     private $phoneNumber;
@@ -119,6 +126,22 @@ class User extends \FOS\UserBundle\Model\User
     public function getFirstname()
     {
         return $this->firstname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**

@@ -8,7 +8,7 @@
         <!-- On ouvre la popup -->
         <script language="JavaScript">$(".dropdown").addClass('open');</script>
     {% endif %}
-    <form action="{{ path("fos_user_security_check") }}" method="post" id="login_form">
+    <form action="{{ path('fos_user_security_check') }}" method="post" id="login_form">
 
         <label for="username">Identifiant</label>
         <input type="text" id="username" name="_username" required="required" size="100" />
@@ -22,6 +22,6 @@
         </span>
 
         <input type="submit" id="_submit" name="_submit" class="btn btn-xs btn-info" value="Se connecter" />
-        <a href={{ path("fos_user_registration_register") }}> S'enregistrer </a>
+        <a href="{{ path('fos_user_registration_register') }}"> S'enregistrer </a>
     </form>
 {% endblock fos_user_content %}
