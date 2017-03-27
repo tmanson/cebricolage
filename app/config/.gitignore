@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+*
+!/.gitignore
+!parameters.yml
+!parameters.yml.dist
+!config.yml
+!config_dev.yml
+!config_prod.yml
+!config_test.yml
+!routing.yml
+!routing_dev.yml
+!security.yml

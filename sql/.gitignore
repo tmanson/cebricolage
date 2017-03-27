@@ -1,0 +1,4 @@
+# Created by .ignore support plugin (hsz.mobi)
+*
+!/.gitignore
+!init_db_1.0.sql
