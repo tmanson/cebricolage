@@ -7,6 +7,7 @@ parameters:
     database_user: root
     database_password: null
     mailer_transport: smtp
+    mailer_auth_mode: login
     mailer_host: 127.0.0.1
     mailer_port: 25
     mailer_user: null
