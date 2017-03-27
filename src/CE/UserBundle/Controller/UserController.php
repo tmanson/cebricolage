@@ -2,6 +2,7 @@
 
 namespace CE\UserBundle\Controller;
 
+use CE\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -46,6 +47,8 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $username = $user->getFirstname() . '.' . $user->getName();
+            $user->setUsername($username);
             // Génération d'un mot de passe
             $password = UserController::generatePassword();
             $user->setPlainPassword($password);
