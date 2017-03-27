@@ -2,10 +2,8 @@
 
 namespace CE\UserBundle\Form;
 
-use CE\UserBundle\Entity\BannedPeriod;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -19,13 +17,14 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
+            ->add('username', 'Symfony\Component\Form\Extension\Core\Type\TextType', array('disabled' => true))
             ->add('identifiant')
+            ->add('name')
             ->add('firstname')
             ->add('email')
             ->add('phoneNumber')
             ->add(
-                'groups', 'entity', array(
+                'groups', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
                     'required' => true,
                     'class' => 'CEUserBundle:Group',
                     'query_builder' => function (EntityRepository $e) {
@@ -35,7 +34,7 @@ class UserType extends AbstractType
                 )
             )
             ->add('enabled')
-            ->add('bannedPeriods', 'collection', array(
+            ->add('bannedPeriods', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', array(
                 'required' => false,
                 'type' => new BannedPeriodType(),
                 'allow_add' => true,

@@ -28,49 +28,56 @@
             {{ form_widget(form.submit) }}
         </div>
     </div>
-    <div>
+    <div class="panel-body">
         {{ form_errors(form) }}
         <table class="record_properties table-responsive col-md-7">
             <tbody>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Nom d'utilisateur</th>
+                    <td>{{ form_errors(form.username) }}
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control input-sm'}}) }}
+
+                    </td>
+                </tr>
             <tr>
-                <th class="col-xs-2 col-md-1">Identifiant</th>
+                <th class="col-xs-6 col-md-3">Identifiant</th>
                 <td>{{ form_errors(form.identifiant) }}
                     {{ form_widget(form.identifiant, {'attr': {'class': 'form-control input-sm'}}) }}
 
                 </td>
             </tr>
             <tr>
-                <th class="col-md-1">Nom</th>
-                <td>{{ form_errors(form.username) }}
-                    {{ form_widget(form.username, {'attr': {'class': 'form-control input-sm'}}) }}
+                <th class="col-xs-6 col-md-3">Nom</th>
+                <td>{{ form_errors(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control input-sm'}}) }}
                 </td>
             </tr>
             <tr>
-                <th class="col-xs-2 col-md-1">Prénom</th>
+                <th class="col-xs-6 col-md-3">Prénom</th>
                 <td>{{ form_errors(form.firstname) }}
                     {{ form_widget(form.firstname, {'attr': {'class': 'form-control input-sm'}}) }}
                 </td>
             </tr>
             <tr>
-                <th class="col-xs-2 col-md-1">Email</th>
+                <th class="col-xs-6 col-md-3">Email</th>
                 <td>{{ form_errors(form.email) }}
                     {{ form_widget(form.email, {'attr': {'class': 'form-control input-sm'}}) }}
                 </td>
             </tr>
             <tr>
-                <th class="col-xs-2 col-md-1">Téléphone</th>
+                <th class="col-xs-6 col-md-3">Téléphone</th>
                 <td>{{ form_errors(form.phoneNumber) }}
                     {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control input-sm'}}) }}
                 </td>
             </tr>
             <tr>
-                <th class="col-xs-2 col-md-1">Groupe</th>
+                <th class="col-xs-6 col-md-3">Groupe</th>
                 <td>{{ form_errors(form.groups) }}
                     {{ form_widget(form.groups, {'attr': {'class': 'form-control input-sm'}}) }}
                 </td>
             </tr>
             <tr>
-                <th class="col-xs-2 col-md-1">Status</th>
+                <th class="col-xs-6 col-md-3">Status</th>
                 <td>{{ form_errors(form.enabled) }}
                     {{ form_widget(form.enabled, {'attr': {'class': 'form-control input-sm toogleCheckbox',
                         'data-on-text': 'Actif',

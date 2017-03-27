@@ -8,8 +8,11 @@ parameters:
     database_password: null
     mailer_transport: smtp
     mailer_host: 127.0.0.1
+    mailer_port: 25
     mailer_user: null
     mailer_password: null
+    from_email.address: test@test.fr
+    from_email.sender_name: Sender Name
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
     debug_toolbar: true

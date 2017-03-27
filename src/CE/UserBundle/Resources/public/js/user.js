@@ -10,10 +10,10 @@ jQuery(document).ready(function () {
 
     $(".banPeriods").find('.startDate').datepicker();
     $(".banPeriods").find('.endDate').datepicker();
-    $(".banPeriods").each(function(key, value) {
+    $(".banPeriods").each(function (key, value) {
         addResaFormDeleteLink($(value));
     });
-    $(".startDate").on('change', function(){
+    $(".startDate").on('change', function () {
         $(".endDate")[0].value = null;
     });
     $addTagLink = $('#addBanPeriodLink');
@@ -34,7 +34,6 @@ jQuery(document).ready(function () {
         addBanPeriodForm($collectionHolder);
     });
 });
-
 
 
 function addBanPeriodForm($collectionHolder) {
@@ -73,8 +72,19 @@ function addResaFormDeleteLink($formLi) {
         var index = $collectionHolder.data('index');
         $collectionHolder.data('index', index - 1);
         $addTagLink.show();
-        if(index==1) {
+        if (index == 1) {
             $("#emptyBanPeriods").show();
         }
     });
+}
+
+function sendResetMail($url, $username) {
+    $.post($url, {'username': $username})
+        .done(function (data) {
+            alert('Email sent');
+        })
+        .fail(function (data) {
+            alert('Email not sent');
+        })
+    ;
 }

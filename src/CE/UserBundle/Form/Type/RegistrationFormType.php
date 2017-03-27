@@ -16,16 +16,18 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('identifiant')
             ->add('firstname')
+            ->add('name')
             ->add('phoneNumber')
-            ->add('groups', 'entity', array(
-                'required' => true,
-                'class' => 'CEUserBundle:Group',
-                'query_builder' => function(EntityRepository $e) {
-                    return $e->createQueryBuilder('c')
-                        ->orderBy('c.name', 'ASC');
-                }))
+            ->remove('username')
+            ->add('email', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType', array(
+                'type' => 'Symfony\Component\Form\Extension\Core\Type\EmailType',
+                'options' => array('translation_domain' => 'FOSUserBundle'),
+                'first_options' => array('label' => 'form.email'),
+                'second_options' => array('label' => 'form.email_confirmation'),
+                'invalid_message' => 'fos_user.email.mismatch',
+            ))
+
         ;
     }
     

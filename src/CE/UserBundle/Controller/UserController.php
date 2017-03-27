@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use CE\UserBundle\Entity\User;
 use CE\UserBundle\Form\UserType;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -27,10 +26,14 @@ class UserController extends Controller
 
         $entities = $em->getRepository('CEUserBundle:User')->findAll();
 
-        return $this->render('CEUserBundle:User:index.html.twig', array(
-            'entities' => $entities,
-        ));
+        return $this->render(
+            'CEUserBundle:User:index.html.twig',
+            array(
+                'entities' => $entities,
+            )
+        );
     }
+
     /**
      * Creates a new User entity.
      *
@@ -59,10 +62,13 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('user_show', array('id' => $user->getId())));
         }
 
-        return $this->render('CEUserBundle:User:new.html.twig', array(
-            'entity' => $user,
-            'form'   => $form->createView(),
-        ));
+        return $this->render(
+            'CEUserBundle:User:new.html.twig',
+            array(
+                'entity' => $user,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
@@ -75,8 +81,7 @@ class UserController extends Controller
     {
         $nb_lettres = strlen($chaine) - 1;
         $generation = '';
-        for($i=0; $i < $nb_car; $i++)
-        {
+        for ($i = 0; $i < $nb_car; $i++) {
             $pos = mt_rand(0, $nb_lettres);
             $car = $chaine[$pos];
             $generation .= $car;
@@ -93,12 +98,16 @@ class UserController extends Controller
      */
     private function createCreateForm(User $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
-            'action' => $this->generateUrl('user_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            new UserType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('user_create'),
+                'method' => 'POST',
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr' => array('class' => 'btn btn-sm btn-success')));
         return $form;
     }
 
@@ -109,12 +118,15 @@ class UserController extends Controller
     public function newAction()
     {
         $entity = new User();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
-        return $this->render('CEUserBundle:User:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->render(
+            'CEUserBundle:User:new.html.twig',
+            array(
+                'entity' => $entity,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
@@ -131,13 +143,15 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CEUserBundle:User:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'CEUserBundle:User:show.html.twig',
+            array(
+                'entity' => $entity,
+                'delete_form' => $deleteForm->createView()
+            )
+        );
     }
 
     /**
@@ -157,31 +171,43 @@ class UserController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CEUserBundle:User:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'CEUserBundle:User:edit.html.twig',
+            array(
+                'entity' => $entity,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView()
+            )
+        );
     }
 
     /**
-    * Creates a form to edit a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a User entity.
+     *
+     * @param User $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(User $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
-            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            new UserType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
+                'method' => 'PUT',
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Modifier', 'attr' => array( 'class' => 'btn btn-sm btn-success')));
+        $form->add(
+            'submit',
+            'submit',
+            array('label' => 'Modifier', 'attr' => array('class' => 'btn btn-sm btn-success'))
+        );
 
         return $form;
     }
+
     /**
      * Edits an existing User entity.
      *
@@ -227,12 +253,16 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('user'));
         }
 
-        return $this->render('CEUserBundle:User:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'CEUserBundle:User:edit.html.twig',
+            array(
+                'entity' => $entity,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
+
     /**
      * Deletes a User entity.
      *
@@ -267,9 +297,12 @@ class UserController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('user_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array( 'class' => 'btn btn-sm btn-warning')))
-            ->getForm()
-        ;
+            ->add(
+                'submit',
+                'submit',
+                array('label' => 'Supprimer', 'attr' => array('class' => 'btn btn-sm btn-warning'))
+            )
+            ->getForm();
     }
 
 

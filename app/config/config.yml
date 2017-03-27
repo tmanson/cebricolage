@@ -67,14 +67,21 @@ doctrine:
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
+    #auth_mode: "%mailer_auth_mode%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+    port:      "%mailer_port%"
     spool:     { type: memory }
 
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: CE\UserBundle\Entity\User
+    service:
+            mailer: fos_user.mailer.twig_swift
+    from_email:
+            address: '%from_email.address%'
+            sender_name: '%from_email.sender_name%'
     registration:
         form:
             type: ce_user_registration
@@ -82,12 +89,22 @@ fos_user:
         group_class: CE\UserBundle\Entity\Group
         form:
             type: ce_user_group
+    resetting:
+        token_ttl: 86400
+        email:
+            template:   FOSUserBundle:Resetting:email.txt.twig
+        form:
+            type:               fos_user_resetting
+            name:               fos_user_resetting_form
+            validation_groups:  [ResetPassword, Default]
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
+
 services:
     fos_user.doctrine_registry:
         alias: doctrine
+

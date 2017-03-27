@@ -1,3 +1,8 @@
+{% block javascripttop %}
+        {% javascripts '@CEUserBundle/Resources/public/js/*' %}
+<script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endblock javascripttop %}
 {% extends "CECoreBundle::layout.html.twig" %}
 
         {% block body %}
@@ -18,56 +23,70 @@
             {% endif %}
         </div>
     </div>
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th class="col-xs-2 col-md-1">Identifiant</th>
-                <td>{{ entity.identifiant }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Nom</th>
-                <td>{{ entity.username }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Prénom</th>
-                <td>{{ entity.firstname }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Téléphone</th>
-                <td>{{ entity.phoneNumber }}</td>
-            </tr>
-            <tr>
-                <th class="col-xs-2 col-md-1">Status</th>
-                <td>{% if entity.enabled %}
-                    Actif
-                    {%  else %}
-                    Inactif
-                    {%  endif %}</td>
-            </tr>
-            {% if entity.bannedPeriods is not empty %}
-            <tr>
-                <th class="col-xs-2 col-md-1">Exclusions</th>
-                <th class="col-xs-2 col-md-1">Date de debut</th>
-                <th class="col-xs-2 col-md-1">Date de fin</th>
-                <th class="col-xs-2 col-md-1">Commentaire</th>
-            </tr>
-            {% for bannedPeriod in entity.bannedPeriods %}
-            <tr>
-                <td class="col-xs-2 col-md-1"></td>
-                <td class="col-xs-2 col-md-1">{{ bannedPeriod.startDate|date('d/m/Y') }}</td>
-                <td class="col-xs-2 col-md-1">{{ bannedPeriod.endDate|date('d/m/Y') }}</td>
-                {% if bannedPeriod.commentaire %}
-                <td class="col-xs-2 col-md-1">{{ bannedPeriod.commentaire }}</td>
+    <div class="panel-body">
+        <table class="record_properties table-responsive col-md-7">
+            <tbody>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Nom d'utilisateur</th>
+                    <td>{{ entity.username }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Identifiant</th>
+                    <td>{{ entity.identifiant }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Nom</th>
+                    <td>{{ entity.name }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Prénom</th>
+                    <td>{{ entity.firstname }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Email</th>
+                    <td>{{ entity.email }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Téléphone</th>
+                    <td>{{ entity.phoneNumber }}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Status</th>
+                    <td>{% if entity.enabled %}
+                        Actif
+                        {% else %}
+                        Inactif
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if entity.bannedPeriods is not empty %}
+                <tr>
+                    <th class="col-xs-2 col-md-1">Exclusions</th>
+                    <th class="col-xs-2 col-md-1">Date de debut</th>
+                    <th class="col-xs-2 col-md-1">Date de fin</th>
+                    <th class="col-xs-2 col-md-1">Commentaire</th>
+                </tr>
+                {% for bannedPeriod in entity.bannedPeriods %}
+                <tr>
+                    <td class="col-xs-2 col-md-1"></td>
+                    <td class="col-xs-2 col-md-1">{{ bannedPeriod.startDate|date('d/m/Y') }}</td>
+                    <td class="col-xs-2 col-md-1">{{ bannedPeriod.endDate|date('d/m/Y') }}</td>
+                    {% if bannedPeriod.commentaire %}
+                    <td class="col-xs-2 col-md-1">{{ bannedPeriod.commentaire }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
                 {% endif %}
-            </tr>
-            {% endfor %}
-            {% endif %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
+        <div class="col-xs-5 col-md-5">
+            <a onclick="sendResetMail('{{ path('fos_user_resetting_send_email') }}','{{ entity.username }}')" href='#' class="btn btn-sm btn-default">
+                Envoyer un lien de réinitialisation de mot de passe
+            </a>
+        </div>
+    </div>
+
 
 </div>
         {% endblock %}
