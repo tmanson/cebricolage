@@ -13,7 +13,7 @@
 <div class="table-responsive panel panel-default">
     <div class="container-fluid panel-heading">
         <div class="pull-left ">
-            <h4>{{ entity.firstname | capitalize }} {{ entity.username | upper}}</h4>
+            <h4>{{ entity.firstname | capitalize }} {{ entity.name | upper}}</h4>
         </div>
         <div class="btn-group pull-right">
             <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
@@ -81,9 +81,10 @@
         </table>
 
         <div class="col-xs-5 col-md-5">
-            <a onclick="sendResetMail('{{ path('fos_user_resetting_send_email') }}','{{ entity.username }}')" href='#' class="btn btn-sm btn-default">
+            <button onclick="sendResetMail('{{ path('fos_user_resetting_send_email') }}','{{ entity.username }}', '{{ entity.email }}')" id="resetPwdBtn" class="btn btn-sm btn-default">
                 Envoyer un lien de réinitialisation de mot de passe
-            </a>
+
+            </button>
         </div>
     </div>
 

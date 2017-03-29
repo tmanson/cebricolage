@@ -71,7 +71,6 @@ class User extends \FOS\UserBundle\Model\User
         $this->bannedPeriods = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *

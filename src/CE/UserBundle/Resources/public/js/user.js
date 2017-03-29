@@ -78,13 +78,21 @@ function addResaFormDeleteLink($formLi) {
     });
 }
 
-function sendResetMail($url, $username) {
+function sendResetMail($url, $username, $email) {
+    $('#resetPwdBtn').prop('disabled', true);
+    $('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" id="btnSpinner"></span>').insertBefore('#resetPwdBtn');
     $.post($url, {'username': $username})
         .done(function (data) {
-            alert('Email sent');
+            $('#flashs').html('<div class="alert alert-success" role="alert">Un email a été envoyé à l\'adresse ' + $email +
+                '</div>'
+            );
         })
         .fail(function (data) {
-            alert('Email not sent');
+            $('#flashs').html('<div class="alert alert-danger" role="alert">Erreur lors de la réinitialisation du mot de passe</div>');
+        })
+        .always(function (data) {
+            $('#btnSpinner').detach();
+            $('#resetPwdBtn').prop('disabled', false);
         })
     ;
 }

@@ -1,5 +1,14 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "CECoreBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block body %}
+<div class="table-responsive panel panel-default">
+    <div class="container-fluid panel-heading">
+        <h4>Demande de réinitialisation de mot de passe</h4>
+    </div>
+    <div class="panel-body">
+        {% include "CEUserBundle:Resetting:request_content.html.twig" %}
+    </div>
+
+
+</div>
+{% endblock body %}

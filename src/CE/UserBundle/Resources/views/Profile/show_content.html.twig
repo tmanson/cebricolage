@@ -1,0 +1,20 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="panel panel-default">
+    <div class="container-fluid panel-heading">
+        <h4>Compte utilisateur</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-4 col-md-2">{{ 'profile.show.username'|trans }} :</div>
+            <div>{{ user.username }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-md-2">{{ 'profile.show.email'|trans }} :</div>
+            <div>{{ user.email }}
+            </div>
+        </div>
+    </div>
+
+</div>

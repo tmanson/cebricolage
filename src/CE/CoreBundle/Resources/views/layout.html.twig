@@ -26,20 +26,21 @@
     </head>
     <body>
 
-        {% for type, messages in app.session.flashbag.all() %}
-        {% for message in messages %}
-        <div class="flash-{{ type }}">
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endfor %}
+
 
         <div class="container">
 
             {% include 'CECoreBundle:Default:navbar.html.twig' %}
+            {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+            <div class="flash-{{ type }} alert alert-{{ type }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endfor %}
+            <div id="flashs"></div>
             {% block body %}
             {% endblock body %}
-
         </div>
         <div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">

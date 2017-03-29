@@ -2,10 +2,8 @@
 
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
     <div>
-        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-        <input type="text" id="username" name="username" required="required" />
-    </div>
-    <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+        <label for="username" class="col-xs-6 col-md-3">{{ 'resetting.request.username'|trans }}</label>
+        <input type="text" id="username" name="username" required="required" class="col-xs-6 col-md-3"/>
+        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-info btn-sm pull-right"/>
     </div>
 </form>
