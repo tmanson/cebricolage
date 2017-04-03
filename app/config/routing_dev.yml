@@ -12,3 +12,8 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+# app/config/routing_dev.yml
+_errors:
+    resource: "@TwigBundle/Resources/config/routing/errors.xml"
+    prefix:   /_error

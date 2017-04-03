@@ -1,0 +1,26 @@
+{% extends "CECoreBundle::layout.html.twig" %}
+
+        {% block body %}
+<div class="alert alert-danger" role="alert">
+    <h4>
+        <span class="glyphicon  glyphicon-exclamation-sign "></span>
+        Une erreur est survenue
+    </h4>
+</div>
+<div class="table-responsive panel panel-default">
+    <div class="panel-body">
+        <h4>Le serveur a retourné : "{{ status_code }} {{ status_text }}".</h4>
+        Quelque chose est cassé.
+        <br/>
+        Faites-nous savoir ce que vous faisiez lorsque cette erreur s'est produite.
+        <br/>
+        Nous allons le réparer dès que possible.
+        <br/>
+        Désolé pour tout dérangement causé.
+        <br/>
+    </div>
+
+
+</div>
+        {% endblock body %}
+
