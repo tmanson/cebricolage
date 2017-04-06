@@ -29,6 +29,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - 'form/fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -81,6 +83,9 @@ fos_user:
     registration:
         form:
             type: ce_user_registration
+    profile:
+        form:
+            type: ce_user_profile
     group:
         group_class: CE\UserBundle\Entity\Group
         form:

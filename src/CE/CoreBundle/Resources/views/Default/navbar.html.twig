@@ -49,6 +49,8 @@
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.firstname | capitalize }} {{ app.user.name | upper}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                        <li><a href="{{ path('fos_user_change_password') }}">Changer mot de passe</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
                     </ul>

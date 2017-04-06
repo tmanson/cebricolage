@@ -16,7 +16,7 @@ ce_user:
 
 ce_core:
     resource: "@CECoreBundle/Resources/config/routing.yml"
-    prefix:   /core
+    prefix:   /
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

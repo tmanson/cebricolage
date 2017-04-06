@@ -1,5 +1,9 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "CECoreBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
-{% endblock fos_user_content %}
+        {% block body %}
+        {{ include("CEUserBundle:User:userForm.html.twig",
+        {'profile': true,
+        'titre': 'Modification de mon profil',
+        'form': form,
+        'showDeleteButton': false}) }}
+        {% endblock body %}

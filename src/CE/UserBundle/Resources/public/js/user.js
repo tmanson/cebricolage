@@ -33,7 +33,40 @@ jQuery(document).ready(function () {
         // add a new tag form (see next code block)
         addBanPeriodForm($collectionHolder);
     });
+
+
+    $('#fos_user_profile_form_identifiant').on('keyup', function () {
+        toogleSaveChangeBtn('applychangeBtn', this);
+    });
+    $('#fos_user_profile_form_name').on('keyup', function () {
+        var newUsername = $('#fos_user_profile_form_firstname').val() + '.' + $('#fos_user_profile_form_name').val();
+        $('#fos_user_profile_form_username').val(newUsername)
+        toogleSaveChangeBtn('applychangeBtn', this);
+    });
+    $('#fos_user_profile_form_firstname').on('keyup', function () {
+        var newUsername = $('#fos_user_profile_form_firstname').val() + '.' + $('#fos_user_profile_form_name').val();
+        $('#fos_user_profile_form_username').val(newUsername)
+        toogleSaveChangeBtn('applychangeBtn', this);
+    });
+    $('#fos_user_profile_form_email').on('keyup', function () {
+        toogleSaveChangeBtn('applychangeBtn', this);
+    });
+    $('#fos_user_profile_form_phoneNumber').on('keyup', function () {
+        toogleSaveChangeBtn('applychangeBtn', this);
+    });
+    $('#fos_user_profile_form_current_password').on('keyup', function () {
+        toogleSaveChangeBtn('fos_user_profile_form_submitBtn', this);
+    });
 });
+
+function toogleSaveChangeBtn($idBtn, $elt) {
+    if ($($elt).val().length != 0) {
+        $('#'+$idBtn).attr('disabled', false);
+    }
+    else {
+        $('#'+$idBtn).attr('disabled', true);
+    }
+};
 
 
 function addBanPeriodForm($collectionHolder) {

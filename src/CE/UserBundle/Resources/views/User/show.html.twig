@@ -6,88 +6,10 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
         {% block body %}
-
 <div class="hidden">
     {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
 </div>
-<div class="table-responsive panel panel-default">
-    <div class="container-fluid panel-heading">
-        <div class="pull-left ">
-            <h4>{{ entity.firstname | capitalize }} {{ entity.name | upper}}</h4>
-        </div>
-        <div class="btn-group pull-right">
-            <a href="{{ path('user') }}" class="btn btn-primary">Retour</a>
-            {% if is_granted('ROLE_CRUD_USER') %}
-            <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-success">Modifier</a>
-            <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-warning">Supprimer</a>
-            {% endif %}
-        </div>
-    </div>
-    <div class="panel-body">
-        <table class="record_properties table-responsive col-md-7">
-            <tbody>
-                <tr>
-                    <th class="col-xs-6 col-md-3">Nom d'utilisateur</th>
-                    <td>{{ entity.username }}</td>
-                </tr>
-                <tr>
-                    <th class="col-xs-6 col-md-3">Identifiant</th>
-                    <td>{{ entity.identifiant }}</td>
-                </tr>
-                <tr>
-                    <th class="col-xs-6 col-md-3">Nom</th>
-                    <td>{{ entity.name }}</td>
-                </tr>
-                <tr>
-                    <th class="col-xs-6 col-md-3">Prénom</th>
-                    <td>{{ entity.firstname }}</td>
-                </tr>
-                <tr>
-                    <th class="col-xs-6 col-md-3">Email</th>
-                    <td>{{ entity.email }}</td>
-                </tr>
-                <tr>
-                    <th class="col-xs-6 col-md-3">Téléphone</th>
-                    <td>{{ entity.phoneNumber }}</td>
-                </tr>
-                <tr>
-                    <th class="col-xs-6 col-md-3">Status</th>
-                    <td>{% if entity.enabled %}
-                        Actif
-                        {% else %}
-                        Inactif
-                        {% endif %}
-                    </td>
-                </tr>
-                {% if entity.bannedPeriods is not empty %}
-                <tr>
-                    <th class="col-xs-2 col-md-1">Exclusions</th>
-                    <th class="col-xs-2 col-md-1">Date de debut</th>
-                    <th class="col-xs-2 col-md-1">Date de fin</th>
-                    <th class="col-xs-2 col-md-1">Commentaire</th>
-                </tr>
-                {% for bannedPeriod in entity.bannedPeriods %}
-                <tr>
-                    <td class="col-xs-2 col-md-1"></td>
-                    <td class="col-xs-2 col-md-1">{{ bannedPeriod.startDate|date('d/m/Y') }}</td>
-                    <td class="col-xs-2 col-md-1">{{ bannedPeriod.endDate|date('d/m/Y') }}</td>
-                    {% if bannedPeriod.commentaire %}
-                    <td class="col-xs-2 col-md-1">{{ bannedPeriod.commentaire }}</td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
-
-        <div class="col-xs-5 col-md-5">
-            <button onclick="sendResetMail('{{ path('fos_user_resetting_send_email') }}','{{ entity.username }}', '{{ entity.email }}')" id="resetPwdBtn" class="btn btn-sm btn-default">
-                Envoyer un lien de réinitialisation de mot de passe
-
-            </button>
-        </div>
-    </div>
 
 
-</div>
+        {{ include("CEUserBundle:Profile:show_content.html.twig", { 'profile': false }) }}
         {% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\UserBundle\Form\Handler;
+namespace CE\UserBundle\Form\Handler;
 
 use FOS\UserBundle\Form\Handler\RegistrationFormHandler as BaseHandler;
 use FOS\UserBundle\Model\UserInterface;

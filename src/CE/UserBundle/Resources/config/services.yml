@@ -4,6 +4,11 @@ services:
         tags:
             - { name: form.type, alias: ce_user_registration }
 
+    ce_user.profile.form.type:
+        class: CE\UserBundle\Form\Type\ProfileFormType
+        arguments: ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type, alias: ce_user_profile }
 
     ce_user.registration.form.handler:
        class: CE\UserBundle\Form\Handler\RegistrationFormHandler

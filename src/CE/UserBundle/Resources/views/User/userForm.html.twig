@@ -1,15 +1,14 @@
+{% trans_default_domain 'FOSUserBundle' %}
 {% block javascripttop %}
-    {% javascripts '@CEUserBundle/Resources/public/js/*' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock javascripttop %}
-<!-- TODO voir pourquoi le script n'est pas inclus dans la partie head de la page HTML -->
-
-{% if showDeleteButton %}
-    <div class="hidden">
-        {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
-    </div>
-{% endif %}
+        {% javascripts '@CEUserBundle/Resources/public/js/*' %}
+<script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endblock javascripttop %}
+        {% if showDeleteButton %}
+<div class="hidden">
+    {{ form(delete_form, {'attr': {'id': 'delete_form', 'class': 'hidden'}}) }}
+</div>
+        {% endif %}
 
         {{ form_start(form) }}
 <div class="table-responsive panel panel-default">
@@ -19,17 +18,51 @@
             <h4>{{ titre }}</h4>
         </div>
         <div class="btn-group pull-right">
+            {% if not profile %}
             <a href="{{ path('user') }}" class="btn btn-sm btn-primary">Retour</a>
-            {% if showDeleteButton %}
-                <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">
-                    Supprimer
-                </a>
+            {% else %}
+            <a href="{{ path('fos_user_profile_show') }}" class="btn btn-sm btn-primary">Retour</a>
             {% endif %}
+            {% if showDeleteButton %}
+            <a onclick="document.getElementById('delete_form').submit();" href='#' class="btn btn-sm btn-warning">
+                Supprimer
+            </a>
+            {% endif %}
+            {% if not profile %}
             {{ form_widget(form.submit) }}
+            {% else %}
+            <input type="button" value="{{ 'profile.edit.submit'|trans }}" data-toggle="modal"
+                   data-target="#submit-profile-change" class="btn btn-sm btn-success" id="applychangeBtn"/>
+            {% endif %}
+        </div>
+        <div id="submit-profile-change" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Saisie du mot de passe</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Pour pouvoir valider les modifications vous devez saisir votre mot de passe.</p>
+                        <div>
+
+                            {{ form_widget(form.current_password, {'attr': {'class': 'form-control input-sm'}}) }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fermer</button>
+                        <input type="submit" value="{{ 'profile.edit.submit'|trans }}"
+                               class="btn btn-sm btn-success" disabled="disabled" id="fos_user_profile_form_submitBtn"/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="panel-body">
         {{ form_errors(form) }}
+        {{ form_errors(form.current_password) }}
         <table class="record_properties table-responsive col-md-7">
             <tbody>
                 <tr>
@@ -39,82 +72,86 @@
 
                     </td>
                 </tr>
-            <tr>
-                <th class="col-xs-6 col-md-3">Identifiant</th>
-                <td>{{ form_errors(form.identifiant) }}
-                    {{ form_widget(form.identifiant, {'attr': {'class': 'form-control input-sm'}}) }}
+                <tr>
+                    <th class="col-xs-6 col-md-3">Identifiant</th>
+                    <td>{{ form_errors(form.identifiant) }}
+                        {{ form_widget(form.identifiant, {'attr': {'class': 'form-control input-sm'}}) }}
 
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-6 col-md-3">Nom</th>
-                <td>{{ form_errors(form.name) }}
-                    {{ form_widget(form.name, {'attr': {'class': 'form-control input-sm'}}) }}
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-6 col-md-3">Prénom</th>
-                <td>{{ form_errors(form.firstname) }}
-                    {{ form_widget(form.firstname, {'attr': {'class': 'form-control input-sm'}}) }}
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-6 col-md-3">Email</th>
-                <td>{{ form_errors(form.email) }}
-                    {{ form_widget(form.email, {'attr': {'class': 'form-control input-sm'}}) }}
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-6 col-md-3">Téléphone</th>
-                <td>{{ form_errors(form.phoneNumber) }}
-                    {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control input-sm'}}) }}
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-6 col-md-3">Groupe</th>
-                <td>{{ form_errors(form.groups) }}
-                    {{ form_widget(form.groups, {'attr': {'class': 'form-control input-sm'}}) }}
-                </td>
-            </tr>
-            <tr>
-                <th class="col-xs-6 col-md-3">Status</th>
-                <td>{{ form_errors(form.enabled) }}
-                    {{ form_widget(form.enabled, {'attr': {'class': 'form-control input-sm toogleCheckbox',
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Nom</th>
+                    <td>{{ form_errors(form.name) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Prénom</th>
+                    <td>{{ form_errors(form.firstname) }}
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Email</th>
+                    <td>{{ form_errors(form.email) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Téléphone</th>
+                    <td>{{ form_errors(form.phoneNumber) }}
+                        {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-6 col-md-3">Groupe</th>
+                    <td>{{ form_errors(form.groups) }}
+                        {{ form_widget(form.groups, {'attr': {'class': 'form-control input-sm'}}) }}
+                    </td>
+                </tr>
+                {% if not profile %}
+                <tr>
+                    <th class="col-xs-6 col-md-3">Status</th>
+                    <td>{{ form_errors(form.enabled) }}
+                        {{ form_widget(form.enabled, {'attr': {'class': 'form-control input-sm toogleCheckbox',
                         'data-on-text': 'Actif',
                         'data-off-text': 'Inactif'}}) }}
-                </td>
-            </tr>
+                    </td>
+                </tr>
+                {% endif %}
             </tbody>
         </table>
         <table class="record_properties table-responsive col-md-8">
             <tbody>
 
-            <tr>
-                <th class="col-md-2">Exclusions</th>
-                <th class="col-md-2">Date de debut</th>
-                <th class="col-md-2">Date de fin</th>
-                <th class="col-md-2">Commentaire</th>
-            <tr>
-                <td>
-                    <a id='addBanPeriodLink' href="#" class="add_bannedPeriods_link">Ajouter une periode</a>
-                </td>
-            </tr>
-            <tr id="bannedPeriods"
-                data-prototype="{% filter escape %}{{ include('CEUserBundle:User:bannedPeriodPrototype.html.twig',
+                <tr>
+                    <th class="col-md-2">Exclusions</th>
+                    <th class="col-md-2">Date de debut</th>
+                    <th class="col-md-2">Date de fin</th>
+                    <th class="col-md-2">Commentaire</th>
+                    {% if not profile %}
+                    <tr>
+                        <td>
+                            <a id='addBanPeriodLink' href="#" class="add_bannedPeriods_link">Ajouter une periode</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr id="bannedPeriods"
+                        data-prototype="{% filter escape %}{{ include('CEUserBundle:User:bannedPeriodPrototype.html.twig',
                 {'item': form.bannedPeriods.vars.prototype }) }}{% endfilter %}"></tr>
-            {% if entity.bannedPeriods is not empty %}
-                {% for bannedPeriod in form.bannedPeriods %}
+                    {% if form.bannedPeriods is not empty %}
+                    {% for bannedPeriod in form.bannedPeriods %}
                     {{ include('CEUserBundle:User:bannedPeriodPrototype.html.twig',
                     {'item': bannedPeriod}) }}
-                {% endfor %}
-            {% else %}
-                <tr id="emptyBanPeriods">
-                    <td>Aucune période d'exclusion</td>
+                    {% endfor %}
+                    {% else %}
+                    <tr id="emptyBanPeriods">
+                        <td>Aucune période d'exclusion</td>
+                    </tr>
+                    {% endif %}
                 </tr>
-            {% endif %}
-            </tr>
             </tbody>
         </table>
     </div>
 </div>
-{{ form_end(form) }}
+        {{ form_end(form) }}

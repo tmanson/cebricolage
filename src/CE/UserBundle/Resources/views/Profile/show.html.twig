@@ -1,5 +1,5 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
 {% block body %}
-{% include "CEUserBundle:Profile:show_content.html.twig" %}
+{{ include("CEUserBundle:Profile:show_content.html.twig", {'entity': user, 'profile': true }) }}
 {% endblock body %}
