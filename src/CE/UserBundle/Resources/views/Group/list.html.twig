@@ -1,35 +1,42 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% block body %}
+        {% block fos_user_content %}
+        {% block body %}
 <div class="table-responsive panel panel-default">
     <div class="panel-heading">Liste des groupes</div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th class="col-xs-2 col-md-1">Nom</th>
-            <th class="col-xs-2 col-md-1">
-                {%  if is_granted('ROLE_CRUD_GROUP') %}
-                <a class="btn btn-sm btn-success" href="{{ path('fos_user_group_new') }}">+ Ajouter</a>
-                {% endif %}
-            </th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Nom</th>
+                    <th class="col-xs-2 col-md-1">
+                        {% if is_granted('ROLE_CRUD_GROUP') %}
+                        <a class="btn btn-sm btn-success" href="{{ path('fos_user_group_new') }}">+ Ajouter</a>
+                        {% endif %}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
 
-        {% for group in groups %}
-            <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
-                <td>{{ group.name }}</td>
-                <td class="btn-group btn-group-xs" role="group">
-                    {%  if is_granted('ROLE_CRUD_GROUP') %}
-                        <a href="{{ path('fos_user_group_edit', { 'groupName': group.name }) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
-                    {% endif %}
-                    <a href="{{ path('fos_user_group_show', { 'groupName': group.name }) }}" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+                {% for group in groups %}
+                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
+                    <td>{{ group.name }}</td>
+                    <td class="btn-group btn-group-xs" role="group">
+                        {% if is_granted('ROLE_CRUD_GROUP') %}
+                        <a href="{{ path('fos_user_group_edit', { 'groupName': group.name }) }}"
+                           class="btn btn-default">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        {% endif %}
+                        <a href="{{ path('fos_user_group_show', { 'groupName': group.name }) }}"
+                           class="btn btn-default">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% endblock %}
-{% endblock fos_user_content %}
+    {% endblock fos_user_content %}

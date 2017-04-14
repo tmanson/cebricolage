@@ -1,35 +1,41 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% block body %}
+        {% block fos_user_content %}
+        {% block body %}
 <div class="table-responsive panel panel-default">
     <div class="panel-heading">Liste des marques</div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th class="col-xs-2 col-md-1">Nom</th>
-            <th class="col-xs-2 col-md-1">
-                {%  if is_granted('ROLE_CRUD_DEVICE') %}
-                    <a class="btn btn-sm btn-success" href="{{ path('brand_new') }}">+ Ajouter</a>
-                {% endif %}
-            </th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-xs-2 col-md-1">Nom</th>
+                    <th class="col-xs-2 col-md-1">
+                        {% if is_granted('ROLE_CRUD_DEVICE') %}
+                        <a class="btn btn-sm btn-success" href="{{ path('brand_new') }}">+ Ajouter</a>
+                        {% endif %}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
 
-        {% for entity in entities %}
-            <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
-                <td>{{ entity.libelle }}</td>
-                <td  class="btn-group btn-group-xs" role="group">
-                    {%  if is_granted('ROLE_CRUD_DEVICE') %}
-                        <a href="{{ path('brand_edit', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
-                    {% endif %}
-                    <a href="{{ path('brand_show', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                {% for entity in entities %}
+                <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
+                    <td>{{ entity.libelle }}</td>
+                    <td class="btn-group btn-group-xs" role="group">
+                        {% if is_granted('ROLE_CRUD_DEVICE') %}
+                        <a href="{{ path('brand_edit', { 'id': entity.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        {% endif %}
+                        <a href="{{ path('brand_show', { 'id': entity.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     {% endblock %}
     {% endblock fos_user_content %}
