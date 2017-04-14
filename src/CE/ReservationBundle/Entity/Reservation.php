@@ -23,28 +23,36 @@ class Reservation
 
     /**
      *  @ORM\ManyToOne(targetEntity="CE\DeviceBundle\Entity\Device")
+     * @ORM\JoinColumn(name="device_id", referencedColumnName="id", nullable=false)
      */
     private $device;
 
     /**
      *  @ORM\ManyToOne(targetEntity="CE\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\Column(name="startDate", type="datetime")
+     * @ORM\Column(name="startDate", type="datetime", nullable=false)
      */
     private $startDate;
 
     /**
-     * @ORM\Column(name="endDate", type="datetime")
+     * @ORM\Column(name="endDate", type="datetime", nullable=false)
      */
     private $endDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="CE\ReservationBundle\Entity\ReservationStatus")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
     private $status;
+
+    /**
+     * @ORM\Column(name="returnTime", type="datetime", nullable=true)
+     */
+    private $returnTime;
 
     /**
      * @var string
@@ -158,6 +166,24 @@ class Reservation
     {
         $this->status = $status;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReturnTime()
+    {
+        return $this->returnTime;
+    }
+
+    /**
+     * @param mixed $returnTime
+     */
+    public function setReturnTime($returnTime)
+    {
+        $this->returnTime = $returnTime;
+    }
+
+
 
 
 }

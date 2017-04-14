@@ -222,8 +222,8 @@ class User extends \FOS\UserBundle\Model\User
 
     function __toString()
     {
-        return ucfirst($this->getUsername()) . " " . ucfirst($this->getFirstname()) . " - " . strtoupper(
-            $this->getIdentifiant()
+        return ucfirst($this->getFirstname()) . " " . strtoupper(
+            $this->getName()
         );
     }
 

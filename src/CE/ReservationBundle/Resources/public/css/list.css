@@ -4,4 +4,19 @@
 }
 .list {
     padding: 15px;
+    font-size: 12px;
+}
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+.btn-group-vertical .btn:last-child{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.btn-group > .btn {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.btn-group > .btn:last-child {
+    border-top-right-radius: 3px;
 }

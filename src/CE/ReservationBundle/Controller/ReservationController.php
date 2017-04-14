@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CE\ReservationBundle\Entity\Reservation;
 use CE\ReservationBundle\Form\ReservationType;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Reservation controller.
@@ -295,6 +296,7 @@ class ReservationController extends Controller
             $status = $em->getRepository('CEReservationBundle:ReservationStatus')->findOneById($statusId);
             $entity->setStatus($status);
             $entity->setCommentaire($commentaire);
+            $entity->setReturnTime(new Date());
             $em->flush();
 
             $response = new JsonResponse();

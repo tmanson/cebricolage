@@ -1,24 +1,34 @@
+
 function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, actionTitle) {
     var buttons = '\
-    <span class="btn-group btn-group-xs" role="group">\
-        <a class="btn btn-default editbtn"\
-            title="Editer"\
-            data-href="' + editUrl + '">\
-            <span class="glyphicon glyphicon-edit"></span>\
-        </a>\
-        <a class="btn btn-danger deletebtn"\
-            data-confirm="Etes-vous certain de vouloir supprimer ?"\
-            data-href="' + deleteUrl + '"\
-            title="Supprimer">\
-            <span class="glyphicon glyphicon-remove delete deleteBtn"></span>\
-        </a>\
-        <a class="btn btn-success actionbtn" \
-            data-href="' + actionUrl + '"\
-            title="' + actionTitle + '">\
-            <span class="glyphicon glyphicon-check actionBtn"></span>\
-        </a>\
-        </span>';
-
+    <div class="btn-toolbar">\
+        <div class="btn-group-vertical btn-group-xs" role="group">\
+            <div class="row">\
+                <div class="btn-group btn-group-xs col-md-12" role="group">\
+                    <a class="btn btn-default editbtn col-md-6"\
+                        title="Editer"\
+                        data-href="' + editUrl + '">\
+                        <span class="glyphicon glyphicon-edit"></span>\
+                    </a>\
+                    <a class="btn btn-danger deletebtn col-md-6"\
+                        data-confirm="Etes-vous certain de vouloir supprimer ?"\
+                        data-href="' + deleteUrl + '"\
+                        title="Supprimer">\
+                        <span class="glyphicon glyphicon-remove delete deleteBtn"></span>\
+                    </a>\
+                </div>\
+            </div>\
+            <div class="row">\
+                <div class="col-md-12">\
+                    <a class="btn btn-xs btn-success actionbtn col-md-12" \
+                        data-href="' + actionUrl + '"\
+                        title="' + actionTitle + '">\
+                        <span class="glyphicon glyphicon-check actionBtn"></span>\
+                    </a>\
+                </div>\
+            </div>\
+        </div>\
+    </div>';
     var table = $('#' + idTable).DataTable(
         {
             "ajax": url,
@@ -27,10 +37,10 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, ac
             },
             "rowId": 'id',
             "columns": [
-                {"data": "device", "className": "col-sm-2"},
-                {"data": "user", "className": "col-sm-4"},
-                {"data": "startDate", "className": "col-sm-2"},
-                {"data": "endDate", "className": "col-sm-2"},
+                {"data": "device"},
+                {"data": "user"},
+                {"data": "startDate"},
+                {"data": "endDate"},
                 {
                     "className": 'actions',
                     "orderable": false,
