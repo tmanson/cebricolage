@@ -1,65 +1,101 @@
-
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="{{ path('ce_user_homepage') }}">CE Bricolage</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {% if is_granted("ROLE_READ_RESERVATION") %}
-                        <li class="{% block Emprunt %}{% endblock %}"><a href="{{ path('reservation') }}">Emprunt</a></li>
-                    {% endif %}
+                {% if is_granted("ROLE_READ_RESERVATION") %}
+                <li class="{% block Emprunt %}{% endblock %}">
+                    <a href="{{ path('reservation') }}">Emprunt</a>
+                </li>
+                {% endif %}
                 {% if is_granted("ROLE_CRUD_DEVICE") or is_granted("ROLE_READ_DEVICE")%}
-                    <li class="{% block Materiel %}{% endblock %} dropdown">
+                <li class="{% block Materiel %}{% endblock %} dropdown">
                     {% if is_granted("ROLE_CRUD_DEVICE")%}
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Matériel <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('device_management') }}">Gestion Matériel</a></li>
-                                <li><a href="{{ path('brand') }}">Gestion Marques</a></li>
-                                <li><a href="{{ path('category') }}">Gestion Categories</a></li>
-                            </ul>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Matériel
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ path('device_management') }}">Gestion Matériel</a>
                         </li>
-                    {% elseif is_granted("ROLE_READ_DEVICE")  %}
-                            <a class="dropdown-toggle" href="{{ path('device_management') }}">Matériel</a>
+                        <li>
+                            <a href="{{ path('brand') }}">Gestion Marques</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('category') }}">Gestion Categories</a>
+                        </li>
+                    </ul>
+                    {% elseif is_granted("ROLE_READ_DEVICE") %}
+                    <a class="dropdown-toggle" href="{{ path('device_management') }}">Matériel</a>
                     {% endif %}
-                    </li>
+                </li>
                 {% endif %}
                 {% if is_granted("ROLE_READ_USER") %}
-                    <li class="{% block Utilisateur %}{% endblock %}"><a href="{{ path('user') }}">Utilisateurs</a></li>
+                <li class="{% block Utilisateur %}{% endblock %}">
+                    <a href="{{ path('user') }}">Utilisateurs</a>
+                </li>
                 {% endif %}
                 {% if is_granted("ROLE_READ_GROUP") %}
-                    <li class="{% block Groupes %}{% endblock %}"><a href="{{ path('fos_user_group_list') }}">Groupes</a></li>
+                <li class="{% block Groupes %}{% endblock %}">
+                    <a href="{{ path('fos_user_group_list') }}">Groupes</a>
+                </li>
                 {% endif %}
                 {% if is_granted("ROLE_CRUD_PERMANENCE") %}
-                    <li class="">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Permanence <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('ce_permanence_homepage') }}">Calendrier</a></li>
-                            <li><a href="{{ path('permanence_management') }}">Gestion des permanences</a></li>
-                        </ul>
-                    </li>
+                <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Permanence
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ path('ce_permanence_homepage') }}">Calendrier</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('permanence_management') }}">Gestion des permanences</a>
+                        </li>
+                    </ul>
+                </li>
                 {% endif %}
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right btn-group btn-group-xs">
                 <li class="dropdown">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.firstname | capitalize }} {{ app.user.name | upper}} <span class="caret"></span></a>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{
+                        app.user.firstname | capitalize }} {{ app.user.name | upper}}
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
-                        <li><a href="{{ path('fos_user_change_password') }}">Changer mot de passe</a></li>
+                        <li>
+                            <a href="{{ path('fos_user_profile_show') }}">Profile</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_change_password') }}">Changer mot de passe</a>
+                        </li>
                         <li class="divider"></li>
-                        <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+                        <li>
+                            <a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+                        </li>
                     </ul>
-                {% else %}
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Connexion <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            {% include "CEUserBundle:Security:login.html.twig" %}
-                        </ul>
-                {% endif %}
+                    {% else %}
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Connexion
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        {% include "CEUserBundle:Security:login.html.twig" %}
+                    </ul>
+                    {% endif %}
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
