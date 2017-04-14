@@ -1,7 +1,10 @@
 {% extends "CECoreBundle::layout.html.twig" %}
 
-{% block body %}
-    {{ include('CEUserBundle:User:userForm.html.twig',
-    {'titre': 'Edition de l\'utilisateur ' ~ entity.firstname|capitalize ~ ' '~ entity.username|upper, 'form': edit_form, 'showDeleteButton': true}) }}
+        {% block body %}
+        {{ include('CEUserBundle:User:userForm.html.twig',
+        {'titre': 'Edition de l\'utilisateur ' ~ entity.firstname|capitalize ~ ' '~ entity.username|upper,
+        'form': edit_form,
+        'showDeleteButton': true,
+        'profile': false}) }}
 
-{% endblock %}
+        {% endblock %}

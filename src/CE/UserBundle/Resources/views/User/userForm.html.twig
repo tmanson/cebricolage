@@ -1,5 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
-{% block javascripttop %}
+        {% block javascripttop %}
         {% javascripts '@CEUserBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
@@ -18,7 +18,7 @@
             <h4>{{ titre }}</h4>
         </div>
         <div class="btn-group pull-right">
-            {% if not profile %}
+            {% if profile is defined and not profile %}
             <a href="{{ path('user') }}" class="btn btn-sm btn-primary">Retour</a>
             {% else %}
             <a href="{{ path('fos_user_profile_show') }}" class="btn btn-sm btn-primary">Retour</a>
@@ -28,41 +28,45 @@
                 Supprimer
             </a>
             {% endif %}
-            {% if not profile %}
+            {% if profile is defined and not profile %}
             {{ form_widget(form.submit) }}
             {% else %}
             <input type="button" value="{{ 'profile.edit.submit'|trans }}" data-toggle="modal"
                    data-target="#submit-profile-change" class="btn btn-sm btn-success" id="applychangeBtn"/>
-            {% endif %}
-        </div>
-        <div id="submit-profile-change" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Saisie du mot de passe</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Pour pouvoir valider les modifications vous devez saisir votre mot de passe.</p>
-                        <div>
-
-                            {{ form_widget(form.current_password, {'attr': {'class': 'form-control input-sm'}}) }}
+            <div id="submit-profile-change" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Saisie du mot de passe</h4>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fermer</button>
-                        <input type="submit" value="{{ 'profile.edit.submit'|trans }}"
-                               class="btn btn-sm btn-success" disabled="disabled" id="fos_user_profile_form_submitBtn"/>
+                        <div class="modal-body">
+                            <p>Pour pouvoir valider les modifications vous devez saisir votre mot de passe.</p>
+                            <div>
+
+                                {{ form_widget(form.current_password, {'attr': {'class': 'form-control input-sm'}}) }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fermer</button>
+                            <input type="submit" value="{{ 'profile.edit.submit'|trans }}"
+                                   class="btn btn-sm btn-success" disabled="disabled"
+                                   id="fos_user_profile_form_submitBtn"/>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
+
     </div>
     <div class="panel-body">
         {{ form_errors(form) }}
+        {% if profile is defined and profile %}
         {{ form_errors(form.current_password) }}
+        {% endif %}
         <table class="record_properties table-responsive col-md-7">
             <tbody>
                 <tr>
@@ -109,7 +113,7 @@
                         {{ form_widget(form.groups, {'attr': {'class': 'form-control input-sm'}}) }}
                     </td>
                 </tr>
-                {% if not profile %}
+                {% if profile is defined and not profile %}
                 <tr>
                     <th class="col-xs-6 col-md-3">Status</th>
                     <td>{{ form_errors(form.enabled) }}
@@ -129,7 +133,7 @@
                     <th class="col-md-2">Date de debut</th>
                     <th class="col-md-2">Date de fin</th>
                     <th class="col-md-2">Commentaire</th>
-                    {% if not profile %}
+                    {% if profile is defined and not profile %}
                     <tr>
                         <td>
                             <a id='addBanPeriodLink' href="#" class="add_bannedPeriods_link">Ajouter une periode</a>
