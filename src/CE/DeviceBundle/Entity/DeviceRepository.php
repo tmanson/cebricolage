@@ -15,6 +15,7 @@ class DeviceRepository extends EntityRepository
     public function findByDisponible($disponible){
         $qb = $this->createQueryBuilder('d')
             ->where("d.disponible = :dispo")
+            ->orderBy("d.libelle")
             ->setParameter('dispo', $disponible);
 
         return $qb;

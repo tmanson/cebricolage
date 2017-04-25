@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CE\ReservationBundle\Entity\Reservation;
 use CE\ReservationBundle\Form\ReservationType;
-use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Reservation controller.
@@ -264,7 +263,7 @@ class ReservationController extends Controller
      *
      *
      */
-    public function restitueAction($commentaire)
+    public function restitueAction()
     {
         return $this->changeReservationStatus(ReservationController::RESTITUE_STATUS);
     }
@@ -275,7 +274,7 @@ class ReservationController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function changeReservationStatus($statusId, $commentaire='')
+    private function changeReservationStatus($statusId)
     {
         $request = $this->container->get('request');
         if ($request->isXmlHttpRequest()) {
@@ -296,7 +295,7 @@ class ReservationController extends Controller
             $status = $em->getRepository('CEReservationBundle:ReservationStatus')->findOneById($statusId);
             $entity->setStatus($status);
             $entity->setCommentaire($commentaire);
-            $entity->setReturnTime(new Date());
+            $entity->setReturnTime(new \DateTime());
             $em->flush();
 
             $response = new JsonResponse();

@@ -23,7 +23,8 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, ac
                     <a class="btn btn-xs btn-success actionbtn col-md-12" \
                         data-href="' + actionUrl + '"\
                         title="' + actionTitle + '">\
-                        <span class="glyphicon glyphicon-check actionBtn"></span>\
+                        <span id="actionGlyph" class="glyphicon glyphicon-check actionBtn"></span>\
+                        <span id="spinnerGlyph" class="glyphicon glyphicon-refresh glyphicon-refresh-animate hidden"></span>\
                     </a>\
                 </div>\
             </div>\
@@ -98,6 +99,11 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, ac
         var row = table.row(tr);
         var entityId = row.id();
         var actionUrl = button.data('href');
+
+        // Affichage d'un spinner
+        button.find('#spinnerGlyph').removeClass('hidden');
+        button.find('#actionGlyph').addClass('hidden');
+
         $.ajax(
             {
                 url: actionUrl,
@@ -107,10 +113,17 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, ac
                 cache: false,
                 complete: function (response, status) {
                     if (status != 'success') {
-                        alert('L\'action a échouée !')
+                        // Afficahge d'un message
+                        $('#flashs').html('<div class="alert alert-error" role="alert">Une erreur est survenue</div>');
                     } else {
                         // reload les deux tables
-                        $.fn.dataTable.tables({visible: true, api: true}).ajax.reload();
+                        $.fn.dataTable.tables({visible: true, api: true}).ajax.reload(
+                            function ( json ) {
+                                button.find('#actionGlyph').removeClass('hidden');
+                                button.find('#spinnerGlyph').addClass('hidden');
+                            },
+                            false
+                        );
                     }
                 }
             });

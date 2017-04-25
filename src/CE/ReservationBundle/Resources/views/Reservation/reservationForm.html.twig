@@ -59,7 +59,7 @@
 {{ form_rest(form) }}
 {{ form_end(form) }}
 
-<script>
+<script type="text/javascript">
 
     var periodArray = [];
     var startDateParams = {
@@ -68,6 +68,7 @@
         minDate: new Date(),
         onSelect: function (dateText, inst) {
             var endId = '#' + inst.id.replace(/startDate/g, 'endDate');
+            $(endId).datepicker( "option", "disabled", false );
             $(endId).datepicker(endDateParams);
             $(endId).removeAttr('disabled');
             $(endId).attr('readonly','true');
@@ -151,8 +152,8 @@
         // On bind la récupération des periode reservé sur le changement de materiel
         $('#reservationList').on('change','.enableSubmit',  enableSubmitBtn);
 
-        // Paramétrage des datePickers
         {% if editionMode %}
+        // Paramétrage des datePickers
         $(".startDate").on('change', function(){
             $(".endDate")[0].value = null;
         });
@@ -224,10 +225,10 @@
         var endId = '#' + inst.id.replace(/device/g, 'endDate');
         var loadId = '.' + inst.id.replace(/device/g, 'loading');
         var rowId = inst.id.split('_')[5];
-        $(startId).datepicker('disable');
+        $(startId).datepicker( "option", "disabled", true );
         $(startId).attr('disabled','');
         $(startId).removeAttr('readonly');
-        $(endId).datepicker('disable');
+        $(endId).datepicker("option", "disabled", true );
         $(endId).attr('disabled','');
         $(endId).removeAttr('readonly');
         {% if not editionMode %}
@@ -247,7 +248,9 @@
             success: function (json) {
                 periodArray[rowId] = json;
                 $(loadId).hide();
+
                 $(startId).datepicker(startDateParams);
+                $(startId).datepicker( "option", "disabled", false );
                 $(startId).removeAttr('disabled');
                 $(startId).attr('readonly','true');
                 {% if editionMode %}
@@ -278,7 +281,7 @@
                 $(loadId).hide();
             }
         });
-        return false;
+        return true;
     }
     function enableSubmitBtn(){
         var inputs, index, enableSubmit;
