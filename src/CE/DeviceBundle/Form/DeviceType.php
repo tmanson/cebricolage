@@ -5,6 +5,7 @@ namespace CE\DeviceBundle\Form;
 use CE\DeviceBundle\CEDeviceBundle;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -27,7 +28,7 @@ class DeviceType extends AbstractType
                     }
                 )
             )
-            ->add('modele')
+            ->add('modele', TextType::class, array('required' => false))
             ->add(
                 'categories',
                 'entity',
@@ -35,7 +36,7 @@ class DeviceType extends AbstractType
                     'class' => 'CEDeviceBundle:Category',
                     'property' => 'libelle',
                     'multiple' => true,
-                    'required' => true,
+                    'required' => false,
                     'group_by' => 'parent.libelle',
                     'query_builder' => function (EntityRepository $e) {
                         return $e->createQueryBuilder('c')
@@ -44,7 +45,7 @@ class DeviceType extends AbstractType
                     }
                 )
             )
-            ->add('commentaire')
+            ->add('commentaire',TextType::class,  array('required' => false))
             ->add(
                 'dateAchat',
                 'datetime',
