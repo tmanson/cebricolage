@@ -128,7 +128,7 @@
             for (var period in periodArray[rowId]) {
                 var d1 = new Date(periodArray[rowId][period][0] * 1000);
                 var d2 = new Date(periodArray[rowId][period][1] * 1000);
-                if ((d1 <= date && date <= d2) // Pas de date de fin dans une période réservée
+                if ((d1 < date && date <= d2) // Pas de date de fin dans une période réservée
                         || (startDate <= d1 && d2 <= date)
                 ) {
                     enable = false;

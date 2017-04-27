@@ -12,19 +12,23 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReservationRepository extends EntityRepository
 {
-    public function findByReservationStatus($id) {
-        return $this->createQueryBuilder("r")->where('r.status = :id')->setParameter('id', $id)->getQuery()->getResult();
+    public function findByReservationStatus($id)
+    {
+        return $this->createQueryBuilder("r")->where('r.status = :id')->setParameter('id', $id)->getQuery()->getResult(
+        );
     }
 
 
-
-    public function findByDate($startDate,$endDate) {
-
+    public function findByDate($device, $startDate, $endDate)
+    {
         $result = $this->createQueryBuilder("r")
-            ->where('r.endDate >= :startDate AND r.endDate <= :endDate')
-            ->orWhere('r.startDate >= :startDate AND r.endDate <= :endDate')
-            ->orWhere('r.startDate <= :endDate AND r.startDate >= :startDate')
-            ->orWhere('r.startDate <= :startDate AND r.endDate >= :endDate')
+            ->where('r.device = :device')
+            ->andWhere(
+                '(r.endDate > :startDate AND r.endDate <= :endDate)
+                            OR (r.startDate >= :startDate AND r.startDate < :endDate)
+                            OR (r.startDate <= :startDate AND r.endDate >= :endDate)'
+            )
+            ->setParameter('device', $device)
             ->setParameter('startDate', $startDate)
             ->setParameter('endDate', $endDate)
             ->getQuery();
