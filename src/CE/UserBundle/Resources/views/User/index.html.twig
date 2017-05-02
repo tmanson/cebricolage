@@ -1,43 +1,52 @@
 {% extends "CECoreBundle::layout.html.twig" %}
+        {% set idTable = "usersList" %}
+        {% block javascripttop %}
+<script type="text/javascript" src="{{ asset('DataTables/datatables.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/datetime-moment.js') }}"></script>
+        {% javascripts '@CEUserBundle/Resources/public/js/*' %}
+<script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+<script type="text/javascript">
+    $(document).ready(function () {
+    initTable(
+    "{{ idTable }}",
+    "{{ path('user_get') }}",
+    "{{ asset('DataTables/French.json') }}",
+    "{{ path('user_edit', { 'id': ':ID' }) }}",
+    "{{ path('user_show', { 'id': ':ID' }) }}"
+    )
+    });
+</script>
+        {% endblock javascripttop %}
+        {% block body %}
+<div class="table-responsive panel panel-default ">
+    <div class="panel-heading">Liste des utilisateurs
+        {% if is_granted('ROLE_CRUD_USER') %}
+        <span class="pull-right">
+            <a class="btn btn-sm btn-success"
+               href="{{ path('user_new')}}">+ Ajouter
+            </a>
+        </span>
 
-{% block body %}
-<div class="table-responsive panel panel-default">
-    <div class="panel-heading">Liste des utilisateurs</div>
-    <div class="panel-body">
-    <table class="table">
-        <thead>
-        <tr>
-            <th class="col-xs-2 col-md-1">Identifiant</th>
-            <th class="col-xs-2 col-md-1">Nom</th>
-            <th class="col-xs-2 col-md-1">Prénom</th>
-            <th class="col-xs-2 col-md-1">Email</th>
-            <th class="col-xs-2 col-md-1">Teléphone</th>
-            <th class="col-xs-2 col-md-1">
-                {%  if is_granted('ROLE_CRUD_USER') %}
-                <a class="btn btn-sm btn-success" href="{{ path('user_new') }}">+ Ajouter</a>
-                {%  endif %}
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for entity in entities %}
-            <tr onMouseOver="this.className='bg-info'" onMouseOut="this.className=''">
-                <td>{{ entity.identifiant }}</td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.firstname }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{{ entity.phoneNumber }}</td>
-                <td class="btn-group btn-group-xs" role="group">
-                    {%  if is_granted('ROLE_CRUD_USER') %}
-                        <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
-                    {% endif %}
-                    <a href="{{ path('user_show', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        {% endif %}
     </div>
+    <div class="panel-body">
+        <div class="list">
+            <table class="table" id="{{idTable}}">
+                <thead>
+                    <tr>
+                        <th class="col-xs-3 col-md-2">Identifiant</th>
+                        <th class="col-xs-3 col-md-1">Nom</th>
+                        <th class="col-xs-3 col-md-1">Prénom</th>
+                        <th class="col-xs-3 col-md-1">Email</th>
+                        <th class="col-xs-2 col-md-1">Teléphone</th>
+                        <th class="col-xs-2 col-md-1"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
 
     {% endblock %}

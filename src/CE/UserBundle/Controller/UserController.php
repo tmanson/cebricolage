@@ -3,6 +3,7 @@
 namespace CE\UserBundle\Controller;
 
 use CE\UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -33,6 +34,24 @@ class UserController extends Controller
                 'entities' => $entities,
             )
         );
+    }
+
+    public function getAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('CEUserBundle:User')->findAll();
+        $usersJson['data'] = array();
+        foreach ($users as $user) {
+            $usersJson['data'][] = array(
+                'id' => $user->getId(),
+                'identifiant' => $user->getIdentifiant(),
+                'name' => $user->getName(),
+                'firstname' => $user->getFirstname(),
+                'email' => $user->getEmail(),
+                'phoneNumber' => $user->getPhoneNumber()
+            );
+        }
+        return new JsonResponse($usersJson);
     }
 
     /**

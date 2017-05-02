@@ -2,6 +2,10 @@ user:
     path:     /
     defaults: { _controller: "CEUserBundle:User:index" }
 
+user_get:
+    path:     /get
+    defaults: { _controller: "CEUserBundle:User:get" }
+
 user_show:
     path:     /{id}/show
     defaults: { _controller: "CEUserBundle:User:show" }
