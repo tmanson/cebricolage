@@ -9,6 +9,8 @@
 
         {% block javascripttop %}
 <script type="text/javascript" src="{{ asset('DataTables/datatables.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/datetime-moment.js') }}"></script>
         {% javascripts '@CEReservationBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
         {% endjavascripts %}

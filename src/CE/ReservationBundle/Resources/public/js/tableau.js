@@ -1,3 +1,6 @@
+$(document).ready(function() {
+    $.fn.dataTable.moment( 'DD/MM/YYYY' );
+} );
 
 function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, actionTitle) {
     var buttons = '\
