@@ -2,6 +2,7 @@
 
 namespace CE\ReservationBundle\Entity;
 
+use CE\ReservationBundle\Controller\ReservationController;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -18,6 +19,17 @@ class ReservationRepository extends EntityRepository
         );
     }
 
+    public function findReservedPeriodByDevice($device)
+    {
+        $result = $this->createQueryBuilder("r")
+            ->where('r.device = :device')
+            ->andWhere('r.status != :restitueStatus')
+            ->setParameter('device', $device)
+            ->setParameter('restitueStatus', ReservationController::RESTITUE_STATUS)
+            ->getQuery();
+
+        return $result->getResult();
+    }
 
     public function findByDate($device, $startDate, $endDate)
     {

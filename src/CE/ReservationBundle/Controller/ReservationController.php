@@ -441,7 +441,7 @@ class ReservationController extends Controller
         $deviceId
     ) {
         $em = $this->getDoctrine()->getManager();
-        $reservations = $em->getRepository('CEReservationBundle:Reservation')->findByDevice($deviceId);
+        $reservations = $em->getRepository('CEReservationBundle:Reservation')->findReservedPeriodByDevice($deviceId);
         $period = array();
         foreach ($reservations as $resa) {
             $period[] = array($resa->getStartDate()->getTimestamp(), $resa->getEndDate()->getTimestamp());
