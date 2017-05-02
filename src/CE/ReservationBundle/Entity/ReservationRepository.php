@@ -40,9 +40,11 @@ class ReservationRepository extends EntityRepository
                             OR (r.startDate >= :startDate AND r.startDate < :endDate)
                             OR (r.startDate <= :startDate AND r.endDate >= :endDate)'
             )
+            ->andWhere('r.status != :restitueStatus')
             ->setParameter('device', $device)
             ->setParameter('startDate', $startDate)
             ->setParameter('endDate', $endDate)
+            ->setParameter('restitueStatus', ReservationController::RESTITUE_STATUS)
             ->getQuery();
 
         return $result->getResult();
