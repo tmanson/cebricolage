@@ -100,7 +100,9 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, activateUrl, 
                     $(row).find('.deactivateButton').hide();
                     $(row).find('.activateButton').show();
                 }
-            }
+            },
+            "pageLength" : 25,
+            "order": [[2, 'asc']]
         });
 
 // Edition de l'entité
