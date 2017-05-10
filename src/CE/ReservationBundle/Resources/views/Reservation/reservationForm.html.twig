@@ -65,7 +65,9 @@
     var startDateParams = {
         dateFormat: "dd-mm-yy",
         firstDay: 1,
+        {% if not editionMode %}
         minDate: new Date(),
+        {% endif %}
         onSelect: function (dateText, inst) {
             var endId = '#' + inst.id.replace(/startDate/g, 'endDate');
             $(endId).datepicker( "option", "disabled", false );
@@ -109,7 +111,9 @@
     var endDateParams = {
         dateFormat: "dd-mm-yy",
         firstDay: 1,
+        {% if not editionMode %}
         minDate: new Date(),
+        {% endif %}
         beforeShowDay: function (date) {
             var enable = true;
             var startId = '#' + this.id.replace(/endDate/g, 'startDate');
@@ -225,15 +229,26 @@
         var endId = '#' + inst.id.replace(/device/g, 'endDate');
         var loadId = '.' + inst.id.replace(/device/g, 'loading');
         var rowId = inst.id.split('_')[5];
+
+        // Désactivation des datepicker
         $(startId).datepicker( "option", "disabled", true );
         $(startId).attr('disabled','');
         $(startId).removeAttr('readonly');
+
         $(endId).datepicker("option", "disabled", true );
         $(endId).attr('disabled','');
         $(endId).removeAttr('readonly');
+
+
+
         {% if not editionMode %}
+        // En création on ne veux pas de date saisie
         $(startId)[0].value = null;
         $(endId)[0].value = null;
+        {% else %}
+        // Sauvegarde des dates pour restauration plus tard
+        var startDateBckp = $(startId)[0].value;
+        var endDateBckp = $(endId)[0].value;
         {% endif %}
         if(deviceId==null || deviceId==""){
             return;
@@ -249,19 +264,35 @@
                 periodArray[rowId] = json;
                 $(loadId).hide();
 
+                // on active le datepicker
                 $(startId).datepicker(startDateParams);
                 $(startId).datepicker( "option", "disabled", false );
+
                 $(startId).removeAttr('disabled');
                 $(startId).attr('readonly','true');
+
                 {% if editionMode %}
+                // On active la modification de la date de fin si on est en edition
+                $(endId).datepicker(endDateParams);
+                $(endId).datepicker( "option", "disabled", false );
+
+                $(endId).removeAttr('disabled');
+                $(endId).attr('readonly','true');
+
+                // Restauration les ancienne date qu'on perd à l'acitvation des datepickers
+                $(startId).datepicker('setDate', startDateBckp);
+                $(startId)[0].value = startDateBckp;
+                $(endId).datepicker('setDate', endDateBckp);
+                $(endId)[0].value = endDateBckp;
+
                 // On supprime la période actuelle
-                var endDateVal = $(endId).value;
+                var endDateVal = endDateBckp;
                 if (endDateVal === undefined) {
                     endDateVal = $(endId)[0].value;
                 }
                 endDateVal=endDateVal.split("-");
                 var endDate = new Date(endDateVal[0]+"/"+endDateVal[1]+"/"+endDateVal[2]).getTime();
-                var startDateVal = $(startId).value;
+                var startDateVal = startDateBckp;
                 if (startDateVal === undefined) {
                     startDateVal = $(startId)[0].value;
                 }
@@ -275,6 +306,7 @@
                         break;
                     }
                 }
+
                 {% endif %}
             },
             error: function () {
