@@ -201,7 +201,8 @@
 
         // Remplace '__name__' dans le HTML du prototype par un nombre basé sur
         // la longueur de la collection courante
-        var newForm = prototype.replace(/__name__/g, collectionHolder.children().length);
+        var length = collectionHolder.children().length;
+        var newForm = prototype.replace(/__name__/g, length);
 
         // Affiche le formulaire dans la page dans un li, avant le lien "ajouter un tag"
         var $newFormLi = $('<tr></tr>').append(newForm);
@@ -213,6 +214,11 @@
         // On désactive le champs endDate
         $newFormLi.find('.endDate').datepicker(endDateParams);
         $newFormLi.find('.endDate').attr('disabled','');
+
+        var lastLine = collectionHolder.children()[length-1]
+        $newFormLi.find('.startDate')[0].value = $(lastLine).find('.startDate')[0].value;
+        $newFormLi.find('.endDate')[0].value = $(lastLine).find('.endDate')[0].value;
+        $newFormLi.find('.user')[0].value = $(lastLine).find('.user')[0].value;
 
         addResaFormDeleteLink($newFormLi);
         $newLinkLi.append($newFormLi);
@@ -239,17 +245,10 @@
         $(endId).attr('disabled','');
         $(endId).removeAttr('readonly');
 
-
-
-        {% if not editionMode %}
-        // En création on ne veux pas de date saisie
-        $(startId)[0].value = null;
-        $(endId)[0].value = null;
-        {% else %}
         // Sauvegarde des dates pour restauration plus tard
         var startDateBckp = $(startId)[0].value;
         var endDateBckp = $(endId)[0].value;
-        {% endif %}
+
         if(deviceId==null || deviceId==""){
             return;
         }
@@ -279,7 +278,7 @@
                 $(endId).removeAttr('disabled');
                 $(endId).attr('readonly','true');
 
-                // Restauration les ancienne date qu'on perd à l'acitvation des datepickers
+                // Restauration les ancienne date qu'on perd à l'activation des datepickers
                 $(startId).datepicker('setDate', startDateBckp);
                 $(startId)[0].value = startDateBckp;
                 $(endId).datepicker('setDate', endDateBckp);
@@ -306,7 +305,18 @@
                         break;
                     }
                 }
-
+                {% else %}
+                // En création si on a des valeur on verifi qu'elle ne sont possible
+                for (var period in periodArray[rowId]) {
+                    var d1 = periodArray[rowId][period][0] * 1000;
+                    var d2 = periodArray[rowId][period][1] * 1000;
+                    if (!((d1 < startDateBckp && d2 <= startDateBckp)
+                        || (d1 >= endDateBckp && d2 > endDateBckp))) {
+                        $(startId)[0].value = null;
+                        $(endId)[0].value = null;
+                        break;
+                    }
+                }
                 {% endif %}
             },
             error: function () {
