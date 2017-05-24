@@ -37,7 +37,8 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, ac
         {
             "ajax": url,
             "language": {
-                "url": langFilePath
+                "url": langFilePath,
+                "processing": "<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>"
             },
             "rowId": 'id',
             "columns": [
@@ -53,7 +54,9 @@ function initTable(idTable, url, langFilePath, editUrl, deleteUrl, actionUrl, ac
                     "defaultContent": buttons
                 }
             ],
-            "autoWidth": false
+            "autoWidth": false,
+            "dom": 'rtip', // the "r" is for the "processing" message
+            "processing": true, // you have to set this to true as well
         });
 
     // Edition de l'entité
