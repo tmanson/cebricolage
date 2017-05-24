@@ -62,31 +62,42 @@ class ReservationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $status = $this->getStatusRepository()->findOneById($statusId);
 
+            $doubleReservations = array();
             foreach ($form->getData()['reservations'] as $reservation) {
-
                 $em2 = $this->getDoctrine()->getManager();
                 $reservatsCheck = $em2->getRepository('CEReservationBundle:Reservation')->findByDate(
                     $reservation->getDevice()->getId(),
                     $reservation->getStartDate(),
                     $reservation->getEndDate()
                 );
-
                 if (!empty($reservatsCheck)) {
-                    $this->addFlash(
-                        'danger',
-                        'Des reservations existent déjà pour certains materiels'
-                    );
-                    return $this->render(
-                        'CEReservationBundle:Reservation:new.html.twig',
-                        array(
-                            'form' => $form->createView(),
-                            'status' => $statusId,
-                        )
-                    );
+                    foreach ($reservatsCheck as $prevResa) {
+                        $doubleReservations[] = $prevResa;
+                    }
                 } else {
                     $reservation->setStatus($status);
                     $em->persist($reservation);
                 }
+
+            }
+            if (!empty($doubleReservations)) {
+                $this->addFlash(
+                    'danger',
+                    'Des reservations existent déjà pour certains materiels'
+                );
+                foreach ($doubleReservations as $infos){
+                    $this->addFlash(
+                        'danger',
+                        $infos
+                    );
+                }
+                return $this->render(
+                    'CEReservationBundle:Reservation:new.html.twig',
+                    array(
+                        'form' => $form->createView(),
+                        'status' => $statusId,
+                    )
+                );
             }
             $em->flush();
             $this->addFlash(

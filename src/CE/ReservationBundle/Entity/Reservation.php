@@ -22,13 +22,13 @@ class Reservation
     private $id;
 
     /**
-     *  @ORM\ManyToOne(targetEntity="CE\DeviceBundle\Entity\Device")
+     * @ORM\ManyToOne(targetEntity="CE\DeviceBundle\Entity\Device")
      * @ORM\JoinColumn(name="device_id", referencedColumnName="id", nullable=false)
      */
     private $device;
 
     /**
-     *  @ORM\ManyToOne(targetEntity="CE\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="CE\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
@@ -80,7 +80,7 @@ class Reservation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -183,7 +183,10 @@ class Reservation
         $this->returnTime = $returnTime;
     }
 
-
+    function __toString()
+    {
+        return '"' . $this->getDevice()->getLibelle() . '" réservé par ' . $this->getUser()->__toString();
+    }
 
 
 }
