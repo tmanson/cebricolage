@@ -3,6 +3,7 @@
 namespace CE\ReservationBundle\Form;
 
 use CE\DeviceBundle\Entity\DeviceRepository;
+use CE\UserBundle\Entity\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -45,7 +46,10 @@ class ReservationType extends AbstractType
                 'required' => true,
                 'empty_value' => 'Choisissez un utilisateur',
                 'empty_data' => null,
-                'class' => 'CEUserBundle:User'))
+                'class' => 'CE\UserBundle\Entity\User',
+                'query_builder' => function(UserRepository $er) {
+                    return $er->findActif();
+                }))
             ->add('commentaire')
         ;
     }

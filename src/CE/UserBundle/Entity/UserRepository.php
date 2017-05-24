@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function findActif()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->where("u.enabled = 1")
+            ->orderBy('u.name, u.firstname');
+        return $qb;
+    }
 }
