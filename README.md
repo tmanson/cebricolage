@@ -30,7 +30,10 @@ Création de la base de donnée cebricolage
 > php app/console doctrine:database:create
 
 Initialisation des referentiels
-> php app/console assets:install
+> php app/console doctrine:fixtures:load
+
+Export les ressources Assetic.
+> php app/console assetic:dump --env=prod --no-debug
 
 3) Livraison d'une nouvelle release
 Mise à jour de la base
