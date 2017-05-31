@@ -61,12 +61,13 @@
 
 <script type="text/javascript">
 
+
     var periodArray = [];
     var startDateParams = {
         dateFormat: "dd-mm-yy",
         firstDay: 1,
         {% if not editionMode %}
-        minDate: new Date(),
+            minDate: new Date(),
         {% endif %}
         onSelect: function (dateText, inst) {
             var endId = '#' + inst.id.replace(/startDate/g, 'endDate');
@@ -163,6 +164,7 @@
         });
 
         {%  endif %}
+
     });
 
     // Récupère le div qui contient la collection de tags
@@ -264,9 +266,14 @@
                 $(loadId).hide();
 
                 // on active le datepicker
-                $(startId).datepicker(startDateParams);
-                $(startId).datepicker( "option", "disabled", false );
+                var startDateVal = startDateBckp;
+                if (startDateVal === undefined) {
+                    startDateVal = $(startId)[0].value;
+                }
+                startDateVal=startDateVal.split("-");
 
+                $(startId).datepicker(startDateParams);
+                $(startId).datepicker( "option", "disabled", false);
                 $(startId).removeAttr('disabled');
                 $(startId).attr('readonly','true');
 
@@ -279,8 +286,7 @@
                 $(endId).attr('readonly','true');
 
                 // Restauration les ancienne date qu'on perd à l'activation des datepickers
-                $(startId).datepicker('setDate', startDateBckp);
-                $(startId)[0].value = startDateBckp;
+
                 $(endId).datepicker('setDate', endDateBckp);
                 $(endId)[0].value = endDateBckp;
 
@@ -290,13 +296,8 @@
                     endDateVal = $(endId)[0].value;
                 }
                 endDateVal=endDateVal.split("-");
-                var endDate = new Date(endDateVal[0]+"/"+endDateVal[1]+"/"+endDateVal[2]).getTime();
-                var startDateVal = startDateBckp;
-                if (startDateVal === undefined) {
-                    startDateVal = $(startId)[0].value;
-                }
-                startDateVal=startDateVal.split("-");
-                var startDate = new Date(startDateVal[0]+"/"+startDateVal[1]+"/"+startDateVal[2]).getTime();
+                var endDate = new Date(endDateVal[1]+"/"+endDateVal[0]+"/"+endDateVal[2]).getTime();
+                var startDate = new Date(startDateVal[1]+"/"+startDateVal[0]+"/"+startDateVal[2]).getTime();
                 for (var period in periodArray[rowId]) {
                     var d1 = periodArray[rowId][period][0] * 1000;
                     var d2 = periodArray[rowId][period][1] * 1000;
@@ -305,6 +306,19 @@
                         break;
                     }
                 }
+
+
+
+                /************
+                MAJ : Desactivation du datepicker en edition
+                *************/
+                if({{status}} == 2 && ( new Date(startDateVal[1]+"/"+startDateVal[0]+"/"+startDateVal[2]).getTime() < new Date().getTime())) {
+                    $(startId).datepicker( "option", "disabled", true);
+                    $(startId).datepicker('setDate', startDateBckp);
+                    $(startId)[0].value = startDateBckp;
+                }
+
+
                 {% else %}
                 // En création si on a des valeur on verifi qu'elle ne sont possible
                 for (var period in periodArray[rowId]) {
@@ -345,4 +359,6 @@
 
         }
     }
+
+
 </script>
