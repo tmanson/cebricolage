@@ -20,17 +20,8 @@
     <div >
         <input hidden="hidden" value="{{ status }}" id="status" name="status">
         {{ form_errors(form) }}
-        {% if editionMode %}
-            <table class="record_properties">
-                <tbody>
-                <tr>
-                {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form }) }}
-                </tr>
-                </tbody>
-            </table>
-        {% else %}
-            <table class="record_properties">
-                <thead>
+        <table class="record_properties">
+            <thead>
                 <tr>
                     <th>Matériel</th>
                     <th>Date de début</th>
@@ -39,16 +30,24 @@
                     <th>Commentaire</th>
                     <th></th>
                 </tr>
-                </thead>
+            </thead>
+        {% if editionMode %}
+                <tbody>
+                <tr>
+                {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form ,'editionMode': editionMode}) }}
+                </tr>
+                </tbody>
+        {% else %}
+
                 <tbody class="reservations" id="reservationList" data-prototype="{% filter escape %}{{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': form.reservations.vars.prototype }) }}{% endfilter %}">
                     {% for item in form.reservations %}
                     <tr>
-                    {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': item }) }}
+                    {{ include('CEReservationBundle:Reservation:reservationPrototype.html.twig', {'item': item,'editionMode': editionMode }) }}
                     </tr>
                     {% endfor %}
                 </tbody>
-            </table>
         {% endif %}
+        </table>
     </div>
    {% if not editionMode %}
         <div class="container-fluid panel-footer">
@@ -306,18 +305,6 @@
                         break;
                     }
                 }
-
-
-
-                /************
-                MAJ : Desactivation du datepicker en edition
-                *************/
-                if({{status}} == 2 && ( new Date(startDateVal[1]+"/"+startDateVal[0]+"/"+startDateVal[2]).getTime() < new Date().getTime())) {
-                    $(startId).datepicker( "option", "disabled", true);
-                    $(startId).datepicker('setDate', startDateBckp);
-                    $(startId)[0].value = startDateBckp;
-                }
-
 
                 {% else %}
                 // En création si on a des valeur on verifi qu'elle ne sont possible
