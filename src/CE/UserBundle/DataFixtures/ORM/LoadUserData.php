@@ -21,6 +21,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface
 
         $admin = new User();
         $admin->setFirstname('Administrateur');
+        $admin->setName('admin');
         $admin->setUsername('admin');
         $admin->setGroups($this->getReference('admin-group'));
         $admin->setIdentifiant('Administrateur');
