@@ -24,10 +24,11 @@ Récupération d'une copie de l'application
 Dans le répertoire cebricolage, exécuter les commandes suivantes.
 
 Récupération des vendors
-> composer install --no-dev --optimize-autoloader
+> composer install --optimize-autoloader
 
 Création de la base de donnée cebricolage
 > php app/console doctrine:database:create
+> php app/console doctrine:schema:create
 
 Initialisation des referentiels
 > php app/console doctrine:fixtures:load
