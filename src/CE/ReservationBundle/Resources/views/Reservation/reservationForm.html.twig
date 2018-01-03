@@ -285,7 +285,8 @@
                 $(endId).attr('readonly','true');
 
                 // Restauration les ancienne date qu'on perd à l'activation des datepickers
-
+                $(startId).datepicker('setDate', startDateBckp);
+                $(startId)[0].value = startDateBckp;
                 $(endId).datepicker('setDate', endDateBckp);
                 $(endId)[0].value = endDateBckp;
 

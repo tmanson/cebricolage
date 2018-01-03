@@ -11,7 +11,7 @@
 <td class='col-md-2'>
     {% if editionMode %}
         {{ item.startDate.vars.value }}
-        {{ form_widget(item.startDate, {'attr': {'class': 'hidden'}}) }}
+        {{ form_widget(item.startDate, {'attr': {'class': 'hidden startDate'}}) }}
     {% else %}
         <div class="inner-addon left-addon">
         <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate loading {{ item.vars.id }}_loading" ></i>
