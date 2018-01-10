@@ -74,8 +74,15 @@
             $(endId).datepicker(endDateParams);
             $(endId).removeAttr('disabled');
             $(endId).attr('readonly','true');
-            // On supprime la date de fin déjà selectionnée
-            $.datepicker._clearDate($(endId));
+            // On supprime la date de fin déjà selectionnée si elle est inférieure à la date de début
+            debugger
+            var startDateVal=dateText.split("-");
+            var startDate = new Date(startDateVal[1]+"/"+startDateVal[0]+"/"+startDateVal[2]).getTime();
+            var endDateVal=$(endId)[0].value.split("-");
+            var endDate = new Date(endDateVal[1]+"/"+endDateVal[0]+"/"+endDateVal[2]).getTime();
+            if(startDate > endDate){
+                $.datepicker._clearDate($(endId));
+            }
             enableSubmitBtn();
         },
         beforeShowDay: function (date) {
@@ -83,18 +90,6 @@
             var rowId = this.id.split('_')[5];
             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
             var enable = true;
-            var endDateVal=$(endId).value;
-            if(endDateVal === undefined) {
-                endDateVal=$(endId)[0].value;
-            }
-            endDateVal=endDateVal.split("-");
-            var endDate = new Date(endDateVal[2]+"-"+endDateVal[1]+"-"+endDateVal[0]).getTime();
-            {% if not editionMode %}
-            if(date >= endDate)// La date de début ne doit pas être supérieur à la date de fin
-            {
-                return [false];
-            }
-            {% endif %}
             for (var period in periodArray[rowId]) {
                 var d1 = new Date(periodArray[rowId][period][0] * 1000);
                 var d2 = new Date(periodArray[rowId][period][1] * 1000);
@@ -246,13 +241,29 @@
         $(endId).attr('disabled','');
         $(endId).removeAttr('readonly');
 
-        // Sauvegarde des dates pour restauration plus tard
-        var startDateBckp = $(startId)[0].value;
-        var endDateBckp = $(endId)[0].value;
+
 
         if(deviceId==null || deviceId==""){
             return;
         }
+        // Sauvegarde des dates pour restauration plus tard
+        var endDateBckp = $(endId)[0].value;
+        var endDateVal = endDateBckp;
+        if (endDateVal === undefined) {
+            endDateVal = $(endId)[0].value;
+        }
+        endDateVal=endDateVal.split("-");
+        var endDate = new Date(endDateVal[1]+"/"+endDateVal[0]+"/"+endDateVal[2]).getTime();
+
+        var startDateBckp = $(startId)[0].value;
+        var startDateVal = startDateBckp;
+        if (startDateVal === undefined) {
+            startDateVal = $(startId)[0].value;
+        }
+        startDateVal=startDateVal.split("-");
+        var startDate = new Date(startDateVal[1]+"/"+startDateVal[0]+"/"+startDateVal[2]).getTime();
+
+        // Afficahge du load spinner
         $(loadId).show();
 
         var route = "{{ path('reservation_get_reserved_period', { 'deviceId': "DEVICE_ID" }) }}";
@@ -265,12 +276,6 @@
                 $(loadId).hide();
 
                 // on active le datepicker
-                var startDateVal = startDateBckp;
-                if (startDateVal === undefined) {
-                    startDateVal = $(startId)[0].value;
-                }
-                startDateVal=startDateVal.split("-");
-
                 $(startId).datepicker(startDateParams);
                 $(startId).datepicker( "option", "disabled", false);
                 $(startId).removeAttr('disabled');
@@ -290,14 +295,6 @@
                 $(endId).datepicker('setDate', endDateBckp);
                 $(endId)[0].value = endDateBckp;
 
-                // On supprime la période actuelle
-                var endDateVal = endDateBckp;
-                if (endDateVal === undefined) {
-                    endDateVal = $(endId)[0].value;
-                }
-                endDateVal=endDateVal.split("-");
-                var endDate = new Date(endDateVal[1]+"/"+endDateVal[0]+"/"+endDateVal[2]).getTime();
-                var startDate = new Date(startDateVal[1]+"/"+startDateVal[0]+"/"+startDateVal[2]).getTime();
                 for (var period in periodArray[rowId]) {
                     var d1 = periodArray[rowId][period][0] * 1000;
                     var d2 = periodArray[rowId][period][1] * 1000;
@@ -312,12 +309,18 @@
                 for (var period in periodArray[rowId]) {
                     var d1 = periodArray[rowId][period][0] * 1000;
                     var d2 = periodArray[rowId][period][1] * 1000;
-                    if (!((d1 < startDateBckp && d2 <= startDateBckp)
-                        || (d1 >= endDateBckp && d2 > endDateBckp))) {
+                    if (!((d1 < startDate && d2 <= startDate)
+                        || (d1 >= endDate && d2 > endDate))) {
                         $(startId)[0].value = null;
                         $(endId)[0].value = null;
                         break;
                     }
+                }
+                if (endDateBckp !== undefined) {
+                    $(endId).datepicker(endDateParams);
+                    $(endId).datepicker( "option", "disabled", false);
+                    $(endId).removeAttr('disabled');
+                    $(endId).attr('readonly','true');
                 }
                 {% endif %}
             },
