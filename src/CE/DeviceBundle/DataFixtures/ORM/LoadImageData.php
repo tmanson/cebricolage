@@ -12,15 +12,17 @@ namespace CE\DeviceBundle\DataFixtures\ORM;
 use CE\DeviceBundle\Entity\Image;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class LoadImageData extends AbstractFixture implements FixtureInterface
+class LoadImageData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
 {
 
     const IMG_BOSH = "img-bosh";
     const IMG_DEXTER = "img-dexter";
     const IMG_MAKITA = "img-makita";
+    const IMG_PERFO = "img-perfo";
 
     const IMG_PATH = "\..\images\\";
     const dash_copy = "copy-";
@@ -48,11 +50,17 @@ class LoadImageData extends AbstractFixture implements FixtureInterface
         $img3->upload();
         $manager->persist($img3);
 
+        $img4 = new Image();
+        $img4->file = $this->copyImage("marteau-perforateur.jpg");
+        $img4->upload();
+        $manager->persist($img4);
+
         $manager->flush();
 
         $this->addReference(self::IMG_BOSH, $img);
         $this->addReference(self::IMG_DEXTER, $img2);
         $this->addReference(self::IMG_MAKITA, $img3);
+        $this->addReference(self::IMG_PERFO, $img4);
     }
 
     private function copyImage($nomImage) {
@@ -60,5 +68,16 @@ class LoadImageData extends AbstractFixture implements FixtureInterface
         copy(__DIR__ . self::IMG_PATH . $nomImage, __DIR__ . self::IMG_PATH . self::dash_copy . $nomImage);
         return new UploadedFile(__DIR__ . self::IMG_PATH . self::dash_copy . $nomImage, $nomImage,
             null, null, null, true);
+    }
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    public function getOrder()
+    {
+        // TODO: Implement getOrder() method.
+        return 1;
     }
 }
