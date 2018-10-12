@@ -8,10 +8,10 @@ Outil pour la gestion de pret de matériel. Idéal pour un CE, une association o
 - Gestion des reservation
 - Gestion du matériel emprunté
 - Gestion des utilisateurs/emprunteur
-
-A venir :
 - Catalogue pour les membres
 - Gestion de catégorie de matériel
+
+A venir :
 - Historique
 - Statistique
 - Gestion d'une liste l'achat avec priorité
