@@ -12,10 +12,12 @@ parameters:
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
+    from_email.address: me@example.fr
+    from_email.sender_name: Sender Name
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     debug_toolbar:          true
     debug_redirects:        false
-    use_assetic_controller: true
+    use_assetic_controller: true   
